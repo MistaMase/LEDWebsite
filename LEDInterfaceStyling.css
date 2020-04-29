@@ -3,8 +3,9 @@ body {
     padding: 0px;
 }
 
+/* Header Styling */
 .header {
-    padding: 0px;
+    padding: 0;
     margin: 0px;
     display: flex;
     flex-direction: row;
@@ -17,29 +18,38 @@ body {
 }
 
 .headerCell {
-    object-fit: cover;
     height: 100%;
     width: auto;
     align-self: center;
+    margin: 0 1%;
+}
+
+.headerIconImage {
+    margin: 10% 0;
+    height: 80%;
+    width: auto;
+}
+
+.headerIconImage:hover {
+    box-shadow: 0px 0px 10px black;
+    border-radius: 20%;
 }
 
 #powerIcon {
-    height: 80%;
 }
 
 #powerIcon:hover {
-    box-shadow: 0px 0px 10px black;
-    border-radius: 20%;
 }
 
 #modeSelect {
     margin: 0px;
     padding: 0px;
     background: rgba(0, 0, 0, 0);
-    font-size: 0.9em;
+    font-size: 20pt;
     font-weight: normal;
-    border: 1px solid #404040;
+    border: none;
     width: 20%;
+    height: 80%;
 }
 
 #modeSelect option {
@@ -64,51 +74,41 @@ body {
 #ipAddress {
     width: 40%;
     text-align: center;
-    vertical-align: center;
     font-size: 30px;
     height: 100%;
 }
 
-#manualInterfaceIcon {
-    height: 80%;
+#ipAddressValue {
+    height: 100%;
     width: auto;
+}
+
+#manualInterfaceIcon {
 }
 
 #manualInterfaceIcon:hover {
-    box-shadow: 0px 0px 10px black;
-    border-radius: 20%;
 }
 
+
 #codeInterfaceIcon {
-    height: 80%;
-    width: auto;
 }
 
 #codeInterfaceIcon:hover {
-    box-shadow: 0px 0px 10px black;
-    border-radius: 20%;
 }
 
 #hardwareInfoIcon {
-    height: 80%;
-    width: auto;
 }
 
 #hardwareInfoIcon:hover {
-    box-shadow: 0px 0px 10px black;
-    border-radius: 20%;
 }
 
 #homeInterfaceIcon {
-    height: 80%;
-    width: auto;
 }
 
 #homeInterfaceIcon:hover {
-    box-shadow: 0px 0px 10px black;
-    border-radius: 20%;
 }
 
+/* Body Icons */
 #iconContainer {
     padding: 0px;
     margin: 0px;
@@ -133,19 +133,18 @@ body {
     border-radius: 20%;
 }
 
+.bodyIconImage {
+    width: 30vw;
+    height: auto;
+}
+
 #manualInterfaceIconBody {
-    height: 50vh;
-    width: auto;
 }
 
 #codeInterfaceIconBody {
-    height: 50vh;
-    width: auto;
 }
 
 #hardwareInfoIconBody {
-    height: 50vh;
-    width: auto;
 }
 
 /* Manual Input Interface Styling */
@@ -199,21 +198,23 @@ body {
 /* Code Input Interface Styling */
 #codeInputContainer {
     height: 93vh;
-    width: 100vw;
+    width: 100%;
 }
 
 #codeTextArea {
     outline: none;
     resize: none;
-    margin: 0px;
-    background-color: yellow;
-    height: 93vh;
-    width: 100vw;
+    overflow: auto;
+    background: yellow;
+    height: 90%;
+    width: 60%;
     font-size: 14pt;
 }
 
 /* Hardware Information Header */
 .infoCell {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -221,7 +222,7 @@ body {
     align-items: center;
     height: 50px;
     width: 100%;
-    border: 1px solid gray;
+    border: 0px solid gray;
     background-color: #bfbfbf;
 
 }
