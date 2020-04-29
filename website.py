@@ -8,7 +8,7 @@ def redirecttohome():
 
 @app.route('/home')
 def home():
-    return render_template('Home.html')
+    return render_template('Home.html', ipaddress=getIpAddress())
 
 @app.route('/manualinput')
 def manualinput():
@@ -30,6 +30,12 @@ def addHeader(r):
     r.headers['Expires'] = '0'
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
+
+# Gets the current IP Address
+def getIpAddress():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    return s.getsockname()[0]
 
 
 if __name__ == '__main__':
