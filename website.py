@@ -3,23 +3,23 @@ from flask import Flask, render_template, redirect, url_for
 app = Flask(__name__)
 
 @app.route('/')
-def redirectToHome():
+def redirecttohome():
     return redirect(url_for('home'))
 
-@app.route('/home/')
+@app.route('/home')
 def home():
     return render_template('Home.html')
 
-@app.route('/manualinput/')
-def manualInput():
+@app.route('/manualinput')
+def manualinput():
     return render_template('ManualInputInterface.html')
 
-@app.route('/codeinput/')
-def codeInput():
+@app.route('/codeinput')
+def codeinput():
     return render_template('CodeInputInterface.html')
 
-@app.route('/hardwareinformation/')
-def hardwareInformation():
+@app.route('/hardwareinformation')
+def hardwareinformation():
     return render_template('HardwareInformationInterface.html')
 
 # Prevent browsers from caching anything
