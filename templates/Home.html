@@ -14,7 +14,7 @@
     <body>
         <div class="header">
             <!-- Power Icon -->
-            <a href="{{ url_for('/') }}" class="headerCell">
+            <a href="{{ url_for('/home') }}" class="headerCell">
 		        <img class="headerIconImage" id="powerIcon" src="{{ url_for('static', filename='assets/power_icon_off.svg') }}">
             </a>
 
@@ -33,22 +33,22 @@
             </label>
 
             <!-- Home Inferface Icon -->
-            <a class="headerCell" href="{{ url_for('/') }}">
+            <a class="headerCell" href="{{ url_for('/home') }}">
 		        <img class="headerIconImage" id="homeInterfaceIcon" src="{{ url_for('static', filename='assets/home_icon.svg') }}">
             </a>
 
             <!-- Manual Interface Icon -->
-            <a class="headerCell" href="{{ url_for('manualinput') }}">
+            <a class="headerCell" href="{{ url_for('/manualinput') }}">
 		        <img class="headerIconImage" id="manualInterfaceIcon" src="{{ url_for('static', filename='assets/equalizer_icon.svg') }}">
             </a>
 
             <!-- Code Interface Icon -->
-            <a class="headerCell" href="{{ url_for('codeinput') }}">
+            <a class="headerCell" href="{{ url_for('/codeinput') }}">
 		        <img class="headerIconImage" id="codeInterfaceIcon" src="{{ url_for('static', filename='assets/code_icon.png') }}">
             </a>
 
             <!-- Hardware Info Icon -->
-            <a class="headerCell" href="{{ url_for('hardwareinformation') }}">
+            <a class="headerCell" href="{{ url_for('/hardwareinformation') }}">
 		        <img class="headerIconImage" id="hardwareInfoIcon" src="{{ url_for('static', filename='assets/hardware_information_icon.svg') }}">
             </a>
 
@@ -59,17 +59,17 @@
 
         <div id="iconContainer">
             <!-- Manual Interface Body Icon -->
-            <a class="bodyIcon" href="{{ url_for('manualinput') }}">
+            <a class="bodyIcon" href="{{ url_for('/manualinput') }}">
 		        <img class="bodyIconImage" id="manualInterfaceIconBody" src="{{ url_for('static', filename='assets/equalizer_icon.svg') }}">
             </a>
 
             <!-- Code Interface Body Icon -->
-            <a class="bodyIcon" href="{{ url_for('codeinput') }}">
+            <a class="bodyIcon" href="{{ url_for('/codeinput') }}">
 		        <img class="bodyIconImage" id="codeInterfaceIconBody" src="{{ url_for('static', filename='assets/code_icon.png') }}">
             </a>
 
             <!-- Hardware Info Body Icon -->
-            <a class="bodyIcon" href="{{ url_for('hardwareinput') }}">
+            <a class="bodyIcon" href="{{ url_for('/hardwareinformation') }}">
 		        <img class="bodyIconImage" id="hardwareInfoIconBody" src="{{ url_for('static', filename='assets/hardware_information_icon.svg') }}">
             </a>
         </div>
