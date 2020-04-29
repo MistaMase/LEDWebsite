@@ -47,7 +47,6 @@ body {
     padding: 0px;
     background: rgba(0, 0, 0, 0);
     font-size: 20pt;
-    font-weight: normal;
     border: none;
     width: 20%;
     height: 80%;
@@ -55,7 +54,6 @@ body {
 
 #modeSelect option {
     font-size: auto;
-    font-family: sans-serif;
     background-color: green;
     box-shadow: 0 10px 0 10px rgba(0,0,0,0.5);
     border-radius: 0.5em;
