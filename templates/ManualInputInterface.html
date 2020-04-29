@@ -90,7 +90,9 @@
                     GHex = parseInt(GSlider.value, 10).toString(16),
                     BHex = parseInt(BSlider.value, 10).toString(16),
                     RGBHex = '#' + pad(RHex) + pad(GHex) + pad(BHex);
-                SliderContainer.style.backgroundColor = RGBHex;
+                SliderContainer.style.color = RGBHex;
+
+
             }
 
             RSlider.oninput = function() {
