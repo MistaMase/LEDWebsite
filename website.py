@@ -14,15 +14,15 @@ def home():
 
 @app.route('/manualinput')
 def manualinput():
-    return render_template('ManualInputInterface.html')
+    return render_template('ManualInputInterface.html', ipaddress=getIpAddress())
 
 @app.route('/codeinput')
 def codeinput():
-    return render_template('CodeInputInterface.html')
+    return render_template('CodeInputInterface.html', ipaddress=getIpAddress())
 
 @app.route('/hardwareinformation')
 def hardwareinformation():
-    return render_template('HardwareInformationInterface.html')
+    return render_template('HardwareInformationInterface.html', ipaddress=getIpAddress())
 
 # Prevent browsers from caching anything
 @app.after_request
