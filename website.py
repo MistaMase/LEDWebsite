@@ -1,7 +1,10 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
+
+@app.route('/')
+def redirectToHome():
+    return redirect(url_for('home'))
 
 @app.route('/home')
 def home():
