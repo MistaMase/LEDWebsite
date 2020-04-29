@@ -6,19 +6,19 @@ app = Flask(__name__)
 def redirectToHome():
     return redirect(url_for('home'))
 
-@app.route('/home')
+@app.route('/home/')
 def home():
     return render_template('Home.html')
 
-@app.route('/manualinput')
+@app.route('/manualinput/')
 def manualInput():
     return render_template('ManualInputInterface.html')
 
-@app.route('/codeinput')
+@app.route('/codeinput/')
 def codeInput():
     return render_template('CodeInputInterface.html')
 
-@app.route('/hardwareinformation')
+@app.route('/hardwareinformation/')
 def hardwareInformation():
     return render_template('HardwareInformationInterface.html')
 
