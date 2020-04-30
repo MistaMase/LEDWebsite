@@ -75,6 +75,12 @@
         </div>
 
         <script type="text/javascript" charset="utf-8">
+            var socket = io();
+
+		    socket.on('connect', function() {
+			    console.log("Home Socket Connected");
+		    });
+
             var animationContainer = document.getElementById('modeScrollContainer');
             var animationElements = animationContainer.getElementsByTagName('*');
 
@@ -90,14 +96,6 @@
                     current.style.backgroundColor = "#DDDDDD";
                 }
             }
-
-
-            var socket = io();
-
-		    socket.on('connect', function() {
-			    console.log("Home Socket Connected");
-		    });
-
 
         </script>
 
