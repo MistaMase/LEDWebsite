@@ -145,8 +145,8 @@ body {
     background: red;
 }
 
-#modeScrollElement {
-    height: 20%;
+.modeScrollElement {
+    height: 30%;
     background: green;
 }
 
