@@ -143,13 +143,11 @@ body {
 
 #modeScrollContainer {
     height: 80%;
-    background: red;
     overflow: scroll;
 }
 
 .modeScrollElement {
-    height: 30%;
-    background: green;
+    height: 7%;
 }
 
 /* Manual Input Interface Styling */
