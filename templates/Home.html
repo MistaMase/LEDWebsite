@@ -94,7 +94,7 @@
                 }
 
                 animationElements[counter].addEventListener('click', function(event) {
-                    socket.emit("Home Mode Change", "" + animationElements[counter].innerText)
+                    socket.emit("Home Mode Change", "" + animationElements[counter].innerHTML)
                 });
             }
 
