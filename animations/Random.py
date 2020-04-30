@@ -1,4 +1,5 @@
 import threading
+import random
 
 class Random(threading.Thread):
     def __init__(self, pixels, numPixels):

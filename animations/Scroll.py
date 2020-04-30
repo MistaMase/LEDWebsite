@@ -1,4 +1,5 @@
 import threading
+import random
 
 class Scroll(threading.Thread):
     def __init__(self, pixels, numPixels):
