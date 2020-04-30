@@ -10,6 +10,7 @@ numPixels = 300
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
 
+thread = None
 
 # Parses the incoming LED command and calls the correct function
 #def parseInputMessage(client, userdata, msg):
