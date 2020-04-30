@@ -6,13 +6,13 @@ from gpiozero import CPUTemperature
 import socket
 
 import scenes as scenes
-import Manual as Manual
+import animations.Manual as Manual
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
-scenes.thread = Manual.ManualColor()
+scenes.thread = Manual.ManualColor(scenes.pixels)
 scenes.thread.start()
 
 @app.route('/')
@@ -34,7 +34,7 @@ def manualConnected():
 @socketio.on('MI Update Client')
 def manualColorChange(message):
     print("Colors:" + message)
-    Manual.setColor(message)
+    scenes.thread.setColor(message)
 
 @app.route('/codeinput')
 def codeinput():
