@@ -97,6 +97,7 @@
                     if(event.target && event.target.class == 'modeScrollElement'){
                         socket.emit("Home Mode Change", "" + document.target.id.textContent);
                         alert(animationElements[counter].innerText);
+                    }
                 });
             }
 
