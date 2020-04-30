@@ -63,6 +63,12 @@ def addHeader(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
+# Ensure the current thread is shutdown before starting another
+def shutdownThread():
+    if scenes.thread.isAlive():
+        thread.stop()
+        print("Shutdown " + thread.name)
+
 # Gets the current IP Address
 def getIpAddress():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -76,5 +82,4 @@ def getCPUTemp():
 
 
 if __name__ == '__main__':
-    print(getCPUTemp())
     socketio.run(app, host='0.0.0.0', port='5050', debug=True)

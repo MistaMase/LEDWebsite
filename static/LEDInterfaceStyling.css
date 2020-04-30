@@ -140,10 +140,14 @@ body {
 #manualInterfaceIconBody {
 }
 
-#codeInterfaceIconBody {
+#modeScrollContainer {
+    height: 80%;
+    background: red;
 }
 
-#hardwareInfoIconBody {
+#modeScrollElement {
+    height: 20%;
+    background: green;
 }
 
 /* Manual Input Interface Styling */

@@ -10,136 +10,6 @@ numPixels = 300
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
 
-class On(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.name = 'On'
-        print(self.name)
-
-    def run(self):
-        pixels.fill((255,255,255))
-        pixels.show()
-
-    def stop(self):
-        pass
-
-class ManualColor(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.name = 'Manual Color'
-        print(self.name)
-        self.colors = ((0,0,0))
-        self.newColors = ((200, 200, 200))
-        self.shouldRun = True
-
-    def setColor(self, color):
-        parsedColors = color.split()
-        self.newColors = (int(parsedColors[0]), int(parsedColors[1]), int(parsedColors[2]))
-
-    def run(self):
-        while self.shouldRun:
-            if self.newColors != self.colors:
-                print("New Color")
-                self.colors = self.newColors
-                pixels.fill(self.colors)
-                pixels.show()
-            else:
-                pass
-
-    def stop(self):
-        self.shouldRun = False
-
-class Off(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.name = 'Off'
-        print(self.name)
-
-    def run(self):
-        pixels.fill((0,0,0))
-        pixels.show()
-
-    def stop(self):
-        pass
-
-class RandomColor(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.name = 'Random'
-        self.shouldRun = True
-        print(self.name)
-
-    def run(self):
-        while self.shouldRun:
-            pixels.fill((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
-            pixels.show()
-
-    def stop(self):
-        self.shouldRun = False
-
-class PartyMode(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.shouldRun = True
-        self.name = 'Party'
-        print(self.name)
-
-    def run(self):
-        while self.shouldRun:
-            for i in range(numPixels):
-                pixels[i] = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
-            pixels.show()
-            #time.sleep(0.1)
-
-    def stop(self):
-        self.shouldRun = False
-
-class ScrollColor(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.shouldRun = True
-        self.name = 'Scroll'
-        self.margin = 10     # 2*Margin is scroll width
-
-    def run(self):
-        pixels.fill((0,0,0))
-        pixels.show()
-        while self.shouldRun:
-            color = ((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
-            for i in range(-self.margin, numPixels + self.margin+1, 1):
-                if self.shouldRun == False:
-                    return
-                for j in range(-self.margin, self.margin+1, 1):
-                    if i+j >= 0 and i+j < numPixels:
-                        pixels[i+j] = color
-                if i-self.margin >= 0:
-                    pixels[i-self.margin-1] = ((0,0,0))
-                pixels.show()
-                #time.sleep(0.1) No sleep necessary as Python is slow
-
-    def stop(self):
-        self.shouldRun = False
-
-class Strobe(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.shouldRun = True
-        self.name = "Strobe"
-
-    def run(self):
-        while self.shouldRun:
-            for i in range(numPixels):
-                pixels[i] = ((255,255,255))
-            pixels.show()
-            time.sleep(0.05)
-            for i in range(numPixels):
-                pixels[i] = ((0,0,0))
-            pixels.show()
-            time.sleep(0.05)
-
-    def stop(self):
-        self.shouldRun = False
-
 
 # Parses the incoming LED command and calls the correct function
 #def parseInputMessage(client, userdata, msg):
@@ -198,14 +68,11 @@ def parseInputMessage(msg):
     return False
 
 
-def userInput():
-    while True:
-        mode = input("Mode: ")
-        parseInputMessage(mode)
-
 if __name__ == "__main__":
     try:
-        userInput()
+        while True:
+            mode = input("Mode: ")
+            parseInputMessage(mode)
     except (KeyboardInterrupt, SystemExit):
         thread = Off()
         while thread.isAlive():
