@@ -92,14 +92,14 @@
                 } else {
                     animationElements[counter].style.backgroundColor = "#DDDDDD";
                 }
+            }
 
-                document.addEventListener('click', function(event) {
+            document.addEventListener('click', function(event) {
                     if(event.target && event.target.class == 'modeScrollElement'){
                         socket.emit("Home Mode Change", "" + document.target.id.textContent);
-                        alert(animationElements[counter].innerText);
+                        alert(document.target.id.textContent);
                     }
                 });
-            }
 
         </script>
 
