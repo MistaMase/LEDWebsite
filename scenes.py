@@ -1,70 +1,72 @@
 import board
 import neopixel
 
+from animations.On import On
+from animations.Off import Off
+from animations.Random import Random
+from animations.Party import Party
+from animations.Scroll import Scroll
+from animations.Strobe import Strobe
+from animations.Manual import Manual
+
 numPixels = 300
 
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
 
-thread = None
+thread = Off(pixels, numPixels)
+thread.start
+
+def shutdownThread():
+    if thread.isAlive():
+        thread.stop()
+        print("Shutdown " + thread.name)
 
 # Parses the incoming LED command and calls the correct function
-def parseInputMessage(msg):
-
-
-
-
-    #msg = str(msg.payload, 'utf-8')
+def changeMode(msg):
     print("Message: " + msg)
     global thread
-    if msg == 'ON':
+    if msg == 'On':
         print("Turning Lights On")
-        if thread.isAlive():
-            thread.stop()
-            print("Shutdown " + thread.name)
-        thread = On()
+        shutdownThread()
+        thread = On(pixels, numPixels)
         thread.start()
         return True
-    elif msg == 'OFF':
+    elif msg == 'Off':
         print("Turning Lights Off")
-        if thread.isAlive():
-            thread.stop()
-            print("Shutdown " + thread.name)
-        thread = Off()
+        shutdownThread()
+        thread = Off(pixels, numPixels)
         thread.start()
         return True
-    elif msg == 'RANDOM':
-        print('Setting Lights To Random Color')
-        if thread.isAlive():
-            thread.stop()
-            print("Shutdown " + thread.name)
-        thread = RandomColor()
+    elif msg == 'Random':
+        print('Random Mode')
+        shutdownThread()
+        thread = RandomColor(pixels, numPixels)
         thread.start()
         return True
-    elif msg == 'PARTY':
+    elif msg == 'Party':
         print("Party Mode")
-        if thread.isAlive():
-            thread.stop()
-            print("Shutdown " + thread.name)
-        thread = PartyMode()
+        shutdownThread()
+        thread = PartyMode(pixels, numPixels)
         thread.start()
         return True
-    elif msg == 'SCROLL':
-        print("Scrolling LEDs")
-        if thread.isAlive():
-            thread.stop()
-            print("Shutdown " + thread.name)
-        thread = ScrollColor()
+    elif msg == 'Scroll':
+        print("Scroll Mode")
+        shutdownThread()
+        thread = ScrollColor(pixels, numPixels)
         thread.start()
         return True
-    elif msg == 'STROBE':
-        print("Strobing")
-        if thread.isAlive():
-            thread.stop()
-            print("Shutdown " + thread.name)
-        thread = Strobe()
+    elif msg == 'Strobe':
+        print("Strobe Mode")
+        shutdownThread()
+        thread = Strobe(pixels, numPixels)
         thread.start()
         return True
+    elif msg == 'Manual':
+        print("Manual Mode")
+        shutdownThread()
+        thread = Manual(pixels, numPixels)
+        thread.start()
     return False
 
 

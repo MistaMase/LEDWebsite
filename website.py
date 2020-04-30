@@ -16,10 +16,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
-# LED Code
-scenes.thread = Manual.ManualColor(scenes.pixels, scenes.numPixels)
-scenes.thread.start()
-
 # Flask route for '/' which redirects to '/home'
 @app.route('/')
 def redirecttohome():
@@ -38,20 +34,9 @@ def homeConnected():
 # Socketio response for Home webpage mode change
 @socketio.on('Home Mode Change')
 def homeModeChanged(message):
-    print("Animation Mode Changed to " + message)
-    shutdownThread()
-    if message == 'Random':
-        scenes.thread = Random.Random(scenes.pixels, scenes.numPixels)
-        scenes.thread.start()
-    elif message == 'Strobe':
-        scenes.thread = Strobe.Strobe(scenes.pixels, scenes.numPixels)
-        scenes.thread.start()
-    elif message == 'Scroll':
-        scenes.thread = Scroll.Scroll(scenes.pixels, scenes.numPixels)
-        scenes.thread.start()
-    elif message == 'Party':
-        scenes.thread = Party.Party(scenes.pixels, scenes.numPixels)
-        scenes.thread.start()
+    print("Requested to change Animation Mode to " + message)
+    if not scenes.changeMode(message):
+        print("Requested animation could not be found")
 
 # Flask route for '/manualinput' which displays the manual color changer
 @app.route('/manualinput')
@@ -100,12 +85,6 @@ def addHeader(r):
     r.headers['Expires'] = '0'
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
-
-# Ensure the current thread is shutdown before starting another
-def shutdownThread():
-    if scenes.thread.isAlive():
-        scenes.thread.stop()
-        print("Shutdown " + scenes.thread.name)
 
 # Gets the current IP Address
 def getIpAddress():
