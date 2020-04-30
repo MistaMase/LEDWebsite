@@ -1,7 +1,7 @@
 import threading
 
 class Scroll(threading.Thread):
-    def __init__(self):
+    def __init__(self, pixels, numPixels):
         threading.Thread.__init__(self)
         self.shouldRun = True
         self.name = 'Scroll'
