@@ -1,4 +1,5 @@
 import threading
+import time
 
 class Strobe(threading.Thread):
     def __init__(self, pixels, numPixels):
