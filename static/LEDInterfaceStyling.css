@@ -2,6 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: Tahoma, Geneva, sans-serif;
+    overflow: hidden;
 }
 
 /* Header Styling */
