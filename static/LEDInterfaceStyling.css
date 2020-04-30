@@ -146,6 +146,7 @@ body {
     overflow: scroll;
     border-radius: 20px;
     border: 2px solid gray;
+    background-color: black;
 }
 
 .modeScrollElement {
