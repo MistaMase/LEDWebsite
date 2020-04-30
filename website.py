@@ -10,11 +10,6 @@ import socket
 
 # LED Light Imports
 import scenes as scenes
-import animations.Manual as Manual
-import animations.Party as Party
-import animations.Scroll as Scroll
-import animations.Random as Random
-import animations.Strobe as Strobe
 
 # Set up website variables
 app = Flask(__name__)
