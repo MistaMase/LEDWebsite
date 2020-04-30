@@ -96,8 +96,8 @@
 
             document.addEventListener('click', function(event) {
                     if(event.target && event.target.class == 'modeScrollElement'){
-                        socket.emit("Home Mode Change", "" + document.target.id.textContent);
-                        alert(document.target.id.textContent);
+                        socket.emit("Home Mode Change", "" + event.target.id.textContent);
+                        alert(event.target.id.textContent);
                     }
                 });
 
