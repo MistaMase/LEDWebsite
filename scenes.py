@@ -1,9 +1,5 @@
 import board
 import neopixel
-import random
-import threading
-import sys
-import time
 
 numPixels = 300
 
@@ -13,8 +9,11 @@ pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=Fals
 thread = None
 
 # Parses the incoming LED command and calls the correct function
-#def parseInputMessage(client, userdata, msg):
 def parseInputMessage(msg):
+
+
+
+
     #msg = str(msg.payload, 'utf-8')
     print("Message: " + msg)
     global thread

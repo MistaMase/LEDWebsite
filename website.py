@@ -1,10 +1,14 @@
+# Website Imports
 from flask import Flask, render_template, redirect, url_for
 from flask_socketio import SocketIO, emit
 
+# CPU Temp Import
 from gpiozero import CPUTemperature
 
+# IP Address Import
 import socket
 
+# LED Light Imports
 import scenes as scenes
 import animations.Manual as Manual
 import animations.Party as Party
@@ -12,25 +16,31 @@ import animations.Scroll as Scroll
 import animations.Random as Random
 import animations.Strobe as Strobe
 
+# Set up website variables
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
+# LED Code
 scenes.thread = Manual.ManualColor(scenes.pixels, scenes.numPixels)
 scenes.thread.start()
 
+# Flask route for '/' which redirects to '/home'
 @app.route('/')
 def redirecttohome():
     return redirect(url_for('home'))
 
+# Flask route for '/home' which displays the homepage of the website
 @app.route('/home')
 def home():
     return render_template('Home.html', ipaddress=getIpAddress())
 
+# Socketio response for Home webpage initial connection
 @socketio.on('Home Connection')
 def homeConnected():
     print("Home Connected")
 
+# Socketio response for Home webpage mode change
 @socketio.on('Home Mode Change')
 def homeModeChanged(message):
     print("Animation Mode Changed to " + message)
@@ -48,33 +58,39 @@ def homeModeChanged(message):
         scenes.thread = Party.Party(scenes.pixels, scenes.numPixels)
         scenes.thread.start()
 
-
+# Flask route for '/manualinput' which displays the manual color changer
 @app.route('/manualinput')
 def manualinput():
     return render_template('ManualInputInterface.html', ipaddress=getIpAddress())
 
+# Socketio response for Manual Interface webpage initial connection
 @socketio.on('MI Connection')
 def manualConnected():
     print("MI Connected")
 
+# Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
 def manualColorChange(message):
     print("Colors:" + message)
     scenes.thread.setColor(message)
 
+# Flask route for '/codeinput' which displays the code input interface
 @app.route('/codeinput')
 def codeinput():
     return render_template('CodeInputInterface.html', ipaddress=getIpAddress())
 
+# Flask route for '/hardwareinformation' which displays the current hardware stats of the device
 @app.route('/hardwareinformation')
 def hardwareinformation():
     return render_template('HardwareInformationInterface.html', ipaddress=getIpAddress())
 
+# Socketio response for Hardware Interface webpage initial connection
 @socketio.on('HI Connection')
 def firstHIConnection():
     print("HI Connection. Sending INFO")
     emit('HI Update Server', { 'mode': 'test', 'fanSpeed': '50', 'micValue': '70', 'piTemp': getCPUTemp() })
 
+# Socketio response for Hardware Interface webpage requesting periodic information update
 @socketio.on("HI Update Client")
 def sendHardwareInfo():
     print("HI Requesting Periodic Update")
@@ -107,6 +123,6 @@ def getCPUTemp():
     cpu = CPUTemperature()
     return cpu.temperature
 
-
+# Runs the entire python script
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port='5050', debug=True)
