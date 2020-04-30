@@ -7,6 +7,10 @@ import socket
 
 import scenes as scenes
 import animations.Manual as Manual
+import animations.Party as Party
+import animations.Scroll as Scroll
+import animations.Random as Random
+import animations.Strobe as Strobe
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
@@ -30,6 +34,20 @@ def homeConnected():
 @socketio.on('Home Mode Change')
 def homeModeChanged(message):
     print("Animation Mode Changed to " + message)
+    shutdownThread()
+    if message == 'Random':
+        scenes.thread = Random.Random(scenes.pixels)
+        scenes.thread.start()
+    elif message == 'Strobe':
+        scenes.thread = Strobe.Strobe(scenes.pixels)
+        scenes.thread.start()
+    elif message == 'Scroll':
+        scenes.thread = Scroll.Scroll(scenes.pixels)
+        scenes.thread.start()
+    elif message == 'Party':
+        scenes.thread = Party.Party(scenes.pixels)
+        scenes.thread.start()
+
 
 @app.route('/manualinput')
 def manualinput():
@@ -75,7 +93,7 @@ def addHeader(r):
 # Ensure the current thread is shutdown before starting another
 def shutdownThread():
     if scenes.thread.isAlive():
-        thread.stop()
+        scenes.thread.stop()
         print("Shutdown " + thread.name)
 
 # Gets the current IP Address
