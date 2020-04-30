@@ -54,9 +54,6 @@
 
         </div>
 
-
-        </div>
-
         <div id="iconContainer">
             <!-- Manual Interface Body Icon -->
             <a class="bodyIcon" href="{{ url_for('manualinput') }}">
@@ -76,6 +73,23 @@
                 <div class="modeScrollElement">Strobe</div>
             </div>
         </div>
+
+        <script type="text/javascript" charset="utf-8">
+            var animationContainer = document.getElementById('modeScrollContainer');
+            var animationElements = animationContainer.getElementsByTagName('*');
+
+            var current
+            for (var counter = 0; counter < animationElements.length; ++i) {
+                current = animationElements[i];
+                if(counter % 2 == 0) {
+                    current.style.background = "blue";
+                } else {
+                    current.style.background = "yellow";
+                }
+            }
+
+
+        </script>
 
     </body>
 
