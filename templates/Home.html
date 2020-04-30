@@ -81,12 +81,22 @@
             var current
             for (var counter = 0; counter < animationElements.length; ++counter) {
                 current = animationElements[counter];
+                current.addEventListener('click', function(event) {
+                    socket.emit("Home Mode Change", "" + counter.innerHTML)
+                }
                 if(counter % 2 == 0) {
                     current.style.backgroundColor = "#AAAAAA";
                 } else {
                     current.style.backgroundColor = "#DDDDDD";
                 }
             }
+
+
+            var socket = io();
+
+		    socket.on('connect', function() {
+			    console.log("Home Socket Connected");
+		    });
 
 
         </script>

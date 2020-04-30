@@ -23,6 +23,14 @@ def redirecttohome():
 def home():
     return render_template('Home.html', ipaddress=getIpAddress())
 
+@socketio.on('Home Connection')
+def homeConnected():
+    print("Home Connected")
+
+@socketio.on('Home Mode Change')
+def homeModeChanged(message):
+    print("Animation Mode Changed to " + message)
+
 @app.route('/manualinput')
 def manualinput():
     return render_template('ManualInputInterface.html', ipaddress=getIpAddress())
