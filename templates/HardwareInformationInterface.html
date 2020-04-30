@@ -84,10 +84,46 @@
             </div>
         </div>
 
+	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf-8">
+		// Allows the client to request data every chosen ms
+		function updateValue(barName, valueName, value, units) {
+			var progressBar = document.getElementById(barName);
+			var valueLabel = document.getElementById(valueName);
+			
+			progressBar.style.width = value + "%";
+			valueLabel.innerHTML = "" +Number(value).toFixed(2) + units;
+		}
+
+
+		var socket = io();	
+
+		socket.on('connect', function() {
+			console.log("HI Socket Connected");
+			socket.emit("HI Connection");
+		});
+		
+		socket.on('HI Update Server', function(msg) {
+			console.log(msg);
+
+			// Update the values from server
+			updateValue('fanSpeedLoadingBar', 'fanSpeedValue', msg['fanSpeed'], '%');
+			updateValue('piTempLoadingBar', 'piTempValue', msg['piTemp'], '~C');
+			updateValue('micLoadingBar', 'micValue', msg['micValue'], 'dB');
+		
+			// Automatically request new values
+			setTimeout(() => { 
+				console.log("HI Requesting new value");
+				socket.emit("HI Update Client");
+			}, 1000);
+		});
+		
+	</script>
+	
 
         <!-- Update Progress Bar Values -->
-         <script>
-
+        <!--
+	<script>
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
@@ -109,7 +145,7 @@
             updateValue("piTempLoadingBar", "piTempValue", "`C");
             updateValue("micLoadingBar", "micValue", "dB");
         </script>
-
+	-->
 
 
     </body>
