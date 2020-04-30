@@ -93,9 +93,10 @@
                     animationElements[counter].style.backgroundColor = "#DDDDDD";
                 }
 
-                animationElements[counter].addEventListener('click', function(event) {
-                    socket.emit("Home Mode Change", "" + animationElements[counter].textContent);
-                    alert(animationElements[counter].innerText);
+                body.addEventListener('click', function(event) {
+                    if(event.target && event.target.class = 'modeScrollElement'){
+                        socket.emit("Home Mode Change", "" + document.target.id.textContent);
+                        alert(animationElements[counter].innerText);
                 });
             }
 
