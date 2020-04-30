@@ -1,6 +1,6 @@
 import threading
 
-class ManualColor(threading.Thread):
+class Manual(threading.Thread):
     def __init__(self, pixels, numPixels):
         threading.Thread.__init__(self)
         self.name = 'Manual Color'
