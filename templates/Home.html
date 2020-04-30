@@ -93,9 +93,9 @@
                     animationElements[counter].style.backgroundColor = "#DDDDDD";
                 }
 
-                var text = animationElements[counter].innerText;
                 animationElements[counter].addEventListener('click', function(event) {
-                    socket.emit("Home Mode Change", "" + text);
+                    socket.emit("Home Mode Change", "" + animationElements[counter].innerText);
+                    alert(animationElements[counter].innerText);
                 });
             }
 
