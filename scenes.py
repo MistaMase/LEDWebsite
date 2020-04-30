@@ -8,7 +8,7 @@ import time
 numPixels = 300
 
 # Initializes the LED strip
-pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.05, auto_write=False, pixel_order=neopixel.RGB)
+pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
 
 class On(threading.Thread):
     def __init__(self):
@@ -28,16 +28,18 @@ class ManualColor(threading.Thread):
         threading.Thread.__init__(self)
         self.name = 'Manual Color'
         print(self.name)
-        self.colors = ((200, 200, 200))
+        self.colors = ((0,0,0))
+        self.newColors = ((200, 200, 200))
         self.shouldRun = True
 
-    def setColor(color):
-        parsedColors = color.split
-        self.newColors = (parsedColors[0], parsedColors[1], parsedColors[2])
+    def setColor(self, color):
+        parsedColors = color.split()
+        self.newColors = (int(parsedColors[0]), int(parsedColors[1]), int(parsedColors[2]))
 
     def run(self):
         while self.shouldRun:
             if self.newColors != self.colors:
+                print("New Color")
                 self.colors = self.newColors
                 pixels.fill(self.colors)
                 pixels.show()
