@@ -7,16 +7,12 @@ import time
 
 numPixels = 300
 
-host = '127.0.0.1'
-port = 27272
-
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.05, auto_write=False, pixel_order=neopixel.RGB)
 
 class On(threading.Thread):
-    def __init__(self, pix):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.pixels = pix
         self.name = 'On'
         print(self.name)
 
@@ -27,10 +23,33 @@ class On(threading.Thread):
     def stop(self):
         pass
 
-class Off(threading.Thread):
-    def __init__(self, pix):
+class ManualColor(threading.Thread):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.pixels = pix
+        self.name = 'Manual Color'
+        print(self.name)
+        self.colors = ((200, 200, 200))
+        self.shouldRun = True
+
+    def setColor(color):
+        parsedColors = color.split
+        self.newColors = (parsedColors[0], parsedColors[1], parsedColors[2])
+
+    def run(self):
+        while self.shouldRun:
+            if self.newColors != self.colors:
+                self.colors = self.newColors
+                pixels.fill(self.colors)
+                pixels.show()
+            else:
+                pass
+
+    def stop(self):
+        self.shouldRun = False
+
+class Off(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
         self.name = 'Off'
         print(self.name)
 
@@ -42,9 +61,8 @@ class Off(threading.Thread):
         pass
 
 class RandomColor(threading.Thread):
-    def __init__(self, pix):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.pixels = pix
         self.name = 'Random'
         self.shouldRun = True
         print(self.name)
@@ -58,9 +76,8 @@ class RandomColor(threading.Thread):
         self.shouldRun = False
 
 class PartyMode(threading.Thread):
-    def __init__(self, pix):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.pixels = pix
         self.shouldRun = True
         self.name = 'Party'
         print(self.name)
@@ -76,9 +93,8 @@ class PartyMode(threading.Thread):
         self.shouldRun = False
 
 class ScrollColor(threading.Thread):
-    def __init__(self, pix):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.pixels = pix
         self.shouldRun = True
         self.name = 'Scroll'
         self.margin = 10     # 2*Margin is scroll width
@@ -103,9 +119,8 @@ class ScrollColor(threading.Thread):
         self.shouldRun = False
 
 class Strobe(threading.Thread):
-    def __init__(self, pix):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.pixels = pix
         self.shouldRun = True
         self.name = "Strobe"
 
@@ -124,9 +139,6 @@ class Strobe(threading.Thread):
         self.shouldRun = False
 
 
-thread = Off(pixels)
-thread.start()
-
 # Parses the incoming LED command and calls the correct function
 #def parseInputMessage(client, userdata, msg):
 def parseInputMessage(msg):
@@ -138,7 +150,7 @@ def parseInputMessage(msg):
         if thread.isAlive():
             thread.stop()
             print("Shutdown " + thread.name)
-        thread = On(pixels)
+        thread = On()
         thread.start()
         return True
     elif msg == 'OFF':
@@ -146,7 +158,7 @@ def parseInputMessage(msg):
         if thread.isAlive():
             thread.stop()
             print("Shutdown " + thread.name)
-        thread = Off(pixels)
+        thread = Off()
         thread.start()
         return True
     elif msg == 'RANDOM':
@@ -154,7 +166,7 @@ def parseInputMessage(msg):
         if thread.isAlive():
             thread.stop()
             print("Shutdown " + thread.name)
-        thread = RandomColor(pixels)
+        thread = RandomColor()
         thread.start()
         return True
     elif msg == 'PARTY':
@@ -162,7 +174,7 @@ def parseInputMessage(msg):
         if thread.isAlive():
             thread.stop()
             print("Shutdown " + thread.name)
-        thread = PartyMode(pixels)
+        thread = PartyMode()
         thread.start()
         return True
     elif msg == 'SCROLL':
@@ -170,7 +182,7 @@ def parseInputMessage(msg):
         if thread.isAlive():
             thread.stop()
             print("Shutdown " + thread.name)
-        thread = ScrollColor(pixels)
+        thread = ScrollColor()
         thread.start()
         return True
     elif msg == 'STROBE':
@@ -178,19 +190,11 @@ def parseInputMessage(msg):
         if thread.isAlive():
             thread.stop()
             print("Shutdown " + thread.name)
-        thread = Strobe(pixels)
+        thread = Strobe()
         thread.start()
         return True
     return False
 
-
-def networking():
-    client.on_connect = on_connect
-    client.on_disconnect = on_disconnect
-    client.on_message = on_message
-    client.message_callback_add('leds', parseInputMessage)
-    client.connect(host=host, port=port, keepalive=60)
-    client.loop_forever()
 
 def userInput():
     while True:
@@ -199,15 +203,9 @@ def userInput():
 
 if __name__ == "__main__":
     try:
-        mode = 'Network'
-        mode = input("Network or Input? ") 
-        if mode == "Network":
-            networking()
-        elif mode == "Input":
-            userInput()
-            
+        userInput()
     except (KeyboardInterrupt, SystemExit):
-        thread = Off(pixels)
+        thread = Off()
         while thread.isAlive():
             pass
         sys.exit()
