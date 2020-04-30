@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
-scenes.thread = Manual.ManualColor(scenes.pixels)
+scenes.thread = Manual.ManualColor(scenes.pixels, scenes.numPixels)
 scenes.thread.start()
 
 @app.route('/')
@@ -36,16 +36,16 @@ def homeModeChanged(message):
     print("Animation Mode Changed to " + message)
     shutdownThread()
     if message == 'Random':
-        scenes.thread = Random.Random(scenes.pixels)
+        scenes.thread = Random.Random(scenes.pixels, scenes.numPixels)
         scenes.thread.start()
     elif message == 'Strobe':
-        scenes.thread = Strobe.Strobe(scenes.pixels)
+        scenes.thread = Strobe.Strobe(scenes.pixels, scenes.numPixels)
         scenes.thread.start()
     elif message == 'Scroll':
-        scenes.thread = Scroll.Scroll(scenes.pixels)
+        scenes.thread = Scroll.Scroll(scenes.pixels, scenes.numPixels)
         scenes.thread.start()
     elif message == 'Party':
-        scenes.thread = Party.Party(scenes.pixels)
+        scenes.thread = Party.Party(scenes.pixels, scenes.numPixels)
         scenes.thread.start()
 
 
