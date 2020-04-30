@@ -64,7 +64,9 @@
         </div>
 
         <!-- Update RGB Labels -->
-        <script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>	
+        <script type='text/javascript' charset='utf-8'>
             var SliderContainer = document.getElementById("sliderContainer")
 
             var RSlider = document.getElementById("RSlider");
@@ -81,6 +83,13 @@
 
             setColor();
 
+            var socket = io();
+
+	    socket.on('connect', function() {
+	  	console.log("MI Socket Connected");
+		socket.emit("MI Connection");
+	    });
+
             function pad(n){
                 return (n.length<2) ? "0"+n : n;
             }
@@ -91,24 +100,26 @@
                     BHex = parseInt(BSlider.value, 10).toString(16),
                     RGBHex = '#' + pad(RHex) + pad(GHex) + pad(BHex);
                 SliderContainer.style.backgroundColor = RGBHex;
-
-
             }
+
 
             RSlider.oninput = function() {
                 RValue.innerHTML = RSlider.value;
                 setColor();
+		socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
             }
 
             GSlider.oninput = function() {
                 GValue.innerHTML = GSlider.value;
                 setColor();
-            }
+		socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+	    }
 
             BSlider.oninput = function() {
                 BValue.innerHTML = BSlider.value;
                 setColor();
-            }
+		socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+	    }
         </script>
 
 
