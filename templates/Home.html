@@ -79,17 +79,19 @@
 
 		    socket.on('connect', function() {
 			    console.log("Home Socket Connected");
+			    socket.emit("Home Connection");
 		    });
 
             var animationContainer = document.getElementById('modeScrollContainer');
             var animationElements = animationContainer.getElementsByTagName('*');
 
-            var current
+            var current;
             for (var counter = 0; counter < animationElements.length; ++counter) {
                 current = animationElements[counter];
                 current.addEventListener('click', function(event) {
                     socket.emit("Home Mode Change", "" + counter.innerHTML)
-                }
+                });
+                
                 if(counter % 2 == 0) {
                     current.style.backgroundColor = "#AAAAAA";
                 } else {
