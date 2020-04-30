@@ -90,7 +90,7 @@
             for (var counter = 0; counter < animationElements.length; ++counter) {
                 current = animationElements[counter];
                 current.addEventListener('click', function(event) {
-                    socket.emit("Home Mode Change", "" + counter.innerHTML)
+                    socket.emit("Home Mode Change", "" + counter.innerText)
                 });
 
                 if(counter % 2 == 0) {
