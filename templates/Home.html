@@ -87,15 +87,15 @@
             var animationElements = animationContainer.getElementsByTagName('*');
 
             for (var counter = 0; counter < animationElements.length; ++counter) {
-                animationElements[counter].addEventListener('click', function(event) {
-                    socket.emit("Home Mode Change", "" + animationElements[counter].innerText)
-                });
-
                 if(counter % 2 == 0) {
                     animationElements[counter].style.backgroundColor = "#AAAAAA";
                 } else {
                     animationElements[counter].style.backgroundColor = "#DDDDDD";
                 }
+
+                animationElements[counter].addEventListener('click', function(event) {
+                    socket.emit("Home Mode Change", "" + animationElements[counter].innerText)
+                });
             }
 
         </script>
