@@ -145,11 +145,12 @@ body {
     height: 80%;
     overflow: scroll;
     border-radius: 20px;
+    border: 2px solid gray;
 }
 
 .modeScrollElement {
     height: 7%;
-    border-radius: 10px;
+    margin-left: 5%;
 }
 
 /* Manual Input Interface Styling */
