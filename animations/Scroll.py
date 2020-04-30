@@ -11,8 +11,8 @@ class Scroll(threading.Thread):
         self.numPixels = numPixels
 
     def run(self):
-        pixels.fill((0,0,0))
-        pixels.show()
+        self.pixels.fill((0,0,0))
+        self.pixels.show()
         while self.shouldRun:
             color = ((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
             for i in range(-self.margin, self.numPixels + self.margin+1, 1):
@@ -20,10 +20,10 @@ class Scroll(threading.Thread):
                     return
                 for j in range(-self.margin, self.margin+1, 1):
                     if i+j >= 0 and i+j < self.numPixels:
-                        pixels[i+j] = color
+                        self.pixels[i+j] = color
                 if i-self.margin >= 0:
-                    pixels[i-self.margin-1] = ((0,0,0))
-                pixels.show()
+                    self.pixels[i-self.margin-1] = ((0,0,0))
+                self.pixels.show()
                 #time.sleep(0.1) No sleep necessary as Python is slow
 
     def stop(self):

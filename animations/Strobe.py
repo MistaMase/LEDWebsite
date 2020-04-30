@@ -11,12 +11,12 @@ class Strobe(threading.Thread):
     def run(self):
         while self.shouldRun:
             for i in range(self.numPixels):
-                pixels[i] = ((255,255,255))
-            pixels.show()
+                self.pixels[i] = ((255,255,255))
+            self.pixels.show()
             time.sleep(0.05)
             for i in range(self.numPixels):
-                pixels[i] = ((0,0,0))
-            pixels.show()
+                self.pixels[i] = ((0,0,0))
+            self.pixels.show()
             time.sleep(0.05)
 
     def stop(self):

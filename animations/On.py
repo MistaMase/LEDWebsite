@@ -8,8 +8,8 @@ class On(threading.Thread):
         self.numPixels = numPixels
 
     def run(self):
-        pixels.fill((255,255,255))
-        pixels.show()
+        self.pixels.fill((255,255,255))
+        self.pixels.show()
 
     def stop(self):
         pass

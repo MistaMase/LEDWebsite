@@ -11,8 +11,8 @@ class Random(threading.Thread):
 
     def run(self):
         while self.shouldRun:
-            pixels.fill((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
-            pixels.show()
+            self.pixels.fill((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
+            self.pixels.show()
 
     def stop(self):
         self.shouldRun = False
