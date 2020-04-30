@@ -86,9 +86,8 @@
             var animationContainer = document.getElementById('modeScrollContainer');
             var animationElements = animationContainer.getElementsByTagName('*');
 
-            var current;
             for (var counter = 0; counter < animationElements.length; ++counter) {
-                current = animationElements[counter];
+                var current = animationElements[counter];
                 current.addEventListener('click', function(event) {
                     socket.emit("Home Mode Change", "" + current.innerText)
                 });
