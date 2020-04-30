@@ -94,7 +94,7 @@ def addHeader(r):
 def shutdownThread():
     if scenes.thread.isAlive():
         scenes.thread.stop()
-        print("Shutdown " + thread.name)
+        print("Shutdown " + scenes.thread.name)
 
 # Gets the current IP Address
 def getIpAddress():
