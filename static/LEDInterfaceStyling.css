@@ -144,10 +144,12 @@ body {
 #modeScrollContainer {
     height: 80%;
     overflow: scroll;
+    border-radius: 20px;
 }
 
 .modeScrollElement {
     height: 7%;
+    border-radius: 10px;
 }
 
 /* Manual Input Interface Styling */
