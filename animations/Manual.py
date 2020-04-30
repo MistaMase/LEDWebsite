@@ -1,12 +1,13 @@
 import threading
 
 class ManualColor(threading.Thread):
-    def __init__(self, pixels):
+    def __init__(self, pixels, numPixels):
         threading.Thread.__init__(self)
         self.name = 'Manual Color'
         self.colors = ((0,0,0))
         self.newColors = ((200, 200, 200))
         self.pixels = pixels
+        self.numPixels = numPixels
         self.shouldRun = True
 
     def setColor(self, color):

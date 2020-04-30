@@ -6,10 +6,11 @@ class Party(threading.Thread):
         self.shouldRun = True
         self.name = 'Party'
         self.pixels = pixels
+        self.numPixels = numPixels
 
     def run(self):
         while self.shouldRun:
-            for i in range(numPixels):
+            for i in range(self.numPixels):
                 pixels[i] = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
             pixels.show()
             #time.sleep(0.1)

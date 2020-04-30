@@ -1,11 +1,12 @@
 import threading
 
 class Random(threading.Thread):
-    def __init__(self, pixels):
+    def __init__(self, pixels, numPixels):
         threading.Thread.__init__(self)
         self.name = 'Random'
         self.shouldRun = True
         self.pixels = pixels
+        self.numPixels = numPixels
 
     def run(self):
         while self.shouldRun:
