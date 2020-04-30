@@ -1,10 +1,11 @@
 import threading
 
 class Strobe(threading.Thread):
-    def __init__(self):
+    def __init__(self, pixels):
         threading.Thread.__init__(self)
         self.shouldRun = True
         self.name = "Strobe"
+        self.pixels = pixels
 
     def run(self):
         while self.shouldRun:

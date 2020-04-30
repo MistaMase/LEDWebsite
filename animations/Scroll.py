@@ -6,6 +6,7 @@ class Scroll(threading.Thread):
         self.shouldRun = True
         self.name = 'Scroll'
         self.margin = 10     # 2*Margin is scroll width
+        self.pixels = pixels
 
     def run(self):
         pixels.fill((0,0,0))
