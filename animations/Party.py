@@ -14,7 +14,6 @@ class Party(threading.Thread):
             for i in range(self.numPixels):
                 self.pixels[i] = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
             self.pixels.show()
-            #time.sleep(0.1)
 
     def stop(self):
         self.shouldRun = False
