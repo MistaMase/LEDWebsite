@@ -9,7 +9,7 @@ from animations.Scroll import Scroll
 from animations.Strobe import Strobe
 from animations.Manual import Manual
 
-numPixels = 300
+numPixels = 600
 
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
@@ -21,6 +21,8 @@ def shutdownThread():
     global thread
     if thread.isAlive():
         thread.stop()
+        while thread.isAlive():
+            pass
         print("Shutdown " + thread.name)
 
 # Parses the incoming LED command and calls the correct function
