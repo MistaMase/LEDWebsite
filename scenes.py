@@ -12,7 +12,7 @@ from animations.Manual import Manual
 numPixels = 300
 
 # Initializes the LED strip
-pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
+pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
 
 thread = Off(pixels, numPixels)
 thread.start()
