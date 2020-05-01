@@ -20,6 +20,8 @@ thread.start
 def shutdownThread():
     if thread.isAlive():
         thread.stop()
+        while thread.isAlive():
+            pass
         print("Shutdown " + thread.name)
 
 # Parses the incoming LED command and calls the correct function
