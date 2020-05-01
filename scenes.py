@@ -9,7 +9,7 @@ from animations.Scroll import Scroll
 from animations.Strobe import Strobe
 from animations.Manual import Manual
 
-numPixels = 300
+numPixels = 600
 
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
