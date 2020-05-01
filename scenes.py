@@ -15,7 +15,7 @@ numPixels = 300
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
 
 thread = Off(pixels, numPixels)
-thread.start
+thread.start()
 
 def shutdownThread():
     if thread.isAlive():
