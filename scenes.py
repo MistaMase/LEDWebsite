@@ -41,19 +41,19 @@ def changeMode(msg):
     elif msg == 'Random':
         print('Random Mode')
         shutdownThread()
-        thread = RandomColor(pixels, numPixels)
+        thread = Random(pixels, numPixels)
         thread.start()
         return True
     elif msg == 'Party':
         print("Party Mode")
         shutdownThread()
-        thread = PartyMode(pixels, numPixels)
+        thread = Party(pixels, numPixels)
         thread.start()
         return True
     elif msg == 'Scroll':
         print("Scroll Mode")
         shutdownThread()
-        thread = ScrollColor(pixels, numPixels)
+        thread = Scroll(pixels, numPixels)
         thread.start()
         return True
     elif msg == 'Strobe':
@@ -67,6 +67,7 @@ def changeMode(msg):
         shutdownThread()
         thread = Manual(pixels, numPixels)
         thread.start()
+        return True
     return False
 
 
