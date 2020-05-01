@@ -24,7 +24,7 @@ class Scroll(threading.Thread):
                 if i-self.margin >= 0:
                     self.pixels[i-self.margin-1] = ((0,0,0))
                 self.pixels.show()
-                #time.sleep(0.1) No sleep necessary as Python is slow
+                time.sleep(0.01)
 
     def stop(self):
         self.shouldRun = False
