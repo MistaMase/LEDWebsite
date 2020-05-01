@@ -18,6 +18,7 @@ thread = Off(pixels, numPixels)
 thread.start()
 
 def shutdownThread():
+    global thread
     if thread.isAlive():
         thread.stop()
         while thread.isAlive():
@@ -26,6 +27,7 @@ def shutdownThread():
 
 # Parses the incoming LED command and calls the correct function
 def changeMode(msg):
+    global thread
     print("Message: " + msg)
     global thread
     if msg == 'On':
