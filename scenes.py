@@ -8,8 +8,11 @@ from animations.Party import Party
 from animations.Scroll import Scroll
 from animations.Strobe import Strobe
 from animations.Manual import Manual
+from animations.Pyramid import Pyramid
+from animations.RandomThicc import RandomThicc
+from animations.RandomFade import RandomFade
 
-numPixels = 600
+numPixels = 300
 
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
@@ -70,6 +73,24 @@ def changeMode(msg):
         print("Manual Mode")
         shutdownThread()
         thread = Manual(pixels, numPixels)
+        thread.start()
+        return True
+    elif msg == 'Pyramid':
+        print('Pyramid Mode')
+        shutdownThread()
+        thread = Pyramid(pixels, numPixels)
+        thread.start()
+        return True
+    elif msg == 'RandomThicc':
+        print("Random Thicc Mode")
+        shutdownThread()
+        thread = RandomThicc(pixels, numPixels)
+        thread.start()
+        return True
+    elif msg == "RandomFade":
+        print("Random Fade Mode")
+        shutdownThread()
+        thread = RandomFade(pixels, numPixels)
         thread.start()
         return True
     return False
