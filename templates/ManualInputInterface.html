@@ -54,16 +54,7 @@
 
         </div>
 
-        <div id="sliderContainer">
-            <!--
-            <input type="range" min="0" max="255", value="200", class="slider", id="RSlider">
-            <label id="RValue">100</label>
-            <input type="range" min="0" max="255", value="200", class="slider", id="GSlider">
-            <label id="GValue">100</label>
-            <input type="range" min="0" max="255", value="200", class="slider", id="BSlider">
-            <label id="BValue">100</label>
-            -->
-        </div>
+        <div id="sliderContainer"></div>
 
         <!-- Update RGB Labels -->
 
@@ -117,35 +108,13 @@
                 return (n.length<2) ? "0"+n : n;
             }
 
-            /*
             function setColor() {
-                var RHex = parseInt(RSlider.value, 10).toString(16),
-                    GHex = parseInt(GSlider.value, 10).toString(16),
-                    BHex = parseInt(BSlider.value, 10).toString(16),
+                var RHex = parseInt(RValue.value, 10).toString(16),
+                    GHex = parseInt(GValue.value, 10).toString(16),
+                    BHex = parseInt(BValue.value, 10).toString(16),
                     RGBHex = '#' + pad(RHex) + pad(GHex) + pad(BHex);
                 SliderContainer.style.backgroundColor = RGBHex;
             }
-            */
-
-            /*
-            RSlider.oninput = function() {
-                RValue.innerHTML = RSlider.value;
-                setColor();
-		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
-            }
-
-            GSlider.oninput = function() {
-                GValue.innerHTML = GSlider.value;
-                setColor();
-		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
-	        }
-
-            BSlider.oninput = function() {
-                BValue.innerHTML = BSlider.value;
-                setColor();
-		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
-	        }
-	        */
         </script>
 
 
