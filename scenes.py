@@ -26,6 +26,8 @@ numPixels = 300
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
 
 def getParameters():
+    global thread
+    print("Thread options" + thread.getOptions())
     return thread.getOptions()
 
 def getAnimationNames():
