@@ -92,6 +92,7 @@
 
                     newSlider.oninput = function() {
                         newLabel.innerHTML = newSlider.value;
+                        setColor();
 		                socket.emit('MI Update Client', RValue.value + ' ' + GValue.value + ' ' + BValue.value);
                     }
 
