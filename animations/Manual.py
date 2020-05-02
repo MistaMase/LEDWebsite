@@ -10,6 +10,17 @@ class Manual(threading.Thread):
         self.numPixels = numPixels
         self.shouldRun = True
 
+        # Editable options
+        self.options = {
+            ['Slider', 'Red Value',  (0, 255, 1)],
+            ['Slider', 'Green Value', (0, 255, 1)],
+            ['Slider', 'Blue Value', (0, 255, 1)]
+        }
+
+
+    def getOptions(self):
+        return self.options
+
     def setColor(self, color):
         parsedColors = color.split()
         self.newColors = (int(parsedColors[0]), int(parsedColors[1]), int(parsedColors[2]))

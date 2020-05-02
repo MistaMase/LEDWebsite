@@ -25,6 +25,9 @@ numPixels = 300
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
 
+def getParameters():
+    return thread.getOptions()
+
 def getAnimationNames():
     try:
         return animationNames

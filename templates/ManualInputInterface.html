@@ -85,10 +85,15 @@
 
             var socket = io();
 
-	    socket.on('connect', function() {
-	  	console.log("MI Socket Connected");
-		socket.emit("MI Connection");
-	    });
+	        socket.on('connect', function() {
+	  	        console.log("MI Socket Connected");
+		        socket.emit("MI Connection");
+	        });
+
+	        socket.on('MI Parameters', function(msg) {
+	            console.log('MI Parameters Received');
+	            console.log("Received Parameters: " + msg);
+	        });
 
             function pad(n){
                 return (n.length<2) ? "0"+n : n;
@@ -106,20 +111,20 @@
             RSlider.oninput = function() {
                 RValue.innerHTML = RSlider.value;
                 setColor();
-		socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
             }
 
             GSlider.oninput = function() {
                 GValue.innerHTML = GSlider.value;
                 setColor();
-		socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
-	    }
+		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+	        }
 
             BSlider.oninput = function() {
                 BValue.innerHTML = BSlider.value;
                 setColor();
-		socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
-	    }
+		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+	        }
         </script>
 
 

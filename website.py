@@ -49,6 +49,7 @@ def manualinput():
 @socketio.on('MI Connection')
 def manualConnected():
     print("MI Connected")
+    emit('MI Parameters', scenes.getParameters())
 
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
