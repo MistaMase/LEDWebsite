@@ -1,25 +1,57 @@
+# LED Light Imports
 import board
 import neopixel
 
-from animations.On import On
-from animations.Off import Off
-from animations.Random import Random
-from animations.Party import Party
-from animations.Scroll import Scroll
-from animations.Strobe import Strobe
-from animations.Manual import Manual
-from animations.Pyramid import Pyramid
-from animations.RandomThicc import RandomThicc
-from animations.RandomFade import RandomFade
+# Dynamic Animation Imports
+from pathlib import Path
+import sys
+import inspect
+import pkgutil
+from importlib import import_module
+animations = []
+animationNames = []
+for (_, name, _) in pkgutil.iter_modules([Path('./animations')]):
+    animations.append(import_module('animations.' + name, package=__name__))
+    for i in dir(animations[len(animations)-1]):
+        attribute = getattr(animations[len(animations)-1], i)
+        for i in dir(animations[len(animations)-1]):
+            attribute = getattr(animations[len(animations)-1], i)
+            if inspect.isclass(attribute):
+                setattr(sys.modules[__name__], name, attribute)
+
 
 numPixels = 300
 
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
 
-thread = Off(pixels, numPixels)
-thread.start()
+def getAnimationNames():
+    try:
+        return animationNames
+    except:
+        return None
 
+# Populates the animationNames array which contains all the dynamically imported animations' names
+def populateAnimationNames():
+    global animationNames, animations
+    for a in range(len(animations)):
+        animationNames.append(animations[a].__name__.split('.')[1])
+
+# If the string name exists, a new animation thread is created and the animation is started
+def createThread(name):
+    global thread, animations
+    try: 
+        for a in range(len(animationNames)):
+            if animationNames[a] == name:
+                threadClass = globals()[animationNames[a]]
+                thread  = threadClass(pixels, numPixels)
+                thread.start()
+                return thread
+        return None
+    except:
+        return None
+
+# Turns off the current animation thread
 def shutdownThread():
     global thread
     if thread.isAlive():
@@ -34,67 +66,110 @@ def changeMode(msg):
     print("Message: " + msg)
     global thread
     if msg == 'On':
-        print("Turning Lights On")
-        shutdownThread()
-        thread = On(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Turning Lights On")
+            shutdownThread()
+            createThread('On')
+            return True
+        except:
+            print("Failed to start On")
+            return False
     elif msg == 'Off':
-        print("Turning Lights Off")
-        shutdownThread()
-        thread = Off(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Turning Lights Off")
+            shutdownThread()
+            createThread('Off')
+            return True
+        except:
+            print("Failed to start Off")
+            return False
     elif msg == 'Random':
-        print('Random Mode')
-        shutdownThread()
-        thread = Random(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print('Random Mode')
+            shutdownThread()
+            createThread('Random')
+            return True
+        except:
+            print("Failed to start Random")
+            return False
     elif msg == 'Party':
-        print("Party Mode")
-        shutdownThread()
-        thread = Party(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Party Mode")
+            shutdownThread()
+            createThread('Party')
+            return True
+        except:
+            print("Failed to start Party")
+            return False
     elif msg == 'Scroll':
-        print("Scroll Mode")
-        shutdownThread()
-        thread = Scroll(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Scroll Mode")
+            shutdownThread()
+            createThread('Scroll')
+            return True
+        except:
+            print("Failed to start Scroll")
+            return False
     elif msg == 'Strobe':
-        print("Strobe Mode")
-        shutdownThread()
-        thread = Strobe(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Strobe Mode")
+            shutdownThread()
+            createThread('Strobe')
+            return True
+        except:
+            print("Failed to start Strobe")
+            return False
     elif msg == 'Manual':
-        print("Manual Mode")
-        shutdownThread()
-        thread = Manual(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Manual Mode")
+            shutdownThread()
+            createThread('Manual')
+            return True
+        except:
+            print("Failed to start Manual")
+            return False
     elif msg == 'Pyramid':
-        print('Pyramid Mode')
-        shutdownThread()
-        thread = Pyramid(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print('Pyramid Mode')
+            shutdownThread()
+            createThread('Pyramid')
+            return True
+        except:
+            print("Failed to start Pyramid")
+            return False
     elif msg == 'RandomThicc':
-        print("Random Thicc Mode")
-        shutdownThread()
-        thread = RandomThicc(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Random Thicc Mode")
+            shutdownThread()
+            createThread('RandomThicc')
+            return True
+        except:
+            print("Failed to start Random Thicc")
+            return False
     elif msg == "RandomFade":
-        print("Random Fade Mode")
-        shutdownThread()
-        thread = RandomFade(pixels, numPixels)
-        thread.start()
-        return True
+        try:
+            print("Random Fade Mode")
+            shutdownThread()
+            createThread('RandomFade')
+            return True
+        except:
+            print("Failed to start Random Fade")
+            return False
+    elif msg == "RGB":
+        try:
+            print("RGB Mode")
+            shutdownThread()
+            createThread('RGB')
+            return True
+        except:
+            print("Failed to start RGB Mode")
+            return False
     return False
 
+
+# Start up the lights in 'Off' Mode
+populateAnimationNames()
+thread = createThread('Off')
 
 if __name__ == "__main__":
     try:

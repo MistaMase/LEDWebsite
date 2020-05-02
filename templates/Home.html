@@ -66,39 +66,35 @@
             </a>
 
             <!-- Hardware Info Body Icon -->
-            <div id="modeScrollContainer" class="bodyIconImage">
-                <div class="modeScrollElement">On</div>
-                <div class="modeScrollElement">Off</div>
-                <div class="modeScrollElement">Random</div>
-                <div class="modeScrollElement">Party</div>
-                <div class="modeScrollElement">Scroll</div>
-                <div class="modeScrollElement">Strobe</div>
-                <div class="modeScrollElement">Manual</div>
-		<div class="modeScrollElement">Pyramid</div>
-            	<div class="modeScrollElement">RandomThicc</div>
-	    	<div class="modeScrollElement">RandomFade</div>
-	    </div>
+            <div id="modeScrollContainer" class="bodyIconImage"></div>
         </div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
         <script type="text/javascript" charset="utf-8">
             var socket = io();
 
-		    socket.on('connect', function() {
-			    console.log("Home Socket Connected");
-			    socket.emit("Home Connection");
-		    });
+		socket.on('connect', function() {
+			console.log("Home Socket Connected");
+			socket.emit("Home Connection");
+		});
 
-            var animationContainer = document.getElementById('modeScrollContainer');
-            var animationElements = animationContainer.getElementsByTagName('*');
-
-            for (var counter = 0; counter < animationElements.length; ++counter) {
-                if(counter % 2 == 0) {
-                    animationElements[counter].style.backgroundColor = "#AAAAAA";
-                } else {
-                    animationElements[counter].style.backgroundColor = "#DDDDDD";
-                }
-            }
+		socket.on('Home Mode List', function(msg) {
+			console.log("Mode List " + msg)
+            		var animationContainer = document.getElementById('modeScrollContainer');
+            		var animationElements = msg
+            		for (var counter = 0; counter < animationElements.length; ++counter) {
+                		newAnimation = document.createElement('div')
+				newAnimation.innerHTML = msg[counter];
+				newAnimation.setAttribute('class', 'modeScrollElement')
+				if(counter % 2 == 0) {
+                    			newAnimation.style.backgroundColor = "#AAAAAA";
+                		} else {
+                    			newAnimation.style.backgroundColor = "#DDDDDD";
+					
+                		}
+				animationContainer.appendChild(newAnimation)
+            		}
+		});
 
             document.addEventListener('click', function(event) {
                     if(event.target && event.target.className == 'modeScrollElement'){

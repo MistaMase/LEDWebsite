@@ -30,6 +30,8 @@ def home():
 @socketio.on('Home Connection')
 def homeConnected():
     print("Home Connected")
+    modes = scenes.getAnimationNames()
+    emit('Home Mode List', modes)
 
 # Socketio response for Home webpage mode change
 @socketio.on('Home Mode Change')
