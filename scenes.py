@@ -69,7 +69,6 @@ def shutdownThread():
 
 # Parses the incoming LED command and calls the correct function
 def changeMode(msg):
-    global thread
     print("Message: " + msg)
     global thread
     if msg == 'On':
