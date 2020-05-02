@@ -71,18 +71,6 @@
         <script type='text/javascript' charset='utf-8'>
             var SliderContainer = document.getElementById("sliderContainer")
 
-            var RSlider = document.getElementById("RSlider");
-            var GSlider = document.getElementById("GSlider");
-            var BSlider = document.getElementById("BSlider");
-
-            var RValue = document.getElementById("RValue");
-            var GValue = document.getElementById("GValue");
-            var BValue = document.getElementById("BValue");
-
-            RValue.innerHTML = RSlider.value;
-            GValue.innerHTML = GSlider.value;
-            BValue.innerHTML = BSlider.value;
-
             var socket = io();
 
 	        socket.on('connect', function() {
@@ -101,8 +89,6 @@
 	        });
 
 	        function createOption(input) {
-	            sliderContainer = document.getElementById('sliderContainer');
-
                 if(input[0].equals('Slider')) {
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('label');
@@ -121,8 +107,8 @@
 		                //socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
                     }
 
-                    sliderContainer.appendChild(newSlider);
-                    sliderContainer.appendChild(newLabel);
+                    SliderContainer.appendChild(newSlider);
+                    SliderContainer.appendChild(newLabel);
                 }
 	        }
 
