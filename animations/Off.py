@@ -1,17 +1,12 @@
-import threading
+import BaseAnimation
 
-class Off(threading.Thread):
+
+class Off(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
-        self.name = 'Off'
-        self.pixels = pixels
-        self.numPixels = numPixels
+        super().__init__(pixels, numPixels, 'Off')
 
         # Editable options
         self.options = []
-
-    def getOptions(self):
-        return self.options
 
     def run(self):
         self.pixels.fill((0,0,0))

@@ -1,14 +1,15 @@
-import threading
+import BaseAnimation
 import random
 
-class Scroll(threading.Thread):
+class Scroll(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
+        super().__init__(pixels, numPixels, 'Scroll')
         self.shouldRun = True
-        self.name = 'Scroll'
         self.margin = 10     # 2*Margin is scroll width
-        self.pixels = pixels
-        self.numPixels = numPixels
+
+        self.options = [
+            ['Slider', 'Margin', (0, int(numPixels/2), 10)]
+        ]
 
     def run(self):
         self.pixels.fill((0,0,0))

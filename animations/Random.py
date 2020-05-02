@@ -1,13 +1,13 @@
-import threading
+import BaseAnimation
 import random
 
-class Random(threading.Thread):
+
+class Random(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
-        self.name = 'Random'
+        super().__init__(pixels, numPixels, 'Random')
         self.shouldRun = True
-        self.pixels = pixels
-        self.numPixels = numPixels
+
+        self.options = []
 
     def run(self):
         while self.shouldRun:

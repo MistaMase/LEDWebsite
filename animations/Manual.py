@@ -1,13 +1,10 @@
-import threading
+import BaseAnimation
 
-class Manual(threading.Thread):
+class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
-        self.name = 'Manual Color'
+        super().__init__(pixels, numPixels, 'Manual Color')
         self.colors = ((0,0,0))
         self.newColors = ((200, 100, 50))
-        self.pixels = pixels
-        self.numPixels = numPixels
         self.shouldRun = True
 
         # Editable options
@@ -16,9 +13,6 @@ class Manual(threading.Thread):
             ['Slider', 'GValue', (0, 255, self.colors[1])],
             ['Slider', 'BValue', (0, 255, self.colors[2])]
         ]
-
-    def getOptions(self):
-        return self.options
 
     def setColor(self, color):
         parsedColors = color.split()

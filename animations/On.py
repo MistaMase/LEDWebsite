@@ -1,11 +1,10 @@
-import threading
+import BaseAnimation
 
-class On(threading.Thread):
+
+class On(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
-        self.name = 'On'
-        self.pixels = pixels
-        self.numPixels = numPixels
+        super().__init__(pixels, numPixels, 'On')
+        self.options = []
 
     def run(self):
         self.pixels.fill((255,255,255))

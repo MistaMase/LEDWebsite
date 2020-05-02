@@ -1,13 +1,12 @@
-import threading
+import BaseAnimation
 import time
 
-class Strobe(threading.Thread):
+class Strobe(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
+        super().__init__(pixels, numPixels, 'Strobe')
         self.shouldRun = True
-        self.name = "Strobe"
-        self.pixels = pixels
-        self.numPixels = numPixels
+
+        self.options = []
 
     def run(self):
         self.pixels.fill((0,0,0))

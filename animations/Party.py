@@ -1,13 +1,12 @@
-import threading
+import BaseAnimation
 import random
 
-class Party(threading.Thread):
+class Party(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
+        super().__init__(pixels, numPixels, 'Party')
         self.shouldRun = True
-        self.name = 'Party'
-        self.pixels = pixels
-        self.numPixels = numPixels
+
+        self.options = []
 
     def run(self):
         while self.shouldRun:
