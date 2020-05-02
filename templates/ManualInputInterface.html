@@ -55,12 +55,14 @@
         </div>
 
         <div id="sliderContainer">
+            <!--
             <input type="range" min="0" max="255", value="200", class="slider", id="RSlider">
             <label id="RValue">100</label>
             <input type="range" min="0" max="255", value="200", class="slider", id="GSlider">
             <label id="GValue">100</label>
             <input type="range" min="0" max="255", value="200", class="slider", id="BSlider">
             <label id="BValue">100</label>
+            -->
         </div>
 
         <!-- Update RGB Labels -->
@@ -99,6 +101,8 @@
 	        });
 
 	        function createOption(input) {
+	            sliderContainer = document.getElementById('sliderContainer');
+
                 if(input[0].equals('Slider')) {
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('label');
@@ -116,6 +120,9 @@
                         newLabel.innerHTML = newSlider.value;
 		                //socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
                     }
+
+                    sliderContainer.appendChild(newSlider);
+                    sliderContainer.appendChild(newLabel);
                 }
 	        }
 
