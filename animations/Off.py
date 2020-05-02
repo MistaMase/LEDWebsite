@@ -8,7 +8,11 @@ class Off(threading.Thread):
         self.numPixels = numPixels
 
         # Editable options
-        self.options = {}
+        self.options = [
+            'Hello',
+            'Yes',
+            'No'
+        ]
 
     def getOptions(self):
         return self.options
