@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 class BaseAnimation(threading.Thread, ABC):
     def __init__(self, pixels, numPixels, name):
-        thread.Thread.__init__self(self)
+        threading.Thread.__init__(self)
         self.pixels = pixels
         self.numPixels = numPixels
         self.name = name
