@@ -5,7 +5,7 @@ class Manual(threading.Thread):
         threading.Thread.__init__(self)
         self.name = 'Manual Color'
         self.colors = ((0,0,0))
-        self.newColors = ((200, 200, 200))
+        self.newColors = ((200, 100, 50))
         self.pixels = pixels
         self.numPixels = numPixels
         self.shouldRun = True
@@ -19,8 +19,8 @@ class Manual(threading.Thread):
 
     def getOptions(self):
         print(self.colors[0])
-        print(self.colors[0][2])
-        print(self.colors[0][2][0])
+        print(self.colors[1])
+        print(self.colors[2])
         return self.options
 
     def setColor(self, color):
