@@ -1,4 +1,4 @@
-import BaseAnimation
+from BaseAnimation import BaseAnimation
 
 class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels):

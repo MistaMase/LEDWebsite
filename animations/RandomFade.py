@@ -1,14 +1,13 @@
-import threading
+from BaseAnimation import BaseAnimation
 import random
 import time
 
-class RandomFade(threading.Thread):
+class RandomFade(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
+        super().__init__(pixels, numPixels, 'RandomFade')
         self.shouldRun = True
-        self.name = 'RandomFade'
-        self.pixels = pixels
-        self.numPixels = numPixels
+
+        self.options = []
 
     def run(self):
         middle = int(self.numPixels / 2)

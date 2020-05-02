@@ -1,14 +1,13 @@
-import threading
+from BaseAnimation import BaseAnimation
 import random
 import time
 
-class Pyramid(threading.Thread):
+class Pyramid(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
+        super().__init__(pixels, numPixels, 'Pyramid')
         self.shouldRun = True
-        self.name = 'Pyramid'
-        self.pixels = pixels
-        self.numPixels = numPixels
+
+        self.options = []
 
     def run(self):
         while self.shouldRun:

@@ -1,4 +1,4 @@
-import BaseAnimation
+from BaseAnimation import BaseAnimation
 import time
 
 class Strobe(BaseAnimation):

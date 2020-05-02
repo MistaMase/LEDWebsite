@@ -1,11 +1,10 @@
-import threading
+from BaseAnimation import BaseAnimation
 
-class RGB(threading.Thread):
+class RGB(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        threading.Thread.__init__(self)
-        self.name = "RGB"
-        self.pixels = pixels
-        self.numPixels = numPixels
+        super().__init__(pixels, numPixels, 'RGB')
+
+        self.options = []
 
     def run(self):
         self.pixels.fill((0,0,0))
