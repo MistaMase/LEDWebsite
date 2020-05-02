@@ -17,9 +17,7 @@ class Manual(threading.Thread):
             ['Slider', 'Blue Value', (0, 255, self.color[0][2])]
         ]
 
-
     def getOptions(self):
-        print(self.name)
         return self.options
 
     def setColor(self, color):
