@@ -92,7 +92,10 @@
 
 	        socket.on('MI Parameters', function(msg) {
 	            console.log('MI Parameters Received');
-	            console.log("Received Parameters: " + msg);
+
+	            for(var i = 0; i < msg.length; i++) {
+	                console.log("Received Parameters: " + msg[i]);
+	            }
 	        });
 
             function pad(n){
