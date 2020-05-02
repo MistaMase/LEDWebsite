@@ -73,7 +73,7 @@
                 for(var i = 0; i < msg.length; i++){
                     createOption(msg[i]);
                 }
-
+                setColor();
 	        });
 
 	        function createOption(input) {
@@ -99,7 +99,6 @@
                     SliderContainer.appendChild(newSlider);
                     SliderContainer.appendChild(newLabel);
                 }
-                setColor();
 	        }
 
 	        function getDisplayName(input) {
