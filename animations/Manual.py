@@ -11,11 +11,11 @@ class Manual(threading.Thread):
         self.shouldRun = True
 
         # Editable options
-        self.options = {
+        self.options = [
             ['Slider', 'Red Value',  (0, 255, 1)],
             ['Slider', 'Green Value', (0, 255, 1)],
             ['Slider', 'Blue Value', (0, 255, 1)]
-        }
+        ]
 
 
     def getOptions(self):
