@@ -19,7 +19,8 @@ class Manual(threading.Thread):
 
     def getOptions(self):
         print(self.colors[0])
-        print(self.colors[0][0])
+        print(self.colors[0][2])
+        print(self.colors[0][2][0])
         return self.options
 
     def setColor(self, color):
