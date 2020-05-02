@@ -37,9 +37,7 @@ def homeConnected():
 @socketio.on('Home Mode Change')
 def homeModeChanged(message):
     print("Requested to change Animation Mode to " + message)
-    newThread = scenes.changeMode(message)
-    print(newThread)
-    if not newThread:
+    if not scenes.changeMode(message)
         print("Requested animation could not be found")
 
 # Flask route for '/manualinput' which displays the manual color changer
