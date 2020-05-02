@@ -47,8 +47,10 @@ def populateAnimationNames():
 
 # If the string name exists, a new animation thread is created and the animation is started
 def createThread(name):
-    global thread, animations
-    try: 
+    global thread, animationNames
+    try:
+        print("Animation Names size")
+        print(len(animationNames))
         for a in range(len(animationNames)):
             print(animationNames[a])
             if animationNames[a] == name:
