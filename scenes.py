@@ -58,7 +58,9 @@ def createThread(name):
                 print('Threaded Class')
                 print(threadClass)
                 thread = threadClass(pixels, numPixels)
+                print("1")
                 thread.start()
+                print('2')
                 return thread
         return None
     except Exception as e:
