@@ -83,6 +83,7 @@
 
                 // Decode option type and display properly
                 for(var i = 0; i < msg.length; i++){
+                    console.log("Attempting to add " + msg[i]);
                     createOption(msg[i]);
                 }
 
@@ -93,6 +94,8 @@
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('label');
 
+                    console.log("Created new elements");
+
                     newSlider.setAttribute('type', 'range');
                     newSlider.setAttribute('min', input[2][0]);
                     newSlider.setAttribute('max', input[2][1]);
@@ -101,14 +104,20 @@
                     newSlider.setAttribute('id', getDisplayName(input));
                     newLabel.innerHTML = newSlider.value;
 
+                    console.log("Added new element attributes");
+
                     newSlider.oninput = function() {
                         console.log("Sliding");
                         newLabel.innerHTML = newSlider.value;
 		                //socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
                     }
 
+                    console.log("Added listener");
+
                     SliderContainer.appendChild(newSlider);
                     SliderContainer.appendChild(newLabel);
+
+                    console.log("Added elements to container");
                 }
 	        }
 
