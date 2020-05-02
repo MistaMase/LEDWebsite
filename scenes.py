@@ -49,6 +49,7 @@ def createThread(name):
     global thread, animations
     try: 
         for a in range(len(animationNames)):
+            print(animationNames[a])
             if animationNames[a] == name:
                 threadClass = globals()[animationNames[a]]
                 thread  = threadClass(pixels, numPixels)
