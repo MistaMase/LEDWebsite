@@ -57,7 +57,8 @@ def createThread(name):
                 thread.start()
                 return thread
         return None
-    except:
+    except Exception as e:
+        print(e)
         return None
 
 # Turns off the current animation thread
