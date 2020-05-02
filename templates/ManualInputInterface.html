@@ -79,7 +79,7 @@
 	        });
 
 	        socket.on('MI Parameters', function(msg) {
-	            console.log('MI Parameters Received');
+	            console.log('MI Parameters Received ' + msg);
 
                 // Decode option type and display properly
                 for(var i = 0; i < msg.length; i++){
