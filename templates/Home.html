@@ -79,21 +79,20 @@
 		});
 
 		socket.on('Home Mode List', function(msg) {
-			console.log("Mode List " + msg)
-            		var animationContainer = document.getElementById('modeScrollContainer');
-            		var animationElements = msg
-            		for (var counter = 0; counter < animationElements.length; ++counter) {
-                		newAnimation = document.createElement('div')
+			console.log("Mode List " + msg);
+            var animationContainer = document.getElementById('modeScrollContainer');
+            var animationElements = msg;
+            for (var counter = 0; counter < animationElements.length; ++counter) {
+                var newAnimation = document.createElement('div');
 				newAnimation.innerHTML = msg[counter];
-				newAnimation.setAttribute('class', 'modeScrollElement')
+				newAnimation.setAttribute('class', 'modeScrollElement');
 				if(counter % 2 == 0) {
-                    			newAnimation.style.backgroundColor = "#AAAAAA";
-                		} else {
-                    			newAnimation.style.backgroundColor = "#DDDDDD";
-					
-                		}
+                    newAnimation.style.backgroundColor = "#AAAAAA";
+                } else {
+                    newAnimation.style.backgroundColor = "#DDDDDD";
+                }
 				animationContainer.appendChild(newAnimation)
-            		}
+            }
 		});
 
             document.addEventListener('click', function(event) {

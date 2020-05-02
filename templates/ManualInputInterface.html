@@ -93,15 +93,42 @@
 	        socket.on('MI Parameters', function(msg) {
 	            console.log('MI Parameters Received');
 
-	            for(var i = 0; i < msg.length; i++) {
-	                console.log("Received Parameters: " + msg[i]);
-	            }
+                // Decode option type and display properly
+                for(var i = 0; i < msg.length; i++){
+                    createOption(msg[i]);
+                }
+
 	        });
+
+	        function createOption(input) {
+                if(input[0].equals('Slider')) {
+                    var newSlider = document.createElement('input');
+                    var newLabel = document.createElement('label');
+
+                    newSlider.setAttribute('type', 'range');
+                    newSlider.setAttribute('min', input[2][0]);
+                    newSlider.setAttribute('max', input[2][1]);
+                    newSlider.setAttribute('value', input[2][2]);
+                    newSlider.setAttribute('class', 'slider');
+                    newSlider.setAttribute('id', getDisplayName(input));
+                    newLabel.innerHTML = newSlider.value;
+
+                    newSlider.oninput = function() {
+                        newLabel.innerHTML = newSlider.value;
+		                //socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+                    }
+                }
+	        }
+
+	        function getDisplayName(input) {
+                return input[1];
+	        }
 
             function pad(n){
                 return (n.length<2) ? "0"+n : n;
             }
 
+            /*
             function setColor() {
                 var RHex = parseInt(RSlider.value, 10).toString(16),
                     GHex = parseInt(GSlider.value, 10).toString(16),
@@ -109,8 +136,9 @@
                     RGBHex = '#' + pad(RHex) + pad(GHex) + pad(BHex);
                 SliderContainer.style.backgroundColor = RGBHex;
             }
+            */
 
-
+            /*
             RSlider.oninput = function() {
                 RValue.innerHTML = RSlider.value;
                 setColor();
@@ -128,6 +156,7 @@
                 setColor();
 		        socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
 	        }
+	        */
         </script>
 
 
