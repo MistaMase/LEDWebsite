@@ -22,6 +22,7 @@ for (_, name, _) in pkgutil.iter_modules([Path('./animations')]):
 
 numPixels = 300
 
+
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
 
@@ -177,6 +178,12 @@ def changeMode(msg):
 # Start up the lights in 'Off' Mode
 populateAnimationNames()
 thread = createThread('Off')
+
+
+print('Animations')
+print(animations)
+print('AnimationNames')
+print(animationNames)
 
 if __name__ == "__main__":
     try:
