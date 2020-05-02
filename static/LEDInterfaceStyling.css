@@ -191,15 +191,15 @@ body {
     background: white;
 }
 
-#RSlider {
+#RValue {
     background: red;
 }
 
-#GSlider {
+#GValue {
     background: green;
 }
 
-#BSlider {
+#BValue {
     background: blue;
 }
 

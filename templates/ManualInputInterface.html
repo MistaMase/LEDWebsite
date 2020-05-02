@@ -96,11 +96,12 @@
                     newSlider.setAttribute('value', input[2][2]);
                     newSlider.setAttribute('class', 'slider');
                     newSlider.setAttribute('id', getDisplayName(input));
+                    //newSlider.setAttribute('id', getDisplayName(input));
                     newLabel.innerHTML = newSlider.value;
 
                     newSlider.oninput = function() {
                         newLabel.innerHTML = newSlider.value;
-		                //socket.emit('MI Update Client', RSlider.value + ' ' + GSlider.value + ' ' + BSlider.value);
+		                socket.emit('MI Update Client', RValue.value + ' ' + GValue.value + ' ' + BValue.value);
                     }
 
                     SliderContainer.appendChild(newSlider);

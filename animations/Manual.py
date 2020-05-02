@@ -12,15 +12,12 @@ class Manual(threading.Thread):
 
         # Editable options
         self.options = [
-            ['Slider', 'Red Value',  (0, 255, 1)],
-            ['Slider', 'Green Value', (0, 255, 2)],
-            ['Slider', 'Blue Value', (0, 255, 3)]
+            ['Slider', 'RValue',  (0, 255, self.color[0])],
+            ['Slider', 'GValue', (0, 255, self.color[1])],
+            ['Slider', 'BValue', (0, 255, self.color[2])]
         ]
 
     def getOptions(self):
-        print(self.colors[0])
-        print(self.colors[1])
-        print(self.colors[2])
         return self.options
 
     def setColor(self, color):
