@@ -55,7 +55,9 @@ def createThread(name):
             print(animationNames[a])
             if animationNames[a] == name:
                 threadClass = globals()[animationNames[a]]
-                thread  = threadClass(pixels, numPixels)
+                print('Threaded Class')
+                print(threadClass)
+                thread = threadClass(pixels, numPixels)
                 thread.start()
                 return thread
         return None
@@ -182,11 +184,6 @@ def changeMode(msg):
 populateAnimationNames()
 thread = createThread('Off')
 
-
-print('Animations')
-print(animations)
-print('AnimationNames')
-print(animationNames)
 
 if __name__ == "__main__":
     try:
