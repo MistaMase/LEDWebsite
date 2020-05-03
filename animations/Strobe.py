@@ -19,7 +19,7 @@ class Strobe(BaseAnimation):
             ['Slider', 'RValue', (0, 255, self.parameters['RValue'])],
             ['Slider', 'GValue', (0, 255, self.parameters['GValue'])],
             ['Slider', 'BValue', (0, 255, self.parameters['BValue'])],
-            ['Slider', 'Sleep', (0, 1, self.parameters['Sleep'])]
+            ['Slider', 'Sleep', (0, 0.2, self.parameters['Sleep'])]
 
         ]
 
