@@ -1,5 +1,6 @@
 from BaseAnimation import BaseAnimation
 import random
+import time
 
 class Party(BaseAnimation):
     def __init__(self, pixels, numPixels):

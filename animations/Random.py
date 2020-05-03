@@ -1,5 +1,6 @@
 from BaseAnimation import BaseAnimation
 import random
+import time
 
 
 class Random(BaseAnimation):
