@@ -89,15 +89,15 @@
                     newSlider.setAttribute('value', input[2][2]);
                     newSlider.setAttribute('class', 'slider');
                     newSlider.setAttribute('id', getDisplayName(input));
-                    newLabel.innerHTML = newSlider.value;
+                    newLabel.innerHTML = addUnits(newSlider);
 
                     newSlider.oninput = function(event) {
-                        newLabel.innerHTML = newSlider.value;
+                        newLabel.innerHTML = addUnits(newSlider);
 
                         if (document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
                             setColor();
                         }
-		                socket.emit('MI Update Client', [event.target.id, event.target.value]);
+		                socket.emit('MI Update Client', formatResponse(event));
                     }
 
                     SliderContainer.appendChild(newSlider);
@@ -106,6 +106,22 @@
 
                 if(input[0] == 'Select') {
                     var x
+                }
+	        }
+
+	        function addUnits(slider) {
+	            if(slider.id == 'Sleep') {
+	                return slider.value + 'ms';
+	            } else {
+	                return slider.value;
+	            }
+	        }
+
+	        function formatResponse(event) {
+                if(element.target.id == 'Sleep') {
+                    return [event.target.id, 1.0 * event.target.value / 100]
+                } else {
+                    return [event.target.id, event.target.value];
                 }
 	        }
 
