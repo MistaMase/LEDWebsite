@@ -142,9 +142,12 @@ body {
 
 #colorSelector {
     height: 60%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .colorSelectorColor {
+    flex: calc(100% / 10);
     width: 10%;
     height: 10%;
 }
