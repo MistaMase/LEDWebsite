@@ -140,10 +140,16 @@ body {
     backface-visibility: hidden;
 }
 
-#manualInterfaceIconBody:focus {
-    transform: rotateY(180deg);
+animation: rot 4s ease-in-out infinite;
 }
 
+#manualInterfaceIconBody:focus {
+    animation: rot 1s ease-in-out infinite;
+}
+
+@keyframes rot {
+    100% { transform: rotateY(180deg) }
+}
 
 #colorSelector {
     height: 60%;
