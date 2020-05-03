@@ -94,7 +94,7 @@
                     newSlider.oninput = function(event) {
                         newLabel.innerHTML = newSlider.value;
 
-                        if (document.getElementById('RValue) && document.getElementById('GValue) && document.getElementById('BValue)) {
+                        if (document.getElementById('RValue) && document.getElementById('GValue) && document.getElementById('BValue')) {
                             setColor();
                         }
 		                socket.emit('MI Update Client', [event.target.id, event.target.value]);
