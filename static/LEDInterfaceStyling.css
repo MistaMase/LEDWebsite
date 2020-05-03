@@ -137,6 +137,11 @@ body {
 }
 
 #manualInterfaceIconBody {
+    backface-visibility: hidden;
+}
+
+#manualInterfaceIconBody:focus {
+    transform: rotateY(.5turn);
 }
 
 
@@ -144,7 +149,6 @@ body {
     height: 60%;
     display: flex;
     flex-wrap: wrap;
-    transform: rotate3d(1, 1, 1, 45deg);
 }
 
 .colorSelectorColor {
