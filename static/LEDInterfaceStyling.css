@@ -136,8 +136,8 @@ body {
     height: auto;
 }
 
-#manualInterfaceContainer {
-    animation: rot 4s ease-in-out infinite;
+#manualInterfaceContainer:hover {
+    animation: rot 2s ease-in-out 0s 1 alternate;
 }
 
 @keyframes rot {
