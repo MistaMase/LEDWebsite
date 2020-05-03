@@ -157,6 +157,7 @@ body {
 
 #manualInterfaceParameters {
     backface-visibility: hidden;
+    transform: rotateY(0.5turn);
     top: 0;
     left: 0;
     background: gray;
