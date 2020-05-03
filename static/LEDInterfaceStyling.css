@@ -15,7 +15,6 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 7vh;
-    background-color: #747574;
     width: 100%;
 }
 
@@ -117,7 +116,6 @@ body {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    background-color: gray;
     height: 93vh;
 }
 
@@ -143,10 +141,9 @@ body {
 
 #modeScrollContainer {
     height: 80%;
-    overflow: scroll;
+    overflow-y: scroll;
     border-radius: 20px;
     border: 2px solid gray;
-    background-color: black;
     cursor: pointer;
 }
 
@@ -157,7 +154,6 @@ body {
 
 /* Manual Input Interface Styling */
 #sliderContainer {
-    background-color: yellow;
     height: 93vh;
 }
 
@@ -231,7 +227,6 @@ body {
     align-items: center;
     height: 50px;
     width: 100%;
-    border: 0px solid gray;
     background-color: #bfbfbf;
 
 }
@@ -247,7 +242,6 @@ body {
     height: 40px;
     width: 100%;
     border-radius: 8px;
-    background-color: gray;
 }
 
 .infoBar {

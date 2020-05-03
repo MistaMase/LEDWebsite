@@ -10,9 +10,13 @@ class BaseAnimation(threading.Thread, ABC):
         self.name = name
 
     def getOptions(self):
-        if self.options is not None:
-            return self.options
-        return []
+        try:
+            if self.options is not None:
+                return self.options
+            else:
+                return []
+        except:
+            return []
 
     @abstractmethod
     def run(self):
