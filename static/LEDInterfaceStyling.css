@@ -136,16 +136,13 @@ body {
     height: auto;
 }
 
+#manualInterfaceContainer {
+    position: relative;
+}
+
 #manualInterfaceContainer:hover {
     animation: rot 1s ease-in-out 0s 1 alternate;
     transform-style: preserve-3d;
-
-    background: white;
-
-    &:last-child {
-        background: gray;
-    }
-
 }
 
 @keyframes rot {
@@ -154,11 +151,17 @@ body {
 
 #manualInterfaceIconBody {
     backface-visibility: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
 
 }
 
 #manualInterfaceParameters {
     backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
     background: gray;
 }
 
