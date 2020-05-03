@@ -139,6 +139,16 @@ body {
 #manualInterfaceIconBody {
 }
 
+
+#colorSelector {
+    height: 60%;
+}
+
+#colorSelectorColor {
+    width: 10%;
+    height: 10%;
+}
+
 #modeScrollContainer {
     height: 80%;
     overflow-y: scroll;
