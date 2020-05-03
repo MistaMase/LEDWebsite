@@ -89,17 +89,20 @@
                     newSlider.setAttribute('value', input[2][2]);
                     newSlider.setAttribute('class', 'slider');
                     newSlider.setAttribute('id', getDisplayName(input));
-                    //newSlider.setAttribute('id', getDisplayName(input));
                     newLabel.innerHTML = newSlider.value;
 
-                    newSlider.oninput = function() {
+                    newSlider.oninput = function(event) {
                         newLabel.innerHTML = newSlider.value;
                         setColor();
-		                socket.emit('MI Update Client', RValue.value + ' ' + GValue.value + ' ' + BValue.value);
+		                socket.emit('MI Update Client', [event.target.id, event.target.value]);
                     }
 
                     SliderContainer.appendChild(newSlider);
                     SliderContainer.appendChild(newLabel);
+                }
+
+                if(input[0] == 'Select') {
+                    var x
                 }
 	        }
 

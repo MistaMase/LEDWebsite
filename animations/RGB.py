@@ -4,8 +4,6 @@ class RGB(BaseAnimation):
     def __init__(self, pixels, numPixels):
         super().__init__(pixels, numPixels, 'RGB')
 
-        self.options = []
-
     def run(self):
         self.pixels.fill((0,0,0))
         self.pixels.show()

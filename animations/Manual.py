@@ -4,8 +4,14 @@ class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels):
         super().__init__(pixels, numPixels, 'Manual Color')
         self.colors = ((0,0,0))
-        self.newColors = ((200, 100, 50))
         self.shouldRun = True
+        self.shouldUpdate = True
+
+        self.parameters = {
+            'RValue': 0,
+            'GValue': 0,
+            'BValue': 0
+        }
 
         # Editable options
         self.options = [
@@ -20,13 +26,18 @@ class Manual(BaseAnimation):
 
     def run(self):
         while self.shouldRun:
-            if self.newColors != self.colors:
+            if shouldUpdate:
                 print("New Color")
-                self.colors = self.newColors
+                self.colors = (self.parameters['RValue'], self.parameters['GValue'], self.parameters['BValue'])
                 self.pixels.fill(self.colors)
                 self.pixels.show()
+                self.shouldUpdate = False
             else:
                 pass
 
     def stop(self):
         self.shouldRun = False
+
+    def setParameter(self, param):
+        super().setParameter(param)
+        self.shouldUpdate = True

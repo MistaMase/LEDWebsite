@@ -12,8 +12,7 @@ class BaseAnimation(threading.Thread, ABC):
     def getOptions(self):
         if self.options is not None:
             return self.options
-        else:
-            raise NotImplementedError
+        return []
 
     @abstractmethod
     def run(self):
@@ -22,3 +21,8 @@ class BaseAnimation(threading.Thread, ABC):
     @abstractmethod
     def stop(self):
         pass
+
+    def setParameter(self, param):
+        if self.parameters is not None:
+            if param[0] in self.parameters:
+                self.parameters[parameter] = param[1]

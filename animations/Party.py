@@ -6,8 +6,6 @@ class Party(BaseAnimation):
         super().__init__(pixels, numPixels, 'Party')
         self.shouldRun = True
 
-        self.options = []
-
     def run(self):
         while self.shouldRun:
             for i in range(self.numPixels):

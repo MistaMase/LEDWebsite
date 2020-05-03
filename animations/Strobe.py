@@ -6,8 +6,6 @@ class Strobe(BaseAnimation):
         super().__init__(pixels, numPixels, 'Strobe')
         self.shouldRun = True
 
-        self.options = []
-
     def run(self):
         self.pixels.fill((0,0,0))
         self.pixels.show()

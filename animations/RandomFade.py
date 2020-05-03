@@ -7,8 +7,6 @@ class RandomFade(BaseAnimation):
         super().__init__(pixels, numPixels, 'RandomFade')
         self.shouldRun = True
 
-        self.options = []
-
     def run(self):
         middle = int(self.numPixels / 2)
         current = middle

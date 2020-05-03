@@ -5,8 +5,13 @@ class Scroll(BaseAnimation):
     def __init__(self, pixels, numPixels):
         super().__init__(pixels, numPixels, 'Scroll')
         self.shouldRun = True
-        self.margin = 10     # 2*Margin is scroll width
 
+        # Internal settings for the possible options
+        self.parameters = {
+            'Margin': 10
+        }
+
+        # Options returned by the website
         self.options = [
             ['Slider', 'Margin', (0, int(numPixels/2), 10)]
         ]
@@ -28,3 +33,4 @@ class Scroll(BaseAnimation):
 
     def stop(self):
         self.shouldRun = False
+
