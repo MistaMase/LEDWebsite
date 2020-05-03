@@ -54,7 +54,8 @@ def manualConnected():
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
 def manualColorChange(message):
-    print("Parameter Change:" + message)
+    print("Parameter Change")
+    print(message)
     scenes.thread.setParameter(message)
 
 # Flask route for '/codeinput' which displays the code input interface
