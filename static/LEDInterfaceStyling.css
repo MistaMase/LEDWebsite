@@ -137,6 +137,7 @@ body {
 }
 
 #manualInterfaceContainer {
+    position: relative;
 }
 
 #manualInterfaceContainer:hover {
@@ -150,18 +151,18 @@ body {
 
 #manualInterfaceIconBody {
     backface-visibility: hidden;
+    position: relative;
     top: 0;
     left: 0;
-    z-index: 0;
 }
 
 #manualInterfaceParameters {
     backface-visibility: hidden;
     transform: rotateY(0.5turn);
+    position: relative;
     top: 0;
     left: 0;
     background: gray;
-    z-index: -1;
 }
 
 #colorSelector {
