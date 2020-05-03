@@ -15,9 +15,9 @@ class Manual(BaseAnimation):
 
         # Editable options
         self.options = [
-            ['Slider', 'RValue',  (0, 255, self.colors[0])],
-            ['Slider', 'GValue', (0, 255, self.colors[1])],
-            ['Slider', 'BValue', (0, 255, self.colors[2])]
+            ['Slider', 'RValue',  (0, 255, self.parameters['RValue'])],
+            ['Slider', 'GValue', (0, 255, self.parameters['GValue'])],
+            ['Slider', 'BValue', (0, 255, self.parameters['BValue'])]
         ]
 
     def setColor(self, color):
