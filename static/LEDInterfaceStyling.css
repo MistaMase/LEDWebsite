@@ -139,6 +139,13 @@ body {
 #manualInterfaceContainer:hover {
     animation: rot 1s ease-in-out 0s 1 alternate;
 
+    backface-visibility: hidden;
+    background: white;
+
+    &:last-child {
+        background: gray;
+    }
+
 }
 
 @keyframes rot {
@@ -146,12 +153,7 @@ body {
 }
 
 #manualInterfaceIconBody {
-    backface-visibility: hidden;
-    background: white;
 
-    &:last-child {
-        background: gray;
-    }
 }
 
 #colorSelector {
