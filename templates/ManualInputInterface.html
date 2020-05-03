@@ -83,16 +83,16 @@
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('label');
 
-                    newSlider.setAttribute('type', 'range');
-                    newSlider.setAttribute('min', input[2][0]);
-                    newSlider.setAttribute('max', input[2][1]);
-                    newSlider.setAttribute('value', input[2][2]);
                     newSlider.setAttribute('class', 'slider');
                     newSlider.setAttribute('id', getDisplayName(input));
-                    newLabel.innerHTML = addUnits(newSlider);
+                    newSlider.setAttribute('type', 'range');
+                    newSlider.setAttribute('min', getValue(newSlider, input[2][0]));
+                    newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
+                    newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
+                    newLabel.innerHTML = getDisplay(newSlider);
 
                     newSlider.oninput = function(event) {
-                        newLabel.innerHTML = addUnits(newSlider);
+                        newLabel.innerHTML = getDisplay(newSlider);
 
                         if (document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
                             setColor();
@@ -109,9 +109,17 @@
                 }
 	        }
 
-	        function addUnits(slider) {
+            function getValue(attribute, value) {
+                if(attribute.id == 'Sleep') {
+                    return 1000 * value;
+                } else {
+                    return value;
+                }
+            }
+
+	        function getDisplay(slider) {
 	            if(slider.id == 'Sleep') {
-	                return slider.value + 'ms';
+	                return slider.value * 1000 + 'ms';
 	            } else {
 	                return slider.value;
 	            }
@@ -119,7 +127,7 @@
 
 	        function formatResponse(event) {
                 if(element.target.id == 'Sleep') {
-                    return [event.target.id, 1.0 * event.target.value / 100]
+                    return [event.target.id, 1.0 * event.target.value / 1000]
                 } else {
                     return [event.target.id, event.target.value];
                 }
