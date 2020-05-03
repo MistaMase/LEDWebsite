@@ -126,7 +126,7 @@
 	        }
 
 	        function formatResponse(event) {
-                if(element.target.id == 'Sleep') {
+                if(event.target.id == 'Sleep') {
                     return [event.target.id, 1.0 * event.target.value / 1000]
                 } else {
                     return [event.target.id, event.target.value];
