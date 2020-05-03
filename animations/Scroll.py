@@ -21,14 +21,14 @@ class Scroll(BaseAnimation):
         self.pixels.show()
         while self.shouldRun:
             color = ((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
-            for i in range(-self.margin, self.numPixels + self.margin+1, 1):
+            for i in range(-self.parameters['Margin'], self.numPixels + self.parameters['Margin']+1, 1):
                 if self.shouldRun == False:
                     return
-                for j in range(-self.margin, self.margin+1, 1):
+                for j in range(-self.parameters['Margin'], self.parameters['Margin']+1, 1):
                     if i+j >= 0 and i+j < self.numPixels:
                         self.pixels[i+j] = color
-                if i-self.margin >= 0:
-                    self.pixels[i-self.margin-1] = ((0,0,0))
+                if i-self.parameters['Margin'] >= 0:
+                    self.pixels[i-self.parameters['Margin']-1] = ((0,0,0))
                 self.pixels.show()
 
     def stop(self):
