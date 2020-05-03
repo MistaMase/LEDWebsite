@@ -8,12 +8,14 @@ class Scroll(BaseAnimation):
 
         # Internal settings for the possible options
         self.parameters = {
-            'Margin': 10
+            'Margin': 10,
+            'Sleep': 0.0
         }
 
         # Options returned by the website
         self.options = [
-            ['Slider', 'Margin', (0, int(numPixels/2), 10)]
+            ['Slider', 'Margin', (0, int(numPixels/2), 10)],
+            ['Slider', 'Sleep', (0, 1, self.parameters['Sleep'])]
         ]
 
     def run(self):
@@ -29,6 +31,7 @@ class Scroll(BaseAnimation):
                     if i+j >= 0 and i+j < self.numPixels:
                         self.pixels[i+j] = color
                 self.pixels.show()
+                time.sleep(self.parameters['Sleep'])
 
     def stop(self):
         self.shouldRun = False
