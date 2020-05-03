@@ -138,7 +138,6 @@ body {
 
 
 #manualInterfaceContainer {
-    position: absolute;
     animation: rot 1s ease-in-out 0s 1 alternate;
     transform-style: preserve-3d;
 }
@@ -149,17 +148,9 @@ body {
 
 #manualInterfaceIconBody {
     backface-visibility: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
 }
 
-#manualInterfaceParameters {
-    backface-visibility: hidden;
-    transform: rotateY(0.5turn);
-    position: relative;
-    top: 0;
-    left: 0;
+#manualInterfaceIconBody:after {
     background: gray;
 }
 
