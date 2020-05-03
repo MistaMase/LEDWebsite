@@ -25,4 +25,4 @@ class BaseAnimation(threading.Thread, ABC):
     def setParameter(self, param):
         if self.parameters is not None:
             if param[0] in self.parameters:
-                self.parameters[parameter] = param[1]
+                self.parameters[param[0]] = param[1]
