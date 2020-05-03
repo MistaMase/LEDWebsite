@@ -138,6 +138,7 @@ body {
 
 #manualInterfaceContainer:hover {
     animation: rot 1s ease-in-out 0s 1 alternate;
+    transform-style: preserve-3d;
 
     background: white;
 
@@ -152,7 +153,13 @@ body {
 }
 
 #manualInterfaceIconBody {
+    backface-visibility: hidden;
 
+}
+
+#manualInterfaceParameters {
+    backface-visibility: hidden;
+    background: gray;
 }
 
 #colorSelector {
