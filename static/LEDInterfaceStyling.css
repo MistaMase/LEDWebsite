@@ -136,14 +136,15 @@ body {
     height: auto;
 }
 
+#manualInterfaceContainer {
+
+}
+
 #manualInterfaceIconBody {
-    backface-visibility: hidden;
+
 }
 
-animation: rot 4s ease-in-out infinite;
-}
-
-#manualInterfaceIconBody:focus {
+#manualInterfaceContainer:focus {
     animation: rot 1s ease-in-out infinite;
 }
 
