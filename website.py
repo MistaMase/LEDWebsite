@@ -40,6 +40,20 @@ def homeModeChanged(message):
     if not scenes.changeMode(message):
         print("Requested animation could not be found")
 
+# Socketio response to Home webpage color change
+@socketio.on('Home Color Change')
+def homeColorChange(message):
+    print("Requested to change Color Mode to " + message)
+    scenes.changeMode('Manual')
+    while not scenes.thread.isAlive():
+        pass
+    rvalue = ['RValue', message[0]]
+    gvalue = ['GValue', message[1]]
+    bvalue = ['BVaue', message[2]]
+    scenes.thread.setParameter(rvalue)
+    scenes.thread.setParameter(gvalue)
+    scenes.thread.setParameter(bvalue)
+
 # Flask route for '/manualinput' which displays the manual color changer
 @app.route('/manualinput')
 def manualinput():

@@ -126,145 +126,97 @@
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'blue') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 0]);
-                    socket.emit('MI Update Client', ['GValue', 0]);
-                    socket.emit('MI Update Client', ['BValue', 255]);
+                    socket.emit('Home Color Change', [0, 0, 255]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'yellow') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 255]);
-                    socket.emit('MI Update Client', ['BValue', 0]);
+                    socket.emit('Home Color Change', [255, 255, 0]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'orange') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 165]);
-                    socket.emit('MI Update Client', ['BValue', 0]);
+                    socket.emit('Home Color Change', [255, 165, 0]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'black') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 0]);
-                    socket.emit('MI Update Client', ['GValue', 0]);
-                    socket.emit('MI Update Client', ['BValue', 0]);
+                    socket.emit('Home Color Change', [0, 0, 0]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'white') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 255]);
-                    socket.emit('MI Update Client', ['BValue', 255]);
+                    socket.emit('Home Color Change', [255, 255, 255]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'pink') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 105]);
-                    socket.emit('MI Update Client', ['BValue', 180]);
+                    socket.emit('Home Color Change', [255, 105, 180]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'purple') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 102]);
-                    socket.emit('MI Update Client', ['GValue', 51]);
-                    socket.emit('MI Update Client', ['BValue', 153]);
+                    socket.emit('Home Color Change', [102, 51, 153]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'magenta') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 0]);
-                    socket.emit('MI Update Client', ['BValue', 255]);
+                    socket.emit('Home Color Change', [255, 0, 255]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'red') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 0]);
-                    socket.emit('MI Update Client', ['BValue', 0]);
+                    socket.emit('Home Color Change', [255, 0, 0]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'green') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 0]);
-                    socket.emit('MI Update Client', ['GValue', 255]);
-                    socket.emit('MI Update Client', ['BValue', 0]);
+                    socket.emit('Home Color Change', [0, 255, 0]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'teal') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 0]);
-                    socket.emit('MI Update Client', ['GValue', 128]);
-                    socket.emit('MI Update Client', ['BValue', 128]);
+                    socket.emit('Home Color Change', [0, 128, 128]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'yellowgreen') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 154]);
-                    socket.emit('MI Update Client', ['GValue', 205]);
-                    socket.emit('MI Update Client', ['BValue', 50]);
+                    socket.emit('Home Color Change', [154, 205, 50]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'royalblue') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 65]);
-                    socket.emit('MI Update Client', ['GValue', 105]);
-                    socket.emit('MI Update Client', ['BValue', 225]);
+                    socket.emit('Home Color Change', [65, 105, 225]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'coral') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 255]);
-                    socket.emit('MI Update Client', ['GValue', 127]);
-                    socket.emit('MI Update Client', ['BValue', 80]);
+                    socket.emit('Home Color Change', [255, 127, 80]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'aqua') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 0]);
-                    socket.emit('MI Update Client', ['GValue', 255]);
-                    socket.emit('MI Update Client', ['BValue', 255]);
+                    socket.emit('Home Color Change', [0, 255, 255]);
                 }
             });
 
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'olive') {
-                    socket.emit('Home Mode Change', 'Manual');
-                    socket.emit('MI Update Client', ['RValue', 128]);
-                    socket.emit('MI Update Client', ['GValue', 128]);
-                    socket.emit('MI Update Client', ['BValue', 0]);
+                    socket.emit('Home Color Change', [128, 128, 0]);
                 }
             });
         </script>
