@@ -50,7 +50,7 @@ def homeColorChange(message):
         pass
     rvalue = ['RValue', message[0]]
     gvalue = ['GValue', message[1]]
-    bvalue = ['BVaue', message[2]]
+    bvalue = ['BValue', message[2]]
     scenes.thread.setParameter(rvalue)
     scenes.thread.setParameter(gvalue)
     scenes.thread.setParameter(bvalue)
