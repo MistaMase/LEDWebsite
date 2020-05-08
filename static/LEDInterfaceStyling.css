@@ -118,12 +118,13 @@ body {
     height: auto;
 }
 
-
 #manualInterfaceContainer {
     position: relative;
-    transition: transform 0.8s;
+    align-self: center;
+    transition: transform 0.5s;
     transform-style: preserve-3d;
-    height: 30vh;
+    width: 30vw;
+    height: 60vh;
 }
 
 #manualInterfaceContainer:hover {
@@ -136,7 +137,6 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    background: yellow;
 }
 
 #manualInterfaceParameterContainer {
