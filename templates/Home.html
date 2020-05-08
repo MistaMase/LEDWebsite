@@ -107,23 +107,6 @@
                 }
             });
 
-            var blue = document.getElementById('blue');
-            var blue = document.getElementById('yellow');
-            var blue = document.getElementById('orange');
-            var blue = document.getElementById('black');
-            var blue = document.getElementById('white');
-            var blue = document.getElementById('pink');
-            var blue = document.getElementById('purple');
-            var blue = document.getElementById('magenta');
-            var blue = document.getElementById('red');
-            var blue = document.getElementById('green');
-            var blue = document.getElementById('teal');
-            var blue = document.getElementById('yellowgreen');
-            var blue = document.getElementById('royalblue');
-            var blue = document.getElementById('coral');
-            var blue = document.getElementById('aqua');
-            var blue = document.getElementById('olive');
-
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.id == 'blue') {
                     socket.emit('Home Color Change', [0, 0, 255]);
