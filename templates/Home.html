@@ -129,6 +129,7 @@
                     newLabel.innerHTML = getDisplay(newSlider);
 
                     newSlider.oninput = function(event) {
+                        newLabel.innerHTML = getDisplay(newSlider);
 		                socket.emit('MI Update Client', formatResponse(event));
                     }
 
