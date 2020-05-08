@@ -50,20 +50,7 @@
             <div class="bodyIcon" id="manualInterfaceOuterContainer">
                 <div id="manualInterfaceInnerContainer">
 		            <img class="bodyIconImage" id="manualInterfaceIconBody" src="{{ url_for('static', filename='assets/equalizer_icon.svg') }}">
-                    <div id="manualInterfaceParameterContainer">
-                        <div class="sliderLabel">X</div>
-                        <input type="range" class="manualDynamicSlider", min="1", max="10", value="5">
-                        <div class="sliderLabel">Y</div>
-                        <input type="range" class="manualDynamicSlider", min="1", max="10", value="5">
-                        <div class="sliderLabel">X</div>
-                        <input type="range" class="manualDynamicSlider", min="1", max="10", value="5">
-                        <div class="sliderLabel">Y</div>
-                        <input type="range" class="manualDynamicSlider", min="1", max="10", value="5">
-                        <div class="sliderLabel">X</div>
-                        <input type="range" class="manualDynamicSlider", min="1", max="10", value="5">
-                        <div class="sliderLabel">Y</div>
-                        <input type="range" class="manualDynamicSlider", min="1", max="10", value="5">
-                    </div>
+                    <div id="manualInterfaceParameterContainer"></div>
                 </div>
             </div>
 
@@ -120,41 +107,59 @@
 
 		    socket.on('Home Parameters', function(msg) {
 		        alert(msg);
-		        /*
 		        for(var i = 0; i < msg.length; i++){
                     createOption(msg[i]);
 
                 }
-                */
 		    });
-            /*
+
 		    function createOption(input) {
+		        var sliderContainer = document.getElementById('manualInterfaceParameterContainer');
                 if(input[0] == 'Slider') {
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('label');
 
-                    newSlider.setAttribute('class', 'slider');
-                    newSlider.setAttribute('id', getDisplayName(input));
+                    newSlider.setAttribute('class', 'manualDynamicSlider');
                     newSlider.setAttribute('type', 'range');
                     newSlider.setAttribute('min', getValue(newSlider, input[2][0]));
                     newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
                     newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
-                    newLabel.innerHTML = getDisplay(newSlider);
+                    newLabel.setAttribute('class', 'sliderLabel');
+                    newLabel.innerHTML = getDisplayName(newSlider);
 
                     newSlider.oninput = function(event) {
-                        newLabel.innerHTML = getDisplay(newSlider);
 		                socket.emit('MI Update Client', formatResponse(event));
                     }
 
-                    SliderContainer.appendChild(newSlider);
-                    SliderContainer.appendChild(newLabel);
+                    sliderContainer.appendChild(newLabel);
+                    sliderContainer.appendChild(newSlider);
                 }
 
                 if(input[0] == 'Select') {
                     var x
                 }
 	        }
-            */
+
+            function getDisplayName(input) {
+                return input[1];
+	        }
+
+	        function getValue(attribute, value) {
+                if(attribute.id == 'Sleep') {
+                    return 1000 * value;
+                } else {
+                    return value;
+                }
+            }
+
+            function formatResponse(event) {
+                if(event.target.id == 'Sleep') {
+                    return [event.target.id, 1.0 * event.target.value / 1000]
+                } else {
+                    return [event.target.id, event.target.value];
+                }
+	        }
+
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.className == 'modeScrollElement'){
                     socket.emit("Home Mode Change", "" + event.target.textContent);
