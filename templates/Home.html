@@ -106,7 +106,8 @@
 
 
 		    socket.on('Home Parameters', function(msg) {
-		        alert(msg);
+		        var sliderContainer = document.getElementById('manualInterfaceParameterContainer');
+		        sliderContainer.innerHTML = '';
 		        for(var i = 0; i < msg.length; i++){
                     createOption(msg[i]);
 
@@ -114,8 +115,6 @@
 		    });
 
 		    function createOption(input) {
-		        var sliderContainer = document.getElementById('manualInterfaceParameterContainer');
-                sliderContainer.innerHTML = '';
                 if(input[0] == 'Slider') {
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('div');
