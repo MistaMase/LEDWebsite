@@ -140,7 +140,7 @@ body {
     transform: rotateY(180deg);
 }
 
-#manualInterfaceIconBody, #manualInterfaceParameterContainer {
+#manualInterfaceIconBody {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -148,11 +148,12 @@ body {
     backface-visibility: hidden;
 }
 
-#manualInterfaceIconBody {
-
-}
-
 #manualInterfaceParameterContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
     display: flex;
     background: red;
     transform: rotateY(180deg);
