@@ -127,7 +127,7 @@ body {
     height: 60vh;
 }
 
-#manualInterfaceContainer:hover #manulaInterfaceIconBody #manualInterfaceParameterContainer {
+#manualInterfaceContainer:hover #manualInterfaceIconBody:hover #manualInterfaceParameterContainer:hover {
     transform: rotateY(180deg);
 }
 
