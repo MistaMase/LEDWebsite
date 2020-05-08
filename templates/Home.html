@@ -175,6 +175,7 @@
                     socket.emit("Home Mode Change", "" + event.target.textContent);
                 }
                 else if(event.target && event.target.id == 'blue') {
+                    alert("blue");
                     socket.emit('Home Color Change', [0, 0, 255]);
                 }
                 else if(event.target && event.target.id == 'yellow') {
