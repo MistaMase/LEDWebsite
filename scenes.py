@@ -10,7 +10,7 @@ import pkgutil
 from importlib import import_module
 animations = []
 animationNames = []
-for (_, name, _) in pkgutil.iter_modules([Path('./animations')]):
+for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/animations')]):
     animations.append(import_module('animations.' + name, package=__name__))
     for i in dir(animations[len(animations)-1]):
         attribute = getattr(animations[len(animations)-1], i)
@@ -20,7 +20,7 @@ for (_, name, _) in pkgutil.iter_modules([Path('./animations')]):
                 setattr(sys.modules[__name__], name, attribute)
 
 
-numPixels = 300
+numPixels = 300 * 1
 
 
 # Initializes the LED strip
