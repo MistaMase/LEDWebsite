@@ -53,22 +53,22 @@
 
             <!-- Code Interface Body Icon -->
             <div id="colorSelector" class="bodyIconImage">
-                <div class="colorSelectorColor" style="background:blue;"></div>
-                <div class="colorSelectorColor" style="background:yellow;"></div>
-                <div class="colorSelectorColor" style="background:orange;"></div>
-                <div class="colorSelectorColor" style="background:black;"></div>
-                <div class="colorSelectorColor" style="background:white;"></div>
-                <div class="colorSelectorColor" style="background:pink;"></div>
-                <div class="colorSelectorColor" style="background:purple;"></div>
-                <div class="colorSelectorColor" style="background:magenta;"></div>
-                <div class="colorSelectorColor" style="background:red;"></div>
-                <div class="colorSelectorColor" style="background:green;"></div>
-                <div class="colorSelectorColor" style="background:teal;"></div>
-                <div class="colorSelectorColor" style="background:red;"></div>
-                <div class="colorSelectorColor" style="background:black;"></div>
-                <div class="colorSelectorColor" style="background:white;"></div>
-                <div class="colorSelectorColor" style="background:yellow;"></div>
-                <div class="colorSelectorColor" style="background:pink;"></div>
+                <div class="colorSelectorColor" style="background:#0000FF;" id="blue"></div>
+                <div class="colorSelectorColor" style="background:#FFFF00;" id="yellow"></div>
+                <div class="colorSelectorColor" style="background:#FFA500;" id="orange"></div>
+                <div class="colorSelectorColor" style="background:#000000;" id="black"></div>
+                <div class="colorSelectorColor" style="background:#FFFFFF;" id="white"></div>
+                <div class="colorSelectorColor" style="background:#FFC0CB;" id="pink"></div>
+                <div class="colorSelectorColor" style="background:#800080;" id="purple"></div>
+                <div class="colorSelectorColor" style="background:#FF00FF;" id="magenta"></div>
+                <div class="colorSelectorColor" style="background:#FF0000;" id="red"></div>
+                <div class="colorSelectorColor" style="background:#00FF00;" id="green"></div>
+                <div class="colorSelectorColor" style="background:#008080;" id="teal"></div>
+                <div class="colorSelectorColor" style="background:#9ACD32;" id="yellowgreen"></div>
+                <div class="colorSelectorColor" style="background:#4169E1;" id="royalblue"></div>
+                <div class="colorSelectorColor" style="background:#FF7F50;" id="coral"></div>
+                <div class="colorSelectorColor" style="background:#00FFFF;" id="aqua"></div>
+                <div class="colorSelectorColor" style="background:#808000;" id="olive"></div>
             </div>
 
             <!-- Hardware Info Body Icon -->
@@ -79,36 +79,163 @@
         <script type="text/javascript" charset="utf-8">
             var socket = io();
 
-		socket.on('connect', function() {
-			console.log("Home Socket Connected");
-			socket.emit("Home Connection");
-		});
+		    socket.on('connect', function() {
+			    console.log("Home Socket Connected");
+			    socket.emit("Home Connection");
+		    });
 
-		socket.on('Home Mode List', function(msg) {
-			console.log("Mode List " + msg);
-            var animationContainer = document.getElementById('modeScrollContainer');
-            var animationElements = msg;
-            for (var counter = 0; counter < animationElements.length; ++counter) {
-                var newAnimation = document.createElement('div');
-				newAnimation.innerHTML = msg[counter];
-				newAnimation.setAttribute('class', 'modeScrollElement');
-				if(counter % 2 == 0) {
-                    newAnimation.style.backgroundColor = "#AAAAAA";
-                } else {
-                    newAnimation.style.backgroundColor = "#DDDDDD";
+		    socket.on('Home Mode List', function(msg) {
+			    console.log("Mode List " + msg);
+                var animationContainer = document.getElementById('modeScrollContainer');
+                var animationElements = msg;
+                for (var counter = 0; counter < animationElements.length; ++counter) {
+                    var newAnimation = document.createElement('div');
+				    newAnimation.innerHTML = msg[counter];
+				    newAnimation.setAttribute('class', 'modeScrollElement');
+				    if(counter % 2 == 0) {
+                        newAnimation.style.backgroundColor = "#AAAAAA";
+                    } else {
+                        newAnimation.style.backgroundColor = "#DDDDDD";
+                    }
+				    animationContainer.appendChild(newAnimation);
                 }
-				animationContainer.appendChild(newAnimation);
-            }
-		});
+		    });
 
             document.addEventListener('click', function(event) {
-                    if(event.target && event.target.className == 'modeScrollElement'){
-                        socket.emit("Home Mode Change", "" + event.target.textContent);
-                    }
-                });
+                if(event.target && event.target.className == 'modeScrollElement'){
+                    socket.emit("Home Mode Change", "" + event.target.textContent);
+                }
+            });
+
+            var blue = document.getElementById('blue');
+            var blue = document.getElementById('yellow');
+            var blue = document.getElementById('orange');
+            var blue = document.getElementById('black');
+            var blue = document.getElementById('white');
+            var blue = document.getElementById('pink');
+            var blue = document.getElementById('purple');
+            var blue = document.getElementById('magenta');
+            var blue = document.getElementById('red');
+            var blue = document.getElementById('green');
+            var blue = document.getElementById('teal');
+            var blue = document.getElementById('yellowgreen');
+            var blue = document.getElementById('royalblue');
+            var blue = document.getElementById('coral');
+            var blue = document.getElementById('aqua');
+            var blue = document.getElementById('olive');
+
+            blue.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 0]);
+                socket.emit('MI Update Client', ['GValue', 0]);
+                socket.emit('MI Update Client', ['BValue', 255]);
+            }
+
+            yellow.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 255]);
+                socket.emit('MI Update Client', ['BValue', 0]);
+            }
+
+            orange.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 165]);
+                socket.emit('MI Update Client', ['BValue', 0]);
+            }
+
+            black.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 0]);
+                socket.emit('MI Update Client', ['GValue', 0]);
+                socket.emit('MI Update Client', ['BValue', 0]);
+            }
+
+            white.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 255]);
+                socket.emit('MI Update Client', ['BValue', 255]);
+            }
+
+            pink.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 105]);
+                socket.emit('MI Update Client', ['BValue', 180]);
+            }
+
+            purple.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 102]);
+                socket.emit('MI Update Client', ['GValue', 51]);
+                socket.emit('MI Update Client', ['BValue', 153]);
+            }
+
+            magenta.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 0]);
+                socket.emit('MI Update Client', ['BValue', 255]);
+            }
+
+            red.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 0]);
+                socket.emit('MI Update Client', ['BValue', 0]);
+            }
+
+            green.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 0]);
+                socket.emit('MI Update Client', ['GValue', 255]);
+                socket.emit('MI Update Client', ['BValue', 0]);
+            }
+
+            teal.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 0]);
+                socket.emit('MI Update Client', ['GValue', 128]);
+                socket.emit('MI Update Client', ['BValue', 128]);
+            }
+
+            yellowgreen.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 154]);
+                socket.emit('MI Update Client', ['GValue', 205]);
+                socket.emit('MI Update Client', ['BValue', 50]);
+            }
+
+            royalblue.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 65]);
+                socket.emit('MI Update Client', ['GValue', 105]);
+                socket.emit('MI Update Client', ['BValue', 225]);
+            }
+
+            coral.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 255]);
+                socket.emit('MI Update Client', ['GValue', 127]);
+                socket.emit('MI Update Client', ['BValue', 80]);
+            }
+
+            aqua.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 0]);
+                socket.emit('MI Update Client', ['GValue', 255]);
+                socket.emit('MI Update Client', ['BValue', 255]);
+            }
+
+            olive.oninput = function(event) {
+                socket.emit('Home Mode Change', 'Manual')
+                socket.emit('MI Update Client', ['RValue', 128]);
+                socket.emit('MI Update Client', ['GValue', 128]);
+                socket.emit('MI Update Client', ['BValue', 0]);
+            }
 
         </script>
-
     </body>
-
 </html>
