@@ -124,118 +124,149 @@
             var blue = document.getElementById('aqua');
             var blue = document.getElementById('olive');
 
-            blue.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 0]);
-                socket.emit('MI Update Client', ['GValue', 0]);
-                socket.emit('MI Update Client', ['BValue', 255]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'blue') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 0]);
+                    socket.emit('MI Update Client', ['GValue', 0]);
+                    socket.emit('MI Update Client', ['BValue', 255]);
+                }
             }
 
-            yellow.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 255]);
-                socket.emit('MI Update Client', ['BValue', 0]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'yellow') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 255]);
+                    socket.emit('MI Update Client', ['BValue', 0]);
+                }
             }
 
-            orange.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 165]);
-                socket.emit('MI Update Client', ['BValue', 0]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'orange') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 165]);
+                    socket.emit('MI Update Client', ['BValue', 0]);
+                }
             }
 
-            black.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 0]);
-                socket.emit('MI Update Client', ['GValue', 0]);
-                socket.emit('MI Update Client', ['BValue', 0]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'black') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 0]);
+                    socket.emit('MI Update Client', ['GValue', 0]);
+                    socket.emit('MI Update Client', ['BValue', 0]);
+                }
             }
 
-            white.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 255]);
-                socket.emit('MI Update Client', ['BValue', 255]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'white') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 255]);
+                    socket.emit('MI Update Client', ['BValue', 255]);
+                }
             }
 
-            pink.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 105]);
-                socket.emit('MI Update Client', ['BValue', 180]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'pink') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 105]);
+                    socket.emit('MI Update Client', ['BValue', 180]);
+                }
             }
 
-            purple.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 102]);
-                socket.emit('MI Update Client', ['GValue', 51]);
-                socket.emit('MI Update Client', ['BValue', 153]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'purple') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 102]);
+                    socket.emit('MI Update Client', ['GValue', 51]);
+                    socket.emit('MI Update Client', ['BValue', 153]);
+                }
             }
 
-            magenta.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 0]);
-                socket.emit('MI Update Client', ['BValue', 255]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'magenta') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 0]);
+                    socket.emit('MI Update Client', ['BValue', 255]);
+                }
             }
 
-            red.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 0]);
-                socket.emit('MI Update Client', ['BValue', 0]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'red') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 0]);
+                    socket.emit('MI Update Client', ['BValue', 0]);
+                }
             }
 
-            green.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 0]);
-                socket.emit('MI Update Client', ['GValue', 255]);
-                socket.emit('MI Update Client', ['BValue', 0]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'green') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 0]);
+                    socket.emit('MI Update Client', ['GValue', 255]);
+                    socket.emit('MI Update Client', ['BValue', 0]);
+                }
             }
 
-            teal.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 0]);
-                socket.emit('MI Update Client', ['GValue', 128]);
-                socket.emit('MI Update Client', ['BValue', 128]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'teal') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 0]);
+                    socket.emit('MI Update Client', ['GValue', 128]);
+                    socket.emit('MI Update Client', ['BValue', 128]);
+                }
             }
 
-            yellowgreen.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 154]);
-                socket.emit('MI Update Client', ['GValue', 205]);
-                socket.emit('MI Update Client', ['BValue', 50]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'yellowgreen') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 154]);
+                    socket.emit('MI Update Client', ['GValue', 205]);
+                    socket.emit('MI Update Client', ['BValue', 50]);
+                }
             }
 
-            royalblue.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 65]);
-                socket.emit('MI Update Client', ['GValue', 105]);
-                socket.emit('MI Update Client', ['BValue', 225]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'royalblue') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 65]);
+                    socket.emit('MI Update Client', ['GValue', 105]);
+                    socket.emit('MI Update Client', ['BValue', 225]);
+                }
             }
 
-            coral.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 255]);
-                socket.emit('MI Update Client', ['GValue', 127]);
-                socket.emit('MI Update Client', ['BValue', 80]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'coral') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 255]);
+                    socket.emit('MI Update Client', ['GValue', 127]);
+                    socket.emit('MI Update Client', ['BValue', 80]);
+                }
             }
 
-            aqua.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 0]);
-                socket.emit('MI Update Client', ['GValue', 255]);
-                socket.emit('MI Update Client', ['BValue', 255]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'aqua') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 0]);
+                    socket.emit('MI Update Client', ['GValue', 255]);
+                    socket.emit('MI Update Client', ['BValue', 255]);
+                }
             }
 
-            olive.onClick = function(event) {
-                socket.emit('Home Mode Change', 'Manual');
-                socket.emit('MI Update Client', ['RValue', 128]);
-                socket.emit('MI Update Client', ['GValue', 128]);
-                socket.emit('MI Update Client', ['BValue', 0]);
+            document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'olive') {
+                    socket.emit('Home Mode Change', 'Manual');
+                    socket.emit('MI Update Client', ['RValue', 128]);
+                    socket.emit('MI Update Client', ['GValue', 128]);
+                    socket.emit('MI Update Client', ['BValue', 0]);
+                }
             }
-
         </script>
     </body>
 </html>
