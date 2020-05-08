@@ -118,20 +118,28 @@ body {
     height: auto;
 }
 
-#manualInterfaceContainer {
-    position: relative;
-    align-self: center;
-    transition: transform 0.5s;
-    transform-style: preserve-3d;
+#manualInterfaceOuterContainer {
+    background: transparent;
     width: 30vw;
     height: 60vh;
+    perspective: 1000px;
+    align-self: center;
 }
 
-#manualInterfaceContainer:hover #manualInterfaceIconBody:hover #manualInterfaceParameterContainer:hover {
+#manualInterfaceInnerContainer {
+    position: relative;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    height: 100%;
+    width: 100%;
+
+}
+
+#manualInterfaceOuterContainer:hover #manualInterfaceInnerContainer {
     transform: rotateY(180deg);
 }
 
-#manualInterfaceIconBody {
+#manualInterfaceIconBody #manualInterfaceParameterContainer {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -139,14 +147,13 @@ body {
     backface-visibility: hidden;
 }
 
+#manualInterfaceIconBody {
+
+}
+
 #manualInterfaceParameterContainer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
     display: flex;
     background: red;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
     transform: rotateY(180deg);
 }
 
