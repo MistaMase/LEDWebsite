@@ -159,6 +159,10 @@ body {
     border-radius: 20%;
 }
 
+.sliderLabel {
+    text-align: center;
+}
+
 .manualDynamicSlider {
     position: relative;
     -webkit-appearance: none;  /* Override default CSS styles */
@@ -175,10 +179,11 @@ body {
 }
 
 .manualDynamicSlider::-webkit-slider-thumb {
+    background: white;
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 7vh; /* Set a specific slider handle width */
-    height: 7vh; /* Slider handle height */
+    width: 8vh; /* Set a specific slider handle width */
+    height: 8vh; /* Slider handle height */
     cursor: pointer; /* Cursor on hover */
     border-radius: 50%;
     border: 2px solid #000000;
