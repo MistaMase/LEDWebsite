@@ -52,24 +52,6 @@ body {
     height: 80%;
 }
 
-#modeSelect option {
-    font-size: auto;
-    background-color: green;
-    box-shadow: 0 10px 0 10px rgba(0,0,0,0.5);
-    border-radius: 0.5em;
-    appearance: none;
-
-}
-
-/* When hovering over the box at first */
-#modeSelect:hover {
-}
-
-/* Once the box has been clicked */
-#modeSelect:focus {
-    outline: none;
-}
-
 #ipAddress {
     width: 40%;
     text-align: center;
