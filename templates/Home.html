@@ -126,7 +126,7 @@
                     newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
                     newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
                     newLabel.setAttribute('class', 'sliderLabel');
-                    newLabel.innerHTML = getDisplayName(newSlider);
+                    newLabel.innerHTML = getDisplay(newSlider);
 
                     newSlider.oninput = function(event) {
 		                socket.emit('MI Update Client', formatResponse(event));
