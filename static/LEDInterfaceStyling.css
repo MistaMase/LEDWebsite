@@ -145,6 +145,7 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    background: white;
 }
 
 #manualInterfaceParameterContainer {
