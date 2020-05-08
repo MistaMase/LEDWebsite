@@ -141,6 +141,14 @@
                 }
 	        }
 
+	        function getDisplay(slider) {
+	            if(slider.id == 'Sleep') {
+	                return slider.value + 'ms';
+	            } else {
+	                return slider.value;
+	            }
+	        }
+
             function getDisplayName(input) {
                 return input[1];
 	        }
