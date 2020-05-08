@@ -160,6 +160,31 @@ body {
     border-radius: 20%;
 }
 
+.manualDynamicSlider {
+    position: relative;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    margin: 10px 10px 0px 10px;
+    width: 90%; /* Full-width */
+    height: 25px; /* Specified height */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 5px;
+    border: 1.5px solid #000000;
+}
+
+.manualDynamicSlider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 30px; /* Set a specific slider handle width */
+    height: 30px; /* Slider handle height */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+    border: 2px solid #000000;
+}
+
 #colorSelector {
     height: 60%;
     display: flex;
