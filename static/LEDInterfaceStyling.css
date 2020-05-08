@@ -160,6 +160,7 @@ body {
 }
 
 .sliderLabel {
+    margin-top: 2vh;
     text-align: center;
 }
 
@@ -167,7 +168,7 @@ body {
     position: relative;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-    margin: 4vh 4vw 0 3vw;
+    margin: 3vh 4vw 0 3vw;
     width: 80%; /* Full-width */
     height: 5vh; /* Specified height */
     outline: none; /* Remove outline */
