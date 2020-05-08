@@ -1,5 +1,5 @@
 systemctl kill ledwebsite
-# mkdir newStuff
-# cd newStuff
-# git clone https://github.com/MistaMase/LEDWebsite.git
+mkdir LEDWebsite
+cd LEDWebite
+git clone https://github.com/MistaMase/LEDWebsite.git
 sudo reboot 
