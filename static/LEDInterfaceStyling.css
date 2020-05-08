@@ -163,9 +163,9 @@ body {
     position: relative;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-    margin: 4vh 4vw 0 4vw;
+    margin: 4vh 4vw 0 3vw;
     width: 80%; /* Full-width */
-    height: 10vh; /* Specified height */
+    height: 5vh; /* Specified height */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -177,8 +177,8 @@ body {
 .manualDynamicSlider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 30px; /* Set a specific slider handle width */
-    height: 30px; /* Slider handle height */
+    width: 7vh; /* Set a specific slider handle width */
+    height: 7vh; /* Slider handle height */
     cursor: pointer; /* Cursor on hover */
     border-radius: 50%;
     border: 2px solid #000000;
