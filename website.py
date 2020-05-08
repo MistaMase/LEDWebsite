@@ -44,6 +44,7 @@ def homeModeChanged(message):
 @socketio.on('Home Color Change')
 def homeColorChange(message):
     print("Requested to change Color Mode")
+    print(message)
     scenes.changeMode('Manual')
     while not scenes.thread.isAlive():
         pass
