@@ -110,8 +110,8 @@
 
                 }
                 */
-		    }
-
+		    });
+            /*
 		    function createOption(input) {
                 if(input[0] == 'Slider') {
                     var newSlider = document.createElement('input');
@@ -138,7 +138,7 @@
                     var x
                 }
 	        }
-
+            */
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.className == 'modeScrollElement'){
                     socket.emit("Home Mode Change", "" + event.target.textContent);
