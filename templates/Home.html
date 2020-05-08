@@ -120,6 +120,7 @@
                     var newLabel = document.createElement('label');
 
                     newSlider.setAttribute('class', 'manualDynamicSlider');
+                    newSlider.setAttribute('id', getDisplayName(input));
                     newSlider.setAttribute('type', 'range');
                     newSlider.setAttribute('min', getValue(newSlider, input[2][0]));
                     newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
