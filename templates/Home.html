@@ -101,6 +101,44 @@
                 }
 		    });
 
+
+		    socket.on('Home Parameters', function(msg) {
+		        alert(msg);
+		        /*
+		        for(var i = 0; i < msg.length; i++){
+                    createOption(msg[i]);
+
+                }
+                */
+		    }
+
+		    function createOption(input) {
+                if(input[0] == 'Slider') {
+                    var newSlider = document.createElement('input');
+                    var newLabel = document.createElement('label');
+
+                    newSlider.setAttribute('class', 'slider');
+                    newSlider.setAttribute('id', getDisplayName(input));
+                    newSlider.setAttribute('type', 'range');
+                    newSlider.setAttribute('min', getValue(newSlider, input[2][0]));
+                    newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
+                    newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
+                    newLabel.innerHTML = getDisplay(newSlider);
+
+                    newSlider.oninput = function(event) {
+                        newLabel.innerHTML = getDisplay(newSlider);
+		                socket.emit('MI Update Client', formatResponse(event));
+                    }
+
+                    SliderContainer.appendChild(newSlider);
+                    SliderContainer.appendChild(newLabel);
+                }
+
+                if(input[0] == 'Select') {
+                    var x
+                }
+	        }
+
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.className == 'modeScrollElement'){
                     socket.emit("Home Mode Change", "" + event.target.textContent);
