@@ -157,6 +157,7 @@ body {
     background: red;
     transform: rotateY(180deg);
     border-radius: 20%;
+    overflow: scroll;
 }
 
 .sliderLabel {
