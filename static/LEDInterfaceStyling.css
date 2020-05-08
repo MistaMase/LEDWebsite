@@ -124,7 +124,6 @@ body {
     height: 60vh;
     perspective: 1000px;
     align-self: center;
-    text-align: center;
     display: block;
 }
 
@@ -157,6 +156,7 @@ body {
     display: flex;
     background: red;
     transform: rotateY(180deg);
+    border-radius: 20%;
 }
 
 #colorSelector {
