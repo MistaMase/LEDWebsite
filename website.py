@@ -48,8 +48,6 @@ def homeColorChange(message):
     print("Requested to change Color Mode")
     print(message)
     scenes.changeMode('Manual')
-    while not scenes.thread.isAlive():
-        pass
     rvalue = ['RValue', message[0]]
     gvalue = ['GValue', message[1]]
     bvalue = ['BValue', message[2]]
