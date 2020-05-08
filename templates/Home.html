@@ -175,100 +175,52 @@
                 if(event.target && event.target.className == 'modeScrollElement'){
                     socket.emit("Home Mode Change", "" + event.target.textContent);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'blue') {
+                else if(event.target && event.target.id == 'blue') {
                     socket.emit('Home Color Change', [0, 0, 255]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'yellow') {
+                else if(event.target && event.target.id == 'yellow') {
                     socket.emit('Home Color Change', [255, 255, 0]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'orange') {
+                else if(event.target && event.target.id == 'orange') {
                     socket.emit('Home Color Change', [255, 100, 0]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'black') {
+                else if(event.target && event.target.id == 'black') {
                     socket.emit('Home Color Change', [0, 0, 0]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'white') {
+                else if(event.target && event.target.id == 'white') {
                     socket.emit('Home Color Change', [255, 255, 255]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'pink') {
+                else if(event.target && event.target.id == 'pink') {
                     socket.emit('Home Color Change', [255, 105, 180]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'purple') {
+                else if if(event.target && event.target.id == 'purple') {
                     socket.emit('Home Color Change', [102, 51, 153]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'magenta') {
+                else if if(event.target && event.target.id == 'magenta') {
                     socket.emit('Home Color Change', [255, 0, 255]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'red') {
+                else if(event.target && event.target.id == 'red') {
                     socket.emit('Home Color Change', [255, 0, 0]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'green') {
+                else if(event.target && event.target.id == 'green') {
                     socket.emit('Home Color Change', [0, 255, 0]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'teal') {
+                else if(event.target && event.target.id == 'teal') {
                     socket.emit('Home Color Change', [0, 128, 128]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'yellowgreen') {
+                else if(event.target && event.target.id == 'yellowgreen') {
                     socket.emit('Home Color Change', [154, 205, 50]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'royalblue') {
+                else if(event.target && event.target.id == 'royalblue') {
                     socket.emit('Home Color Change', [65, 105, 225]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'coral') {
+                else if(event.target && event.target.id == 'coral') {
                     socket.emit('Home Color Change', [255, 127, 80]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'aqua') {
+                else if if(event.target && event.target.id == 'aqua') {
                     socket.emit('Home Color Change', [0, 255, 255]);
                 }
-            });
-
-            document.addEventListener('click', function(event) {
-                if(event.target && event.target.id == 'olive') {
+                else if if(event.target && event.target.id == 'olive') {
                     socket.emit('Home Color Change', [128, 128, 0]);
                 }
             });
