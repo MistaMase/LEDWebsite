@@ -43,7 +43,7 @@ def homeModeChanged(message):
 # Socketio response to Home webpage color change
 @socketio.on('Home Color Change')
 def homeColorChange(message):
-    print("Requested to change Color Mode to " + message)
+    print("Requested to change Color Mode")
     scenes.changeMode('Manual')
     while not scenes.thread.isAlive():
         pass
