@@ -20,11 +20,11 @@ for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/animations')
                 setattr(sys.modules[__name__], name, attribute)
 
 
-numPixels = 300 * 1
+numPixels = 1458
 
 
 # Initializes the LED strip
-pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.7, auto_write=False, pixel_order=neopixel.GRB)
+pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
 
 def getParameters():
     global thread
