@@ -85,7 +85,6 @@
 			progressBar.style.width = value + "%";
 			valueLabel.innerHTML = "" + Number(value).toFixed(2) + units;
 		}
-
 		var socket = io();	
 
 		socket.on('connect', function() {
