@@ -64,7 +64,7 @@
 			var valueLabel = document.getElementById(barValueName);
 
 			// Scale the bar accordingly
-            adjustedValue = value / (maxValue - minValue);
+            adjustedValue = value / (maxValue - minValue) * 100;
 
             // Update the values
 			progressBar.style.width = adjustedValue + "%";
@@ -82,13 +82,10 @@
 		var socket = io();	
 
 		socket.on('connect', function() {
-			console.log("HI Socket Connected");
 			socket.emit("HI Connection");
 		});
 		
 		socket.on('HI Update Server', function(msg) {
-		    console.log(msg);
-
 		    // Loop through all the hw info
             for(var i = 0; i < msg.length; i++) {
                 idName = msg[i][0].replace(/\s/g, '');
@@ -144,14 +141,12 @@
                     }
 
                     //Otherwise just update it
-                    console.log(msg[i][1]);
                     updateTextValue(idName, msg[i][1]);
 			    }
             }
 
 			// Automatically request new values
 			setTimeout(() => { 
-				console.log("HI Requesting new value");
 				socket.emit("HI Update Client");
 			}, 1000);
 		});
