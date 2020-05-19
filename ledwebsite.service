@@ -18,6 +18,7 @@ FLAG=0
 # Traverse the string considering it as an array of words
 for x in $RESULT; do
     if [ "$x" = '200' ]; then
+        touch /home/pi/weeeeeeee.txt
         rm -r /home/pi/LEDWebsite/
         ./home/pi/update
     fi
