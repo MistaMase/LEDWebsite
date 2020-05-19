@@ -46,11 +46,11 @@
         </div>
 
         <!-- Raspberry Pi Temperature -->
-        <div class="infoCell" id="CPU Temperature">
+        <div class="infoCell">
             <div class="infoHeader">Raspberry Pi Temperature</div>
             <div class="infoBarContainer">
                 <div class="infoBar">
-                    <div class="infoBarValue" id="piTempValue">38`C</div>
+                    <div class="infoBarValue">38`C</div>
                 </div>
             </div>
         </div>
@@ -88,6 +88,7 @@
 		
 		socket.on('HI Update Server', function(msg) {
 		    console.log(msg);
+
 		    // Loop through all the hw info
             for(var i = 0; i < msg.length; i++) {
                 idName = msg[i][0].replace(/\s/g, '');
@@ -110,11 +111,11 @@
                         barValue.id = idName + "Value";
 
                         // Organize the elements properly
-                        bar.innerHTML = barValue;
-                        barContainer.innerHTML = bar;
+                        bar.appendChild(barValue);
+                        barContainer.appendChild(bar);
                         nameDiv.innerHTML = msg[i][0]
-                        rowContainer.innerHTML = nameDiv + barContainer;
-                    }
+                        rowContainer.appendChild(nameDiv);
+                        rowContainer.appendChild(barContainer);                    }
 
                     // Otherwise just update it
 			        updateBarValue(idName, idName+"Value", msg[i][1], msg[i][3], msg[i][4], msg[i][5]);
@@ -134,7 +135,8 @@
                         valueContainer.id = idName;
 
                         // Organize the elements properly
-                        rowContainer.innerHTML = nameDiv + valueContainer;
+                        rowContainer.appendChild(nameDiv);
+                        rowContainer.appendChild(valueContainer);
                         nameDiv.innerHTML = msg[i][0];
                     }
 
