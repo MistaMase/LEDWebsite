@@ -11,6 +11,9 @@ import scenes as scenes
 # Hardware Information
 import hardwareInfo as hwInfo
 
+# Update Shell Script
+import os
+
 # Set up website variables
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
@@ -96,6 +99,12 @@ def sendHardwareInfo():
     print("HI Requesting Periodic Update")
     emit('HI Update Server', hwInfo.getInfo())
 
+
+# Client requested update
+@socketio.on('HI Update')
+def softwareUpdate():
+    print('Updating Software')
+    os.system('ls -l')
 
 # Prevent browsers from caching anything
 @app.after_request
