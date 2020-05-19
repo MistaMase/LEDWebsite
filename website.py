@@ -94,7 +94,7 @@ def firstHIConnection():
 @socketio.on("HI Update Client")
 def sendHardwareInfo():
     print("HI Requesting Periodic Update")
-    emit('HI Update Server', hwInfo.getCPUTemp())
+    emit('HI Update Server', hwInfo.getInfo())
 
 
 # Prevent browsers from caching anything
