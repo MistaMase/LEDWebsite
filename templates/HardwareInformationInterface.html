@@ -46,10 +46,10 @@
         </div>
 
         <!-- Raspberry Pi Temperature -->
-        <div class="infoCell" id=piTempContainer">
-            <div class="infoHeader" id="piTempHeader">Raspberry Pi Temperature</div>
+        <div class="infoCell" id="CPU Temperature">
+            <div class="infoHeader">Raspberry Pi Temperature</div>
             <div class="infoBarContainer">
-                <div class="infoBar" id="piTempLoadingBar">
+                <div class="infoBar">
                     <div class="infoBarValue" id="piTempValue">38`C</div>
                 </div>
             </div>
@@ -58,13 +58,26 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 	<script type="text/javascript" charset="utf-8">
 		// Allows the client to request data every chosen ms
-		function updateValue(barName, valueName, value, units) {
+		function updateBarValue(barName, barValueName, value, minValue, maxValue, units) {
+			// Redefine the names
 			var progressBar = document.getElementById(barName);
-			var valueLabel = document.getElementById(valueName);
-			
-			progressBar.style.width = value + "%";
+			var valueLabel = document.getElementById(barValueName);
+
+			// Scale the bar accordingly
+            adjustedValue = value / (maxValue - minValue);
+
+            // Update the values
+			progressBar.style.width = adjustedValue + "%";
 			valueLabel.innerHTML = "" + Number(value).toFixed(2) + units;
 		}
+
+        function updateTextValue(labelName, value) {
+            // Redefine the names
+            var label = document.getElementById('labelName');
+
+            // Update the values
+            label.innerHTML = value;
+        }
 
 		var socket = io();	
 
@@ -74,13 +87,61 @@
 		});
 		
 		socket.on('HI Update Server', function(msg) {
-			console.log(msg);
+		    // Loop through all the hw info
+            for(var i = 0; i < msg.length; i++) {
+                idName = msg[i][0].replace(/\s/g, '');
+                // If the elements is a progress bar
+                if(msg[i][2] == 'loadingBar') {
+                    // Create the web attribute if necessary
+                    if(!document.getElementById(idName) {
+                        // Create the elements and link css
+                        rowContainer = document.createElement('div');
+                        rowContainer.className = "infoCell";
+                        nameDiv = document.createElement('div');
+                        nameDiv.className = "infoHeader";
+                        barContainer = document.createElement('div');
+                        barContainer.className = "infoBarContainer";
+                        bar = document.createElement('div');
+                        bar.className = "infoBar";
+                        bar.name = idName
+                        barValue = document.createElement('div');
+                        barValue.className = "infoBarValue";
+                        barValue.id = idName + "Value";
 
-			// Update the values from server
-			updateValue('fanSpeedLoadingBar', 'fanSpeedValue', msg['fanSpeed'], '%');
-			updateValue('piTempLoadingBar', 'piTempValue', msg['piTemp'], '~C');
-			updateValue('micLoadingBar', 'micValue', msg['micValue'], 'dB');
-		
+                        // Organize the elements properly
+                        bar.innerHTML = barValue;
+                        barContainer.innerHTML = bar;
+                        nameDiv.innerHTML = msg[i][0]
+                        rowContainer.innerHTML = nameDiv + barContainer;
+                    }
+
+                    // Otherwise just update it
+			        updateBarValue(idName, idName+"Value", msg[i][1], msg[i][3], msg[i][4], msg[i][5]);
+                }
+
+			    // If the element is text
+			    else if(msg[i][2] == 'text') {
+                    // Create the web attribute if necessary
+                    if(!document.getElementById(idName)) {
+                        // Create the elements and link css
+                        rowContainer = document.createElement('div');
+                        rowContainer.className = "infoCell";
+                        nameDiv = document.createElement('div');
+                        nameDiv.className = "infoHeader";
+                        valueContainer = document.createElement('div');
+                        valueContainer.className = "infoBarContainer";
+                        valueContainer.id = idName;
+
+                        // Organize the elements properly
+                        rowContainer.innerHTML = nameDiv + valueContainer;
+                        nameDiv.innerHTML = msg[i][0];
+                    }
+
+                    //Otherwise just update it
+                    updateTextValue(idName, msg[i][1]);
+			    }
+            }
+
 			// Automatically request new values
 			setTimeout(() => { 
 				console.log("HI Requesting new value");

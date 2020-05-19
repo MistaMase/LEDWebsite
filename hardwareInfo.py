@@ -6,7 +6,10 @@ from gpiozero import CPUTemperature
 version = '1.0.1'
 
 # Gets the list of all possible information values to see on the webpage
-# Format: DisplayName, Value, VersionType
+# Format: DisplayName, Value, VersionType, Parameters
+# VersionType Parameters:
+#   loadingBar:     minValue, maxValue, displayUnits
+#   text:           none
 def getInfo():
     params = []
 
@@ -14,7 +17,7 @@ def getInfo():
     params.append(['Version', version, text])
 
     # Add CPU Temperature
-    params.append(['CPU Temperature', getCPUTemp(), loadingBar])
+    params.append(['CPU Temperature', getCPUTemp(), loadingBar, 0, 100, '°C'])
 
     return params
 
