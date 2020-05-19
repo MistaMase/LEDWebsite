@@ -17,7 +17,7 @@ def getInfo():
     params.append(['Version', version, 'text'])
 
     # Add CPU Temperature
-    params.append(['CPU Temperature', getCPUTemp(), 'loadingBar', 0, 100, '°C'])
+    params.append(['CPU Temperature', getCPUTemp(), 'loadingBar', 0, 87, '°C'])
 
     return params
 
