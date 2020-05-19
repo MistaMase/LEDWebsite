@@ -14,10 +14,10 @@ def getInfo():
     params = []
 
     # Add Version Number
-    params.append(['Version', version, text])
+    params.append(['Version', version, 'text'])
 
     # Add CPU Temperature
-    params.append(['CPU Temperature', getCPUTemp(), loadingBar, 0, 100, '°C'])
+    params.append(['CPU Temperature', getCPUTemp(), 'loadingBar', 0, 100, '°C'])
 
     return params
 
