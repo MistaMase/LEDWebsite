@@ -101,7 +101,7 @@ def sendHardwareInfo():
 
 
 # Client requested update
-@socketio.on('HI Update')
+@socketio.on('HI Software Update')
 def softwareUpdate():
     print('Updating Software')
     os.system('ls -l')
