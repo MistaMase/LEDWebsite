@@ -54,31 +54,27 @@
 	    <script type="text/javascript" charset="utf-8">
 		    // Allows the client to request data every chosen ms
 		    function updateBarValue(barName, barValueName, value, minValue, maxValue, units) {
+
 			    // Redefine the names
 			    var progressBar = document.getElementById(barName);
 			    var valueLabel = document.getElementById(barValueName);
 
-<<<<<<< HEAD
-	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-	<script type="text/javascript" charset="utf-8">
-		// Allows the client to request data every chosen ms
-		function updateValue(barName, valueName, value, units) {
-			var progressBar = document.getElementById(barName);
-			var valueLabel = document.getElementById(valueName);
-			
-			progressBar.style.width = value + "%";
-			valueLabel.innerHTML = "" + Number(value).toFixed(2) + units;
-		}
-		var socket = io();	
+			    progressBar.style.width = value + "%";
+			    valueLabel.innerHTML = "" + Number(value).toFixed(2) + units;
+		    }
+		    var socket = io();
 
-		socket.on('connect', function() {
-			console.log("HI Socket Connected");
-			socket.emit("HI Connection");
-		});
+		    socket.on('connect', function() {
+			    console.log("HI Socket Connected");
+			    socket.emit("HI Connection");
+		    });
 		
-		socket.on('HI Update Server', function(msg) {
+		    socket.on('HI Update Server', function(msg) {
 			    // Scale the bar accordingly
                 adjustedValue = value / (maxValue - minValue) * 100;
+
+			    // Scale the bar accordingly
+               	adjustedValue = value / (maxValue - minValue) * 100;
 
                 // Update the values
 			    progressBar.style.width = adjustedValue + "%";
