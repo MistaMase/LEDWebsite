@@ -115,7 +115,9 @@
                         barContainer.appendChild(bar);
                         nameDiv.innerHTML = msg[i][0]
                         rowContainer.appendChild(nameDiv);
-                        rowContainer.appendChild(barContainer);                    }
+                        rowContainer.appendChild(barContainer);
+                        document.getElementById('body').appendChild('rowContainer');
+                    }
 
                     // Otherwise just update it
 			        updateBarValue(idName, idName+"Value", msg[i][1], msg[i][3], msg[i][4], msg[i][5]);
@@ -138,6 +140,7 @@
                         rowContainer.appendChild(nameDiv);
                         rowContainer.appendChild(valueContainer);
                         nameDiv.innerHTML = msg[i][0];
+                        document.getElementById('body').appendChild('rowContainer');
                     }
 
                     //Otherwise just update it
