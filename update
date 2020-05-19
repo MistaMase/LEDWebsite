@@ -1,5 +1,2 @@
-systemctl kill ledwebsite
-cd ..
 git clone https://github.com/MistaMase/LEDWebsite.git
 chmod -R 777 LEDWebsite
-sudo reboot
