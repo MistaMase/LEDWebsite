@@ -9,5 +9,19 @@
 # Description:		Starts the LED Controller at boot time
 ### END INIT INFO
 
+# Check if we have internet, and if so fetch the newest version of the repository
+
+# Sending the output of the wget in a variable and not what wget fetches
+RESULT=`wget --spider http://www.google.com 2>&1`
+FLAG=0
+
+# Traverse the string considering it as an array of words
+for x in $RESULT; do
+    if [ "$x" = '200' ]; then
+        rm -r /home/pi/LEDWebsite/
+        ./home/pi/update
+    fi
+done
+
 python3 home/pi/LEDWebsite/website.py
 

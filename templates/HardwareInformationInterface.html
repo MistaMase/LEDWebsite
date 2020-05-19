@@ -43,38 +43,22 @@
 		        <img class="headerIconImage" id="hardwareInfoIcon" src="{{ url_for('static', filename='assets/hardware_information_icon.svg') }}">
             </a>
 
-        </div>
-
-        <!-- Fan Speed -->
-        <div class="infoCell" id="fanSpeedContainer">
-            <div class="infoHeader" id="fanSpeedHeader">Fan Speed</div>
-            <div class="infoBarContainer">
-                <div class="infoBar" id="fanSpeedLoadingBar">
-                    <div class="infoBarValue" id="fanSpeedValue">50%</div>
-                </div>
+            <!-- Update Icon -->
+            <div class="headerCell">
+                <img class="headerIconImage" id="updateIcon" src="{{ url_for('static', filename='assets/update_icon.svg') }}">
             </div>
+
         </div>
 
-        <!-- Raspberry Pi Temperature -->
-        <div class="infoCell" id=piTempContainer">
-            <div class="infoHeader" id="piTempHeader">Raspberry Pi Temperature</div>
-            <div class="infoBarContainer">
-                <div class="infoBar" id="piTempLoadingBar">
-                    <div class="infoBarValue" id="piTempValue">38`C</div>
-                </div>
-            </div>
-        </div>
+	    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+	    <script type="text/javascript" charset="utf-8">
+		    // Allows the client to request data every chosen ms
+		    function updateBarValue(barName, barValueName, value, minValue, maxValue, units) {
+			    // Redefine the names
+			    var progressBar = document.getElementById(barName);
+			    var valueLabel = document.getElementById(barValueName);
 
-        <!-- Microphone Value -->
-        <div class="infoCell" id="micContainer">
-            <div class="infoHeader" id="micHeader">Microphone Value</div>
-            <div class="infoBarContainer">
-                <div class="infoBar" id="micLoadingBar">
-                    <div class="infoBarValue" id="micValue">34 dB</div>
-                </div>
-            </div>
-        </div>
-
+<<<<<<< HEAD
 	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 	<script type="text/javascript" charset="utf-8">
 		// Allows the client to request data every chosen ms
@@ -93,49 +77,100 @@
 		});
 		
 		socket.on('HI Update Server', function(msg) {
-			console.log(msg);
+			    // Scale the bar accordingly
+                adjustedValue = value / (maxValue - minValue) * 100;
 
-			// Update the values from server
-			updateValue('fanSpeedLoadingBar', 'fanSpeedValue', msg['fanSpeed'], '%');
-			updateValue('piTempLoadingBar', 'piTempValue', msg['piTemp'], '~C');
-			updateValue('micLoadingBar', 'micValue', msg['micValue'], 'dB');
-		
-			// Automatically request new values
-			setTimeout(() => { 
-				console.log("HI Requesting new value");
-				socket.emit("HI Update Client");
-			}, 1000);
-		});
-		
-	</script>
-	
+                // Update the values
+			    progressBar.style.width = adjustedValue + "%";
+			    valueLabel.innerHTML = "" + Number(value).toFixed(2) + units;
+		    }
 
-        <!-- Update Progress Bar Values -->
-        <!--
-	<script>
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
+            function updateTextValue(labelName, value) {
+                // Redefine the names
+                var label = document.getElementById(labelName);
+
+                // Update the values
+                label.innerHTML = value;
             }
 
-            async function updateValue(barName, valueName, units) {
-                var progressBar = document.getElementById(barName);
-                var valueLabel = document.getElementById(valueName);
+		    var socket = io();
 
-                while(true) {
-                    for (let i = 0; i < 101; i++) {
-                        progressBar.style.width = i + "%";
-                        valueLabel.innerHTML = "" + i + units;
-                        await sleep(50);
-                    }
+		    socket.on('connect', function() {
+			    socket.emit("HI Connection");
+		    });
+
+		     document.addEventListener('click', function(event) {
+                if(event.target && event.target.id == 'updateIcon'){
+                    socket.emit("HI Software Update");
                 }
-            }
+             });
+		
+		    socket.on('HI Update Server', function(msg) {
+		        // Loop through all the hw info
+                for(var i = 0; i < msg.length; i++) {
+                    idName = msg[i][0].replace(/\s/g, '');
+                    // If the elements is a progress bar
+                    if(msg[i][2] == 'loadingBar') {
+                        // Create the web attribute if necessary
+                        if(!document.getElementById(idName)) {
+                            // Create the elements and link css
+                            var rowContainer = document.createElement('div');
+                            rowContainer.className = "infoCell";
+                            var nameDiv = document.createElement('div');
+                            nameDiv.className = "infoHeader";
+                            var barContainer = document.createElement('div');
+                            barContainer.className = "infoBarContainer";
+                            var bar = document.createElement('div');
+                            bar.className = "infoBar";
+                            bar.id = idName
+                            var barValue = document.createElement('div');
+                            barValue.className = "infoBarValue";
+                            barValue.id = idName + "Value";
 
-            updateValue("fanSpeedLoadingBar", "fanSpeedValue", "%");
-            updateValue("piTempLoadingBar", "piTempValue", "`C");
-            updateValue("micLoadingBar", "micValue", "dB");
-        </script>
-	-->
+                            // Organize the elements properly
+                            bar.appendChild(barValue);
+                            barContainer.appendChild(bar);
+                            nameDiv.innerHTML = msg[i][0]
+                            rowContainer.appendChild(nameDiv);
+                            rowContainer.appendChild(barContainer);
+                            document.body.appendChild(rowContainer);
+                        }
 
+                        // Otherwise just update it
+			            updateBarValue(idName, idName+"Value", msg[i][1], msg[i][3], msg[i][4], msg[i][5]);
+                    }
 
+			        // If the element is text
+			        else if(msg[i][2] == 'text') {
+                        // Create the web attribute if necessary
+                        if(!document.getElementById(idName)) {
+                            // Create the elements and link css
+                            var rowContainer = document.createElement('div');
+                            rowContainer.className = "infoCell";
+                            var nameDiv = document.createElement('div');
+                            nameDiv.className = "infoHeader";
+                            var valueContainer = document.createElement('div');
+                            valueContainer.className = "textInfoValue";
+                            valueContainer.id = idName;
+
+                            // Organize the elements properly
+                            rowContainer.appendChild(nameDiv);
+                            rowContainer.appendChild(valueContainer);
+                            nameDiv.innerHTML = msg[i][0];
+                            document.body.appendChild(rowContainer);
+                        }
+
+                        //Otherwise just update it
+                        updateTextValue(idName, msg[i][1]);
+			        }
+                }
+
+			    // Automatically request new values
+			    setTimeout(() => {
+				    socket.emit("HI Update Client");
+			    }, 1000);
+		    });
+		
+	    </script>
     </body>
 </html>

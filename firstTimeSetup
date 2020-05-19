@@ -1,5 +1,9 @@
-cp ledwebsite.service /etc/init.d/
+sudo apt-get install python3
+sudo pip3 install gpio flask flask_socketio board adafruit-circuitpython-neopixel
+sudo git clone https://github.com/MistaMase/LEDWebsite.git
+cd LEDWebsite/
 sudo chmod +x ledwebsite.service
+cp ledwebsite.service /etc/init.d/
 sudo update-rc.d ledwebsite.service defaults
 mv update ../update
 sudo chmod +x ../update
