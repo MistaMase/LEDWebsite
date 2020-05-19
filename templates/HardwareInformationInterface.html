@@ -81,7 +81,7 @@
 		    });
 
 		    document.getElementById('updateIcon').oninput = function(event) {
-		        socket.emit('HI Update');
+		        socket.emit('HI Update', '');
             }
 		
 		    socket.on('HI Update Server', function(msg) {
