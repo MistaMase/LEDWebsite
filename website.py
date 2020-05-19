@@ -104,7 +104,7 @@ def sendHardwareInfo():
 @socketio.on('HI Software Update')
 def softwareUpdate():
     print('Updating Software')
-    os.system('ls -l')
+    os.system('./update')
 
 # Prevent browsers from caching anything
 @app.after_request
