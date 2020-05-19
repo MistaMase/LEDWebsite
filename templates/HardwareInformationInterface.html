@@ -87,6 +87,7 @@
 		});
 		
 		socket.on('HI Update Server', function(msg) {
+		    console.log(msg);
 		    // Loop through all the hw info
             for(var i = 0; i < msg.length; i++) {
                 idName = msg[i][0].replace(/\s/g, '');
