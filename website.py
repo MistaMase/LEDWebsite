@@ -2,14 +2,14 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_socketio import SocketIO, emit
 
-# CPU Temp Import
-from gpiozero import CPUTemperature
-
 # IP Address Import
 import socket
 
 # LED Light Imports
 import scenes as scenes
+
+# Hardware Information
+import hardwareInfo as hwInfo
 
 # Set up website variables
 app = Flask(__name__)
@@ -88,13 +88,13 @@ def hardwareinformation():
 @socketio.on('HI Connection')
 def firstHIConnection():
     print("HI Connection. Sending INFO")
-    emit('HI Update Server', { 'mode': 'test', 'fanSpeed': '50', 'micValue': '70', 'piTemp': getCPUTemp() })
+    emit('HI Update Server', hwInfo.getInfo())
 
 # Socketio response for Hardware Interface webpage requesting periodic information update
 @socketio.on("HI Update Client")
 def sendHardwareInfo():
     print("HI Requesting Periodic Update")
-    emit('HI Update Server', { 'mode': 'test', 'fanSpeed': '50', 'micValue': '70', 'piTemp': getCPUTemp() })
+    emit('HI Update Server', hwInfo.getCPUTemp())
 
 
 # Prevent browsers from caching anything
@@ -111,11 +111,6 @@ def getIpAddress():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     return s.getsockname()[0]
-
-# Gets the Pi's CPU temp to send to the client
-def getCPUTemp():
-    cpu = CPUTemperature()
-    return cpu.temperature
 
 # Runs the entire python script
 if __name__ == '__main__':
