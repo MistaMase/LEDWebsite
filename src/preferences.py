@@ -35,7 +35,7 @@ def read_animation_preferences():
 
 # Read color preferences from its respective file
 def read_color_preferences():
-    with open('/home/pi/LEDWebsite/preferences/custom_colors.txt', 'r') as pref_file:
+    with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
         for line in pref_file.readlines():
             line = line.lower().strip().split(':')
             if line[1] == 'true':
@@ -49,7 +49,7 @@ def read_color_preferences():
 
 # Read hardware setup preferences from its respective file
 def read_setup_preferences():
-    with open('/home/pi/LEDWebsite/preferences/custom_colors.txt', 'r') as pref_file:
+    with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
         for line in pref_file.readlines():
             line = line.lower().strip().split(':')
             if line[1] == 'true':
