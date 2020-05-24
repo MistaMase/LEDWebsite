@@ -49,7 +49,8 @@ def homeConnected():
 def homeModeChanged(message):
     if preferences.get_debug_preferences('website-debug'):
         print("Requested to change Animation Mode to " + message)
-        if not scenes.changeMode(message):
+    if not scenes.changeMode(message):
+        if preferences.get_debug_preferences('website-debug'):
             print("Requested animation could not be found")
     emit('Home Parameters', scenes.getAnimationOptions())
 
