@@ -21,9 +21,7 @@ socketio = SocketIO(app)
 
 # Set up debug preferences
 preferences = {}
-cur_path = os.path.dirname(__file__)
-new_path = os.path.relpath('..\\preferences\\debug.txt', cur_path)
-with open(new_path, 'r') as pref_file:
+with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
     for line in pref_file.readline():
         line = line.split(':').strip()
         key = line[0]
