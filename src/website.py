@@ -22,13 +22,12 @@ socketio = SocketIO(app)
 # Set up debug preferences
 preferences = {}
 with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
-    for line in pref_file.readline():
+    for line in pref_file.readlines():
         line = line.strip().split(':')
         key = line[0]
         value = line[1]
-        print(key)
-        print(value)
-
+        preferences[key] = value
+print(preferences)
 
 # Flask route for '/' which redirects to '/home'
 @app.route('/')
