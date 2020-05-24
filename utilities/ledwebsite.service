@@ -1,28 +1,13 @@
 #!/bin/bash
 ### BEGIN INIT INFO
 # Provides:		ledwebsite
-# Required-Start:	$remote_fs $syslog
-# Required-Stop:	$remote_fs $syslog
+# Required-Start:	$remote_fs $syslog ledwebsite_update
+# Required-Stop:	$remote_fs $syslog ledwebsite_update
 # Default-Start:	2 3 4 5
 # Default-Stop:		0 1 6
-# Short-Description:	Starts the LED Controller at boot time
-# Description:		Starts the LED Controller at boot time
+# Short-Description:	Starts the LED Controller at boot
+# Description:		Starts the LED Controller at boot
 ### END INIT INFO
-
-# Check if we have internet, and if so fetch the newest version of the repository
-
-# Sending the output of the wget in a variable and not what wget fetches
-# RESULT=`wget --spider http://www.google.com 2>&1`
-# FLAG=0
-
-# Traverse the string considering it as an array of words
-# for x in $RESULT; do
-#     if [ "$x" = '200' ]; then
-#         touch /home/pi/weeeeeeee.txt
-#         rm -r /home/pi/LEDWebsite/
-#         ./home/pi/update
-#     fi
-# done
 
 python3 home/pi/LEDWebsite/website.py
 
