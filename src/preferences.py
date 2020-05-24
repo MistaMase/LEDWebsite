@@ -7,6 +7,7 @@ debug_preferences = {}
 animation_preferences = {}
 color_preferences = {}
 setup_preferences = {}
+info = {}
 
 
 # Read debug preferences from its respective file
@@ -73,12 +74,29 @@ def read_setup_preferences():
             else:
                 setup_preferences[line[0]] = line[1]
 
+# Read info from its respective file
+def read_info():
+    with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
+        for line in pref_file.readlines():
+            line = line.lower().replace(' ', '').strip().split(':')
+            if line[1] == 'true':
+                info[line[0]] = True
+            elif line[1] == 'false':
+                info[line[0]] = False
+            elif line[1].isdigit():
+                info[line[0]] = int(line[1])
+            elif num_pattern.match(line[1]) is not None:
+                info[line[0]] = float(line[1])
+            else:
+                info[line[0]] = line[1]
+
 # Read all preferences in one call
 def read_preferences():
     read_debug_preferences()
     read_animation_preferences()
     read_color_preferences()
     read_setup_preferences()
+    read_info()
     if get_debug_preferences('preferences-debug'):
         print('Debug Preferences')
         print(debug_preferences)
@@ -88,6 +106,8 @@ def read_preferences():
         print(color_preferences)
         print('Setup Preferences')
         print(setup_preferences)
+        print('Info')
+        print(info)
 
 def get_debug_preferences(key='all'):
     if key == 'all':
@@ -112,3 +132,9 @@ def get_setup_preferences(key='all'):
         return setup_preferences
     else:
         return setup_preferences[key]
+
+def get_info(key='all'):
+    if key == 'all':
+        return info
+    else:
+        return info[key]
