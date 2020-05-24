@@ -23,7 +23,6 @@ class Manual(BaseAnimation):
     def run(self):
         while self.shouldRun:
             if self.shouldUpdate:
-                print("New Color")
                 self.colors = (int(self.parameters['RValue']), int(self.parameters['GValue']), int(self.parameters['BValue']))
                 self.pixels.fill(self.colors)
                 self.pixels.show()
