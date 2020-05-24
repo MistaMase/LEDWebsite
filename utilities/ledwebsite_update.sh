@@ -27,3 +27,5 @@ for x in $RESULT; do
 
         # Cleanup the download
         rm -r ../update
+    fi
+done
