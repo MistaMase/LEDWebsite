@@ -67,6 +67,15 @@ def read_preferences():
     read_animation_preferences()
     read_color_preferences()
     read_setup_preferences()
+    if get_debug_preferences('preferences-debug'):
+        print('Debug Preferences')
+        print(debug_preferences)
+        print('Animation Preferences')
+        print(animation_preferences)
+        print('Color Preferences')
+        print(color_preferences)
+        print('Setup Preferences')
+        print(setup_preferences)
 
 def get_debug_preferences(key='all'):
     if key == 'all':
