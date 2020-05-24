@@ -9,7 +9,7 @@ setup_preferences = {}
 def read_debug_preferences():
     with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
         for line in pref_file.readlines():
-            line = line.lower().strip().split(':')
+            line = line.lower().replace(' ', '').split(':')
             if line[1] == 'true':
                 debug_preferences[line[0]] = True
             elif line[1] == 'false':
@@ -23,7 +23,7 @@ def read_debug_preferences():
 def read_animation_preferences():
     with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
         for line in pref_file.readlines():
-            line = line.lower().strip().split(':')
+            line = line.lower().replace(' ', '').split(':')
             if line[1] == 'true':
                 animation_preferences[line[0]] = True
             elif line[1] == 'false':
@@ -37,7 +37,7 @@ def read_animation_preferences():
 def read_color_preferences():
     with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
         for line in pref_file.readlines():
-            line = line.lower().strip().split(':')
+            line = line.lower().replace(' ', '').split(':')
             if line[1] == 'true':
                 color_preferences[line[0]] = True
             elif line[1] == 'false':
@@ -51,7 +51,7 @@ def read_color_preferences():
 def read_setup_preferences():
     with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
         for line in pref_file.readlines():
-            line = line.lower().strip().split(':')
+            line = line.lower().replace(' ', '').split(':')
             if line[1] == 'true':
                 setup_preferences[line[0]] = True
             elif line[1] == 'false':
