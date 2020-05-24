@@ -1,4 +1,4 @@
 flask-debug: true
 scenes-debug: true
-website-debug: true
-preferences-debug: true
+website-debug: false
+preferences-debug: false
