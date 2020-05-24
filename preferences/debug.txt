@@ -1,4 +1,4 @@
-flask-debug: true
-scenes-debug: true
-website-debug: false
+flask-debug: false
+scenes-debug: false
+website-debug:false
 preferences-debug: false
