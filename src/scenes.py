@@ -10,7 +10,7 @@ import pkgutil
 from importlib import import_module
 animations = []
 animationNames = []
-for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/animations')]):
+for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/src/animations')]):
     animations.append(import_module('animations.' + name, package=__name__))
     for i in dir(animations[len(animations)-1]):
         attribute = getattr(animations[len(animations)-1], i)
