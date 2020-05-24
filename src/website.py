@@ -19,6 +19,17 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
+# Set up debug preferences
+preferences = {}
+with open('../preferences/debug.txt', 'r') as pref_file:
+    for line in pref_file.readline():
+        line = line.split(':').strip()
+        key = line[0]
+        value = line[1]
+        print(key)
+        print(value)
+
+
 # Flask route for '/' which redirects to '/home'
 @app.route('/')
 def redirecttohome():
