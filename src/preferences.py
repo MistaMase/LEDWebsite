@@ -85,10 +85,11 @@ def read_info():
                 info[line[0]] = False
             elif line[1].isdigit():
                 info[line[0]] = int(line[1])
-            elif num_pattern.match(line[1]) is not None:
-                info[line[0]] = float(line[1])
             else:
-                info[line[0]] = line[1]
+                try:
+                    setup_preferences[line[0]] = float(line[1])
+                except ValueError:
+                    setup_preferences[line[0]] = line[1]
 
 # Read all preferences in one call
 def read_preferences():
