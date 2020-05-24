@@ -1,7 +1,4 @@
 # LEDWebsite  
-## Version 1.0  
-Minimal Working Functionality  
-
 ## Version 1.0.1 - Improved Update Flexibility  
 Manual Automatic Updates  
 
