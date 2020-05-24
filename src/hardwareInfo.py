@@ -18,7 +18,7 @@ def getInfo():
 
     # Add preferences from Setup File
     for key, value in preferences.get_debug_preferences().items():
-        params.append([key, value, text])
+        params.append([key, value, 'text'])
 
     return params
 
