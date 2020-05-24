@@ -1,6 +1,6 @@
 # Import Regex for checking if parameter is a decimal number
 import re
-num_pattern = re.compile('\d+(\.\d+)?')
+num_pattern = re.compile('^(?:\d+\.\d+)[^.]')
 
 # Define the empty dictionaries
 debug_preferences = {}
