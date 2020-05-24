@@ -2,6 +2,9 @@
 import board
 import neopixel
 
+# Preference import
+import preferences as preferences
+
 # Dynamic Animation Imports
 from pathlib import Path
 import sys
@@ -19,14 +22,16 @@ for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/src/animatio
             if inspect.isclass(attribute):
                 setattr(sys.modules[__name__], name, attribute)
 
+# Set up the preferences module
+preferences.read_preferences()
 
-numPixels = 1458
-
+# Define the number of pixels for the LED Strip
+numPixels = preferences.get_setup_preferences('num-pixels')
 
 # Initializes the LED strip
-pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
+pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=preferences.get_setup_preferences('brightness'), auto_write=False, pixel_order=neopixel.GRB)
 
-def getParameters():
+def getAnimationOptions():
     global thread
     return thread.getOptions()
 
@@ -63,18 +68,21 @@ def shutdownThread():
         thread.stop()
         while thread.isAlive():
             pass
-        print("Shutdown " + thread.name)
+        if preferences.get_debug_preferences('scenes-debug'):
+            print("Shutdown " + thread.name)
 
 # Parses the incoming LED command and calls the correct function
 def changeMode(msg):
     global thread
     try:
-        print('Attempting to start ' + msg)
+        if preferences.get_debug_preferences('scenes-debug'):
+            print('Attempting to start ' + msg)
         shutdownThread()
         createThread(msg)
         return True
     except:
-        print('Failed to start ' + msg)
+        if preferences.get_debug_preferences('scenes-debug'):
+            print('Failed to start ' + msg)
         return False
     return False
 
@@ -82,15 +90,3 @@ def changeMode(msg):
 # Start up the lights in 'Off' Mode
 populateAnimationNames()
 thread = createThread('Off')
-
-
-if __name__ == "__main__":
-    try:
-        while True:
-            mode = input("Mode: ")
-            parseInputMessage(mode)
-    except (KeyboardInterrupt, SystemExit):
-        thread = Off()
-        while thread.isAlive():
-            pass
-        sys.exit()

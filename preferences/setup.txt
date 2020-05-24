@@ -1,0 +1,2 @@
+num-pixels: 1458
+brightness: 0.5

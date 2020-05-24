@@ -11,6 +11,9 @@ import scenes as scenes
 # Hardware Information
 import hardwareInfo as hwInfo
 
+# User Preferences
+import preferences as preferences
+
 # Update Shell Script
 import os
 
@@ -19,15 +22,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
-# Set up debug preferences
-preferences = {}
-with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
-    for line in pref_file.readlines():
-        line = line.strip().split(':')
-        key = line[0]
-        value = line[1]
-        preferences[key] = value
-print(preferences)
+# Set up user settings
+preferences.read_preferences()
 
 # Flask route for '/' which redirects to '/home'
 @app.route('/')
@@ -42,24 +38,28 @@ def home():
 # Socketio response for Home webpage initial connection
 @socketio.on('Home Connection')
 def homeConnected():
-    print("Home Connected")
+    if preferences.get_debug_preferences('website-debug'):
+        print("Home Connected")
     modes = scenes.getAnimationNames()
-    emit('Home Mode List', modes)
-    emit('Home Parameters', scenes.getParameters())
+    if preferences.get_debug_preferences('website-debug'):
+        emit('Home Mode List', modes)
+        emit('Home Parameters', scenes.getAnimationOptions())
 
 # Socketio response for Home webpage mode change
 @socketio.on('Home Mode Change')
 def homeModeChanged(message):
-    print("Requested to change Animation Mode to " + message)
-    if not scenes.changeMode(message):
-        print("Requested animation could not be found")
-    emit('Home Parameters', scenes.getParameters())
+    if preferences.get_debug_preferences('website-debug'):
+        print("Requested to change Animation Mode to " + message)
+        if not scenes.changeMode(message):
+            print("Requested animation could not be found")
+    emit('Home Parameters', scenes.getAnimationOptions())
 
 # Socketio response to Home webpage color change
 @socketio.on('Home Color Change')
 def homeColorChange(message):
-    print("Requested to change Color Mode")
-    print(message)
+    if preferences.get_debug_preferences('website-debug'):
+        print("Requested to change Color Mode")
+        print(message)
     scenes.changeMode('Manual')
     rvalue = ['RValue', message[0]]
     gvalue = ['GValue', message[1]]
@@ -67,7 +67,7 @@ def homeColorChange(message):
     scenes.thread.setParameter(rvalue)
     scenes.thread.setParameter(gvalue)
     scenes.thread.setParameter(bvalue)
-    emit('Home Parameters', scenes.getParameters())
+    emit('Home Parameters', scenes.getAnimationOptions())
 
 # Flask route for '/manualinput' which displays the manual color changer
 @app.route('/manualinput')
@@ -77,14 +77,16 @@ def manualinput():
 # Socketio response for Manual Interface webpage initial connection
 @socketio.on('MI Connection')
 def manualConnected():
-    print("MI Connected")
-    emit('MI Parameters', scenes.getParameters())
+    if preferences.get_debug_preferences('website-debug'):
+        print("MI Connected")
+    emit('MI Parameters', scenes.getAnimationOptions())
 
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
 def manualColorChange(message):
-    print("Parameter Change")
-    print(message)
+    if preferences.get_debug_preferences('website-debug'):
+        print("Parameter Change")
+        print(message)
     scenes.thread.setParameter(message)
 
 # Flask route for '/codeinput' which displays the code input interface
@@ -100,20 +102,22 @@ def hardwareinformation():
 # Socketio response for Hardware Interface webpage initial connection
 @socketio.on('HI Connection')
 def firstHIConnection():
-    print("HI Connection. Sending INFO")
+    if preferences.get_debug_preferences('website-debug'):
+        print("HI Connection. Sending INFO")
     emit('HI Update Server', hwInfo.getInfo())
 
 # Socketio response for Hardware Interface webpage requesting periodic information update
 @socketio.on("HI Update Client")
 def sendHardwareInfo():
-    print("HI Requesting Periodic Update")
+    if preferences.get_debug_preferences('website-debug'):
+        print("HI Requesting Periodic Update")
     emit('HI Update Server', hwInfo.getInfo())
-
 
 # Client requested update
 @socketio.on('HI Software Update')
 def softwareUpdate():
-    print('Updating Software')
+    if preferences.get_debug_preferences('website-debug'):
+        print('Updating Software')
     os.system('./update')
 
 # Prevent browsers from caching anything
@@ -133,4 +137,4 @@ def getIpAddress():
 
 # Runs the entire python script
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port='5050', debug=False)
+    socketio.run(app, host='0.0.0.0', port='5050', debug=preferences.get_debug_preferences('flask-debug'))
