@@ -9,5 +9,5 @@
 # Description:		Starts the LED Controller at boot
 ### END INIT INFO
 
-python3 home/pi/LEDWebsite/website.py
+python3 home/pi/LEDWebsite/src/website.py
 

@@ -11,7 +11,7 @@
 
 # Check if we have internet, and if so fetch the newest version of the repository
 
-Sending the output of the wget in a variable and not what wget fetches
+# Sending the output of the wget in a variable and not what wget fetches
 RESULT=`wget --spider http://www.google.com 2>&1`
 
 # Traverse the string considering it as an array of words
