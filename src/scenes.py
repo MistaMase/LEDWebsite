@@ -27,7 +27,6 @@ preferences.read_preferences()
 
 # Define the number of pixels for the LED Strip
 numPixels = preferences.get_setup_preferences('num-pixels')
-print(numPixels)
 
 # Initializes the LED strip
 pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=preferences.get_setup_preferences('brightness'), auto_write=False, pixel_order=neopixel.GRB)
