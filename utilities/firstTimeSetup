@@ -1,5 +1,5 @@
 sudo apt-get install python3
-sudo pip3 install gpio flask flask_socketio board adafruit-circuitpython-neopixel
+sudo pip3 install gpio flask flask-socketio board adafruit-circuitpython-neopixel
 sudo git clone https://github.com/MistaMase/LEDWebsite.git
 cd LEDWebsite/
 sudo chmod +x ledwebsite.service
