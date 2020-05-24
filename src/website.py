@@ -23,7 +23,7 @@ socketio = SocketIO(app)
 preferences = {}
 with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
     for line in pref_file.readline():
-        line = line.split(':').strip()
+        line = line.strip().split(':')
         key = line[0]
         value = line[1]
         print(key)
