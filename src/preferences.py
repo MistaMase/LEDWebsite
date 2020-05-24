@@ -1,7 +1,3 @@
-# Import Regex for checking if parameter is a decimal number
-import re
-num_pattern = re.compile('^(?:\d+\.\d+)[^.]')
-
 # Define the empty dictionaries
 debug_preferences = {}
 animation_preferences = {}
@@ -21,10 +17,11 @@ def read_debug_preferences():
                 debug_preferences[line[0]] = False
             elif line[1].isdigit():
                 debug_preferences[line[0]] = int(line[1])
-            elif num_pattern.match(line[1]) is not None:
-                debug_preferences[line[0]] = float(line[1])
             else:
-                debug_preferences[line[0]] = line[1]
+                try:
+                    debug_preferences[line[0]] = float(line[1])
+                except ValueError:
+                    debug_preferences[line[0]] = line[1]
 
 # Read animation preferences from its respective file
 def read_animation_preferences():
@@ -37,10 +34,11 @@ def read_animation_preferences():
                 animation_preferences[line[0]] = False
             elif line[1].isdigit():
                 animation_preferences[line[0]] = int(line[1])
-            elif num_pattern.match(line[1]) is not None:
-                animation_preferences[line[0]] = float(line[1])
             else:
-                animation_preferences[line[0]] = line[1]
+                try:
+                    animation_preferences[line[0]] = float(line[1])
+                except ValueError:
+                    animation_preferences[line[0]] = line[1]
 
 # Read color preferences from its respective file
 def read_color_preferences():
@@ -53,10 +51,11 @@ def read_color_preferences():
                 color_preferences[line[0]] = False
             elif line[1].isdigit():
                 color_preferences[line[0]] = int(line[1])
-            elif num_pattern.match(line[1]) is not None:
-                color_preferences[line[0]] = float(line[1])
             else:
-                color_preferences[line[0]] = line[1]
+                try:
+                    color_preferences[line[0]] = float(line[1])
+                except ValueError:
+                    color_preferences[line[0]] = line[1]
 
 # Read hardware setup preferences from its respective file
 def read_setup_preferences():
@@ -69,10 +68,11 @@ def read_setup_preferences():
                 setup_preferences[line[0]] = False
             elif line[1].isdigit():
                 setup_preferences[line[0]] = int(line[1])
-            elif num_pattern.match(line[1]) is not None:
-                setup_preferences[line[0]] = float(line[1])
             else:
-                setup_preferences[line[0]] = line[1]
+                try:
+                    setup_preferences[line[0]] = float(line[1])
+                except ValueError:
+                    setup_preferences[line[0]] = line[1]
 
 # Read info from its respective file
 def read_info():
