@@ -45,17 +45,16 @@ def read_color_preferences():
     with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
         for line in pref_file.readlines():
             line = line.lower().replace(' ', '').strip().split(':')
-            if line[1] == 'true':
-                color_preferences[line[0]] = True
-            elif line[1] == 'false':
-                color_preferences[line[0]] = False
-            elif line[1].isdigit():
-                color_preferences[line[0]] = int(line[1])
-            else:
-                try:
-                    color_preferences[line[0]] = float(line[1])
-                except ValueError:
-                    color_preferences[line[0]] = line[1]
+            color = line[1].split(',')
+            try:
+                colors = (int(color[0]), int(color[1]), int(color[2]))
+                color_preferences[line[0]] = colors
+            except ValueError:
+                if get_debug_preferences('preferences-debug'):
+                    print("Invalid Color - Invalid Number")
+            except IndexError:
+                if get_debug_preferences('preferences-debug'):
+                    print("Invalid Color - Too Few Numbers")
 
 # Read hardware setup preferences from its respective file
 def read_setup_preferences():
