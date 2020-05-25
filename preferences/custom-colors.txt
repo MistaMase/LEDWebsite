@@ -13,4 +13,3 @@ Teal: 0, 128, 128
 Yellow Green: 154, 205, 50
 Royal Blue: 65, 105, 225
 Coral: 255, 127, 80
-Olive: 128, 128, 0
