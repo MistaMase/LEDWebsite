@@ -286,12 +286,13 @@ body {
 }
 
 #userColorProfileConfig {
-    height: auto;
+    height: 15vh;
     margin-top: 5vh;
     font-size: 26px;
 }
 
 #userColorProfileAddLabel {
+
 }
 
 #userColorProfileAddName {
@@ -301,7 +302,7 @@ body {
     border-radius: 1px;
     text-decoration: none;
     -webkit-appearance: none;
-    -moz-appearance: none
+    -moz-appearance: none;
     font-size: 26px;
 }
 
