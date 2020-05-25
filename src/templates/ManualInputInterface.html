@@ -103,6 +103,17 @@
                 socket.emit('MI Remove Color Profile', selectBoxValue);
 	        }
 
+	        function addColorProfile() {
+	            if(document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
+	                var profileName = document.getElementById('userColorProfileAddName');
+	                var rvalue = document.getElementById('RValue').value;
+	                var gvalue = document.getElementById('GValue').value;
+	                var bvalue = document.getElementById('BValue').value;
+	                socket.emit('MI Add Color Profile', [profileName.value, [rvalue, gvalue, bvalue]]);
+                    profileName.value = '';
+	            }
+	        }
+
 
 	        function createOption(input) {
                 if(input[0] == 'Slider') {

@@ -99,6 +99,15 @@ def manualRemoveColorProfile(message):
             print(message)
         preferences.change_color_preference(message, None)
 
+# Socketio response for Manual Interface add color profile
+@socketio.on('MI Add Color Profile')
+def manualAddColorProfile(message):
+    if message is not '':
+        #if preferences.get_debug_preferences('website-debug'):
+        print('Adding Color Profile')
+        print(message)
+#        preferences.change_color_preference(message[0], message[1])
+
 # Flask route for '/codeinput' which displays the code input interface
 @app.route('/codeinput')
 def codeinput():
