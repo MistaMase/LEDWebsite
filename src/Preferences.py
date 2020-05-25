@@ -134,7 +134,13 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/debug.txt', 'w') as pref_file:
                 for key, value in self.debug_preferences.items():
-                    pref_file.write(str(key) + ':' + str(value) + '\n')
+                    if type(value) == tuple:
+                        pref_file.write(str(key) + ':')
+                        for val in value:
+                            pref_file.write(str(val) + ' ')
+                        pref_file.write('\n')
+                    else:
+                        pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Error Updating Debug Preferences Dictionary with ' + str(key))
@@ -152,7 +158,13 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'w') as pref_file:
                 for key, value in self.animation_preferences.items():
-                    pref_file.write(str(key) + ':' + str(value) + '\n')
+                    if type(value) == tuple:
+                        pref_file.write(str(key) + ':')
+                        for val in value:
+                            pref_file.write(str(val) + ' ')
+                        pref_file.write('\n')
+                    else:
+                        pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Error Updating Animation Preferences Dictionary with ' + str(key))
@@ -168,7 +180,13 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
                 for key, value in self.color_preferences.items():
-                    pref_file.write(str(key) + ':' + str(value) + '\n')
+                    if type(value) == tuple:
+                        pref_file.write(str(key) + ':')
+                        for val in value:
+                            pref_file.write(str(val) + ' ')
+                        pref_file.write('\n')
+                    else:
+                        pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Error Updating Color Preferences Dictionary with ' + str(key))
@@ -185,7 +203,13 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/setup.txt', 'w') as pref_file:
                 for key, value in self.setup_preferences.items():
-                    pref_file.write(str(key) + ':' + str(value) + '\n')
+                    if type(value) == tuple:
+                        pref_file.write(str(key) + ':')
+                        for val in value:
+                            pref_file.write(str(val) + ' ')
+                        pref_file.write('\n')
+                    else:
+                        pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Error Updating Setup Preferences Dictionary with ' + str(key))
@@ -201,7 +225,13 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/info.txt', 'w') as pref_file:
                 for key, value in self.info.items():
-                    pref_file.write(str(key) + ':' + str(value) + '\n')
+                    if type(value) == tuple:
+                        pref_file.write(str(key) + ':')
+                        for val in value:
+                            pref_file.write(str(val) + ' ')
+                        pref_file.write('\n')
+                    else:
+                        pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Error Updating Info Dictionary with ' + str(key))
