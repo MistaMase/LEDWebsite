@@ -11,3 +11,4 @@ Purple: 128 0 128
 Magenta: 255 0 255
 Teal: 0 128 128
 Yellow Green: 154 205 50
+Lol: 123 12 249
