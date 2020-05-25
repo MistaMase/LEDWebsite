@@ -284,6 +284,30 @@ body {
     background: blue;
 }
 
+#userColorProfileAddLabel {
+
+}
+
+#userColorProfileAddName {
+
+}
+
+#userColorProfileAddSubmit {
+
+}
+
+#userColorProfileRemoveLabel {
+
+}
+
+#userColorProfileRemoveSelect {
+
+}
+
+#userColorProfileRemoveSubmit {
+
+}
+
 /* Code Input Interface Styling */
 #codeInputContainer {
     height: 93vh;
