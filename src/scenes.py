@@ -2,8 +2,8 @@
 import board
 import neopixel
 
-# Preference import
-import preferences as preferences
+# User Preferences
+import Preferences
 
 # Dynamic Animation Imports
 from pathlib import Path
@@ -22,8 +22,8 @@ for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/src/animatio
             if inspect.isclass(attribute):
                 setattr(sys.modules[__name__], name, attribute)
 
-# Set up the preferences module
-preferences.read_preferences()
+# Set up the preferences class
+preferences = Preferences()
 
 # Define the number of pixels for the LED Strip
 numPixels = preferences.get_setup_preferences('num-pixels')

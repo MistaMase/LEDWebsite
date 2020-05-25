@@ -12,7 +12,7 @@ import scenes as scenes
 import hardwareInfo as hwInfo
 
 # User Preferences
-import preferences as preferences
+import Preferences
 
 # Update Shell Script
 import os
@@ -23,7 +23,7 @@ app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
 # Set up user settings
-preferences.read_preferences()
+preferences = Preferences()
 
 # Flask route for '/' which redirects to '/home'
 @app.route('/')
@@ -90,6 +90,15 @@ def manualColorChange(message):
         print(message)
     scenes.thread.setParameter(message)
 
+# Socketio response for Manual Interface remove color profile
+@oscketio.on('MI Remove Color Profile')
+def manualRemoveColorProfile(message):
+    if message is not '':
+        if preferences.get_debug_preferences('website-debug'):
+            print('Removing Color Profile')
+            print(message)
+        preferences.change_color_preference(message, None)
+
 # Flask route for '/codeinput' which displays the code input interface
 @app.route('/codeinput')
 def codeinput():
@@ -113,13 +122,6 @@ def sendHardwareInfo():
     if preferences.get_debug_preferences('website-debug'):
         print("HI Requesting Periodic Update")
     emit('HI Update Server', hwInfo.getInfo())
-
-# Client requested update
-@socketio.on('HI Software Update')
-def softwareUpdate():
-    if preferences.get_debug_preferences('website-debug'):
-        print('Updating Software')
-    os.system('./update')
 
 # Prevent browsers from caching anything
 @app.after_request

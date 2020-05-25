@@ -1,140 +1,207 @@
-# Define the empty dictionaries
-debug_preferences = {}
-animation_preferences = {}
-color_preferences = {}
-setup_preferences = {}
-info = {}
+class Preferences:
+    # Only allow the class to be created once
+    _shared_state = {}
+    def __init__(self):
+        # 'Singleton' for this class
+        self.__dict__ = self._shared_state
+
+        # Define the empty dictionaries
+        self.debug_preferences = {}
+        self.animation_preferences = {}
+        self.color_preferences = {}
+        self.setup_preferences = {}
+        self.info = {}
+
+        # Read all the preferences in
+        self.read_debug_preferences()
+        self.read_animation_preferences()
+        self.read_color_preferences()
+        self.read_setup_preferences()
+        self.read_info()
+        if self.get_debug_preferences('preferences-debug'):
+            print('Debug Preferences')
+            print(self.debug_preferences)
+            print('Animation Preferences')
+            print(self.animation_preferences)
+            print('Color Preferences')
+            print(self.color_preferences)
+            print('Setup Preferences')
+            print(self.setup_preferences)
+            print('Info')
+            print(self.info)
 
 
-# Read debug preferences from its respective file
-def read_debug_preferences():
-    with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
-        for line in pref_file.readlines():
-            line = line.lower().replace(' ', '').strip().split(':')
-            if line[1] == 'true':
-                debug_preferences[line[0]] = True
-            elif line[1] == 'false':
-                debug_preferences[line[0]] = False
-            elif line[1].isdigit():
-                debug_preferences[line[0]] = int(line[1])
-            else:
-                try:
-                    debug_preferences[line[0]] = float(line[1])
-                except ValueError:
-                    debug_preferences[line[0]] = line[1]
-
-# Read animation preferences from its respective file
-def read_animation_preferences():
-    with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
-        for line in pref_file.readlines():
-            line = line.lower().replace(' ', '').strip().split(':')
-            if line[1] == 'true':
-                animation_preferences[line[0]] = True
-            elif line[1] == 'false':
-                animation_preferences[line[0]] = False
-            elif line[1].isdigit():
-                animation_preferences[line[0]] = int(line[1])
-            else:
-                try:
-                    animation_preferences[line[0]] = float(line[1])
-                except ValueError:
-                    animation_preferences[line[0]] = line[1]
-
-# Read color preferences from its respective file
-def read_color_preferences():
-    with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
-        for line in pref_file.readlines():
-            line = line.strip().split(':')
-            color = line[1].replace(' ', '').split(',')
+    def try_all_type_cast(self, line):
+        if line[1] == 'true':
+            return True
+        elif line[1] == 'false':
+            return False
+        elif line[1].isdigit():
+            return int(line[1])
+        else:
             try:
-                colors = (int(color[0]), int(color[1]), int(color[2]))
-                color_preferences[line[0]] = colors
+                return float(line[1])
             except ValueError:
-                if get_debug_preferences('preferences-debug'):
-                    print("Invalid Color - Invalid Number")
-            except IndexError:
-                if get_debug_preferences('preferences-debug'):
-                    print("Invalid Color - Too Few Numbers")
+                return line[1]
 
-# Read hardware setup preferences from its respective file
-def read_setup_preferences():
-    with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
-        for line in pref_file.readlines():
-            line = line.lower().replace(' ', '').strip().split(':')
-            if line[1] == 'true':
-                setup_preferences[line[0]] = True
-            elif line[1] == 'false':
-                setup_preferences[line[0]] = False
-            elif line[1].isdigit():
-                setup_preferences[line[0]] = int(line[1])
-            else:
+    # Read debug preferences from its respective file
+    # Should only be run during __init__
+    def read_debug_preferences(self):
+        with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
+            for line in pref_file.readlines():
+                line = line.lower().replace(' ', '').strip().split(':')
+                self.debug_preferences[line[0]] = try_all_type_cast(line)
+
+    # Read animation preferences from its respective file
+    # Should only be run during __init__
+    def read_animation_preferences(self):
+        with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
+            for line in pref_file.readlines():
+                line = line.lower().replace(' ', '').strip().split(':')
+                self.animation_preferences[line[0]] = try_all_type_cast(line)
+
+    # Read color preferences from its respective file
+    # Should only be run during __init__
+    def read_color_preferences(self):
+        with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
+            for line in pref_file.readlines():
+                line = line.strip().split(':')
+                color = line[1].replace(' ', '').split(',')
                 try:
-                    setup_preferences[line[0]] = float(line[1])
+                    colors = (int(color[0]), int(color[1]), int(color[2]))
+                    color_preferences[line[0]] = colors
                 except ValueError:
-                    setup_preferences[line[0]] = line[1]
+                    if self.get_debug_preferences('preferences-debug'):
+                        print("Invalid Color - Invalid Number")
+                except IndexError:
+                    if self.get_debug_preferences('preferences-debug'):
+                        print("Invalid Color - Too Few Numbers")
 
-# Read info from its respective file
-def read_info():
-    with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
-        for line in pref_file.readlines():
-            line = line.lower().replace(' ', '').strip().split(':')
-            if line[1] == 'true':
-                info[line[0]] = True
-            elif line[1] == 'false':
-                info[line[0]] = False
-            elif line[1].isdigit():
-                info[line[0]] = int(line[1])
+    # Read hardware setup preferences from its respective file
+    # Should only be run during __init__
+    def read_setup_preferences(self):
+        with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
+            for line in pref_file.readlines():
+                line = line.lower().replace(' ', '').strip().split(':')
+                self.setup_preferences[line[0]] = try_all_type_cast(line)
+
+    # Read info from its respective file
+    # Should only be run during __init__
+    def read_info(self):
+        with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
+            for line in pref_file.readlines():
+                line = line.lower().replace(' ', '').strip().split(':')
+                self.info[line[0]] = try_all_type_cast(line)
+
+    def get_debug_preferences(self, key='all'):
+        if key == 'all':
+            return self.debug_preferences
+        else:
+            return self.debug_preferences[key]
+
+    def get_animation_preferences(self, key='all'):
+        if key == 'all':
+            return self.animation_preferences
+        else:
+            return self.animation_preferences[key]
+
+    def get_color_preferences(self, key='all'):
+        if key == 'all':
+            return self.color_preferences
+        else:
+            return self.color_preferences[key]
+
+    def get_setup_preferences(self, key='all'):
+        if key == 'all':
+            return self.setup_preferences
+        else:
+            return self.setup_preferences[key]
+
+    def get_info(self, key='all'):
+        if key == 'all':
+            return self.info
+        else:
+            return self.info[key]
+
+    def change_debug_preference(self, key, value):
+        try:
+            # Change locally
+            if value is None:
+                self.debug_preferences.pop(key)
             else:
-                try:
-                    setup_preferences[line[0]] = float(line[1])
-                except ValueError:
-                    setup_preferences[line[0]] = line[1]
+                self.debug_preferences[key] = try_all_type_cast(value)
 
-# Read all preferences in one call
-def read_preferences():
-    read_debug_preferences()
-    read_animation_preferences()
-    read_color_preferences()
-    read_setup_preferences()
-    read_info()
-    if get_debug_preferences('preferences-debug'):
-        print('Debug Preferences')
-        print(debug_preferences)
-        print('Animation Preferences')
-        print(animation_preferences)
-        print('Color Preferences')
-        print(color_preferences)
-        print('Setup Preferences')
-        print(setup_preferences)
-        print('Info')
-        print(info)
+            # Update the file accordingly
+            with open('/home/pi/LEDWebsite/preferences/debug.txt', 'w') as pref_file:
+                for key, value in self.debug_preferences.items():
+                    pref_file.write(key + ':' + value)
+        except KeyError:
+            if self.get_debug_preferences('preferences-debug'):
+                print('Error Updating Debug Preferences Dictionary with ' + str(key))
 
-def get_debug_preferences(key='all'):
-    if key == 'all':
-        return debug_preferences
-    else:
-        return debug_preferences[key]
 
-def get_animation_preferences(key='all'):
-    if key == 'all':
-        return animation_preferences
-    else:
-        return animation_preferences[key]
+    def change_animation_preference(self, key, value):
+        try:
+            # Change locally
+            if value is None:
+                self.animation_preferences.pop(key)
+            else:
+                self.animation_preferences[key] = try_all_type_cast(value)
 
-def get_color_preferences(key='all'):
-    if key == 'all':
-        return color_preferences
-    else:
-        return color_preferences[key]
 
-def get_setup_preferences(key='all'):
-    if key == 'all':
-        return setup_preferences
-    else:
-        return setup_preferences[key]
+            # Update the file accordingly
+            with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'w') as pref_file:
+                for key, value in self.animation_preferences.items():
+                    pref_file.write(key + ':' + value)
+        except KeyError:
+            if self.get_debug_preferences('preferences-debug'):
+                print('Error Updating Animation Preferences Dictionary with ' + str(key))
 
-def get_info(key='all'):
-    if key == 'all':
-        return info
-    else:
-        return info[key]
+    def change_color_preference(self, key, value):
+        try:
+            # Change locally
+            if value is None:
+                self.color_preferences.pop(key)
+            else:
+                self.color_preferences[key] = try_all_type_cast(value)
+
+            # Update the file accordingly
+            with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
+                for key, value in self.color_preferences.items():
+                    pref_file.write(key + ':' + value)
+        except KeyError:
+            if self.get_debug_preferences('preferences-debug'):
+                print('Error Updating Color Preferences Dictionary with ' + str(key))
+
+
+    def change_setup_preference(self, key, value):
+        try:
+            # Change locally
+            if value is None:
+                self.setup_preferences.pop(key)
+            else:
+                self.setup_preferences[key] = try_all_type_cast(value)
+
+            # Update the file accordingly
+            with open('/home/pi/LEDWebsite/preferences/setup.txt', 'w') as pref_file:
+                for key, value in self.setup_preferences.items():
+                    pref_file.write(key + ':' + value)
+        except KeyError:
+            if self.get_debug_preferences('preferences-debug'):
+                print('Error Updating Setup Preferences Dictionary with ' + str(key))
+
+    def change_info(self, key, value):
+        try:
+            # Change locally
+            if value is None:
+                self.info.pop(key)
+            else:
+                self.info[key] = try_all_type_cast(value)
+
+            # Update the file accordingly
+            with open('/home/pi/LEDWebsite/preferences/info.txt', 'w') as pref_file:
+                for key, value in self.info.items():
+                    pref_file.write(key + ':' + value)
+        except KeyError:
+            if self.get_debug_preferences('preferences-debug'):
+                print('Error Updating Info Dictionary with ' + str(key))
