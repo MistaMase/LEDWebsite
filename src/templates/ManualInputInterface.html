@@ -56,11 +56,8 @@
 
             <!-- Remove Existing Color Profile -->
             <label for="userColorProfileRemoveSelect" id="userColorProfileRemoveLabel">Remove Color Profile</label>
-            <select id="userColorProfileRemoveSelect">
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-            </select>
-            <input type="submit" id="userColorProfileRemoveSubmit" value="Remove">
+            <select id="userColorProfileRemoveSelect"></select>
+            <input type="submit" id="userColorProfileRemoveSubmit" value="Remove" onclick=removeColorProfile()>
         </div>
 
         <!-- Update RGB Labels -->
@@ -84,6 +81,27 @@
                     setColor();
                 }
 	        });
+
+	        socket.on('MI Color Profiles', function(msg) {
+	            console.log(msg);
+	            var select = document.getElementById('userColorProfileRemoveSelect');
+	            select.innerHTML = '';
+                for(var i = 0; i < msg.length; i++) {
+                    // Create the new color option
+                    var newOption = document.createElement('option');
+                    newOption.setAttribute('value', msg[i]);
+                    newOption.innerHTML = msg[i];
+
+                    // Add the option to the dropdown
+                    select.appendChild(newOption);
+                }
+	        });
+
+	        function removeColorProfile() {
+                var selectedProfile = e.options[document.getElementById('userColorProfileRemoveSelect').selectedIndex].value;
+                socket.emit('MI Remove Color Profile', selectedProfile);
+	        }
+
 
 	        function createOption(input) {
                 if(input[0] == 'Slider') {
