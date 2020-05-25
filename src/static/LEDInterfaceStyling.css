@@ -193,15 +193,16 @@ body {
 .manualUserColorContainer {
     height: auto;
     width: 100%;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
 }
 
 .manualUserColor {
     height: auto;
     width: auto;
-    font-size: 14px;
+    font-size: 26px;
     background: gray;
+    margin: 5px;
 }
 
 #colorSelector {
