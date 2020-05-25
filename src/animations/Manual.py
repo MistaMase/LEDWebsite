@@ -22,7 +22,7 @@ class Manual(BaseAnimation):
 
         # Append user defined colors
         for key,value in params.items():
-            self.options[0].append(['UserColor', key, value])
+            self.options.append(['UserColor', key, value])
 
         print(self.options)
 
