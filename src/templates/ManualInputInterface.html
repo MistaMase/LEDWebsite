@@ -83,7 +83,6 @@
 	        });
 
 	        socket.on('MI Color Profiles', function(msg) {
-	            console.log(msg);
 	            var select = document.getElementById('userColorProfileRemoveSelect');
 	            select.innerHTML = '';
                 for(var i = 0; i < msg.length; i++) {
@@ -98,8 +97,9 @@
 	        });
 
 	        function removeColorProfile() {
-                var selectedProfile = e.options[document.getElementById('userColorProfileRemoveSelect').selectedIndex].value;
-                socket.emit('MI Remove Color Profile', selectedProfile);
+                var selectBox = document.getElementById('userColorProfileRemoveSelect');
+                var selectBoxValue = selectBox.options[selectBox.selectedIndex].value;
+                socket.emit('MI Remove Color Profile', selectBoxValue);
 	        }
 
 
