@@ -2,7 +2,7 @@
 from gpiozero import CPUTemperature
 
 # Read preferences from files
-import Preferences
+from Preferences import Preferences
 preferences = Preferences()
 
 # Gets the list of all possible information values to see on the webpage

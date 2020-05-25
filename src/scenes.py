@@ -3,7 +3,7 @@ import board
 import neopixel
 
 # User Preferences
-import Preferences
+from Preferences import Preferences
 
 # Dynamic Animation Imports
 from pathlib import Path

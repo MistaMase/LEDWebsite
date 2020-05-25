@@ -12,7 +12,7 @@ import scenes as scenes
 import hardwareInfo as hwInfo
 
 # User Preferences
-import Preferences
+from Preferences import Preferences
 
 # Update Shell Script
 import os
