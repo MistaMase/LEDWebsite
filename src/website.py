@@ -81,7 +81,7 @@ def manualConnected():
         print("MI Connected")
     emit('MI Parameters', scenes.getAnimationOptions())
     print(preferences.get_color_preferences.keys())
-    emit('MI Color Profiles', preferences.get_color_preferences().keys())
+    emit('MI Color Profiles', getList(preferences.get_color_preferences()))
 
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
