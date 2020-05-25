@@ -50,7 +50,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.debug_preferences[line[0]] = try_all_type_cast(line)
+                self.debug_preferences[line[0]] = self.try_all_type_cast(line)
 
     # Read animation preferences from its respective file
     # Should only be run during __init__
@@ -58,7 +58,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.animation_preferences[line[0]] = try_all_type_cast(line)
+                self.animation_preferences[line[0]] = self.try_all_type_cast(line)
 
     # Read color preferences from its respective file
     # Should only be run during __init__
@@ -83,7 +83,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.setup_preferences[line[0]] = try_all_type_cast(line)
+                self.setup_preferences[line[0]] = self.try_all_type_cast(line)
 
     # Read info from its respective file
     # Should only be run during __init__
@@ -91,7 +91,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.info[line[0]] = try_all_type_cast(line)
+                self.info[line[0]] = self.try_all_type_cast(line)
 
     def get_debug_preferences(self, key='all'):
         if key == 'all':
@@ -129,7 +129,7 @@ class Preferences:
             if value is None:
                 self.debug_preferences.pop(key)
             else:
-                self.debug_preferences[key] = try_all_type_cast(value)
+                self.debug_preferences[key] = self.try_all_type_cast(value)
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/debug.txt', 'w') as pref_file:
@@ -146,7 +146,7 @@ class Preferences:
             if value is None:
                 self.animation_preferences.pop(key)
             else:
-                self.animation_preferences[key] = try_all_type_cast(value)
+                self.animation_preferences[key] = self._type_cast(value)
 
 
             # Update the file accordingly
@@ -163,7 +163,7 @@ class Preferences:
             if value is None:
                 self.color_preferences.pop(key)
             else:
-                self.color_preferences[key] = try_all_type_cast(value)
+                self.color_preferences[key] = self.try_all_type_cast(value)
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
@@ -180,7 +180,7 @@ class Preferences:
             if value is None:
                 self.setup_preferences.pop(key)
             else:
-                self.setup_preferences[key] = try_all_type_cast(value)
+                self.setup_preferences[key] = self.try_all_type_cast(value)
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/setup.txt', 'w') as pref_file:
@@ -196,7 +196,7 @@ class Preferences:
             if value is None:
                 self.info.pop(key)
             else:
-                self.info[key] = try_all_type_cast(value)
+                self.info[key] = self.try_all_type_cast(value)
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/info.txt', 'w') as pref_file:
