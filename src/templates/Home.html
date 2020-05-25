@@ -144,8 +144,8 @@
 
                 else if (input[0] == 'UserColor') {
                     // Check if the container was already created and if not create it
-                    var optionContainer;
-                    if(!document.getElementById('manualUserColorContainer')) {
+                    var optionContainer = document.getElementById('manualUserColor');
+                    if(!optionContainer) {
                         optionContainer = document.createElement('div');
                         optionContainer.setAttribute('id', 'manualUserColorContainer');
                         sliderContainer.appendChild(optionContainer);
