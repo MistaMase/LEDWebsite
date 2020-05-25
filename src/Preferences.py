@@ -69,7 +69,7 @@ class Preferences:
                 color = line[1].replace(' ', '').split(',')
                 try:
                     colors = (int(color[0]), int(color[1]), int(color[2]))
-                    color_preferences[line[0]] = colors
+                    self.color_preferences[line[0]] = colors
                 except ValueError:
                     if self.get_debug_preferences('preferences-debug'):
                         print("Invalid Color - Invalid Number")
