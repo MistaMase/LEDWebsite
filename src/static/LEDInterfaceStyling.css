@@ -299,6 +299,7 @@ body {
     display: inline-block;
     border: 1px solid black;
     margin: 0;
+    width: 40vw;
     border-radius: 1px;
     text-decoration: none;
     -webkit-appearance: none;
@@ -344,6 +345,7 @@ body {
 
 #userColorProfileRemoveSelect {
     font-size: 26px;
+    width: 40vw;
 }
 
 #userColorProfileRemoveSubmit {
