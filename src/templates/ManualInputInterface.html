@@ -64,8 +64,8 @@
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>	
         <script type='text/javascript' charset='utf-8'>
-            var SliderContainer = document.getElementById("sliderContainer")
-            var UserColorProfileColors = {}
+            var SliderContainer = document.getElementById("sliderContainer");
+            var UserColorProfileColors;
 
             var socket = io();
 
@@ -89,6 +89,8 @@
 
 	            // Save the profile's colors for future use
                 UserColorProfileColors = msg;
+                console.log(msg);
+                console.log(UserColorProfileColors);
 
                 for(var key in msg) {
                     // Create the new color option
