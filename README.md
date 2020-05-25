@@ -1,9 +1,6 @@
 # LEDWebsite  
-## Version 1.0  
-Minimal Working Functionality  
-
 ## Version 1.0.1 - Improved Update Flexibility  
-Manual Automatic Updates  
+Added Automatic Updates  
 
 ## Version 1.0.2 - Web Interface Improvements  
 Improved Slider Logic (:after)  
