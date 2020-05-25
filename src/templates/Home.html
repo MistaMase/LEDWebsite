@@ -117,9 +117,11 @@
 		    function createOption(input) {
 		        var sliderContainer = document.getElementById('manualInterfaceParameterContainer');
                 if(input[0] == 'Slider') {
+                    // Create the new elements
                     var newSlider = document.createElement('input');
                     var newLabel = document.createElement('div');
 
+                    // Add the new element's attributes
                     newSlider.setAttribute('class', 'manualDynamicSlider');
                     newSlider.setAttribute('id', getDisplayName(input));
                     newSlider.setAttribute('type', 'range');
@@ -129,17 +131,40 @@
                     newLabel.setAttribute('class', 'sliderLabel');
                     newLabel.innerHTML = getDisplay(newSlider);
 
+                    // Add onClick function
                     newSlider.oninput = function(event) {
                         newLabel.innerHTML = getDisplay(newSlider);
 		                socket.emit('MI Update Client', formatResponse(event));
                     }
 
+                    // Append to the webpage
                     sliderContainer.appendChild(newLabel);
                     sliderContainer.appendChild(newSlider);
                 }
 
                 else if (input[0] == 'UserColor') {
-                    console.log(input);
+                    // Check if the container was already created and if not create it
+                    var optionContainer;
+                    if(!document.getElementById('manualUserColorContainer')) {
+                        optionContainer = document.createElement('div');
+                        optionContainer.setAttribute('id', 'manualUserColorContainer');
+                        sliderContainer.appendChild(optionContainer);
+                    }
+
+                    // Add the new color to it
+                    var userColor = document.createElement('div');
+                    userColor.setAttribute('class', 'manualUserColor');
+                    userColor.setAttribute('id', 'UserColor'+input[1]);
+                    userColor.innerHTML = input[1];
+
+                    // Add onClick function
+                    userColor.oninput = function(event) {
+                        socket.emit('MI Update Client', 'stuff');
+                    }
+
+                    // Append to the webpage
+                    sliderContainer.appendChild(optionContainer);
+
                 }
 
                 if(input[0] == 'Select') {

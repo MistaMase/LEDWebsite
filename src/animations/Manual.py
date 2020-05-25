@@ -24,8 +24,6 @@ class Manual(BaseAnimation):
         for key,value in params.items():
             self.options.append(['UserColor', key, value])
 
-        print(self.options)
-
     def run(self):
         while self.shouldRun:
             if self.shouldUpdate:

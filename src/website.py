@@ -53,7 +53,6 @@ def homeModeChanged(message):
         if preferences.get_debug_preferences('website-debug'):
             print("Requested animation could not be found")
     emit('Home Parameters', scenes.getAnimationOptions())
-    print(scenes.getAnimationOptions())
 
 # Socketio response to Home webpage color change
 @socketio.on('Home Color Change')
