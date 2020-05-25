@@ -239,7 +239,8 @@ body {
 
 /* Manual Input Interface Styling */
 #sliderContainer {
-    height: 93vh;
+    height: auto;
+    padding-bottom: 5vh;
 }
 
 .slider {
@@ -286,6 +287,8 @@ body {
 
 #userColorProfileConfig {
     height: auto
+    margin-top: 5vh;
+    font-size: 20px;
 }
 
 #userColorProfileAddLabel {
@@ -296,7 +299,36 @@ body {
 }
 
 #userColorProfileAddSubmit {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #0069ed;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
 
+
+#userColorProfileAddSubmit:hover,
+#userColorProfileAddSubmit: focus {
+    background: #0053ba;
+}
+
+#userColorProfileAddSubmit:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+#userColorProfileAddSubmit:active {
+    transform: scale(0.99);
 }
 
 #userColorProfileRemoveLabel {
@@ -308,7 +340,35 @@ body {
 }
 
 #userColorProfileRemoveSubmit {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #0069ed;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
 
+#userColorProfileRemoveSubmit:hover,
+#userColorProfileRemoveSubmit: focus {
+    background: #0053ba;
+}
+
+#userColorProfileRemoveSubmit:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+#userColorProfileRemoveSubmit:active {
+    transform: scale(0.99);
 }
 
 /* Code Input Interface Styling */

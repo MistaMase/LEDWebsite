@@ -51,12 +51,16 @@
             <!-- Add Custom Color Profile -->
             <label id="userColorProfileAddLabel">New Color Profile Name</label>
             <input type="text" id="userColorProfileAddName">
-            <input type="button" id="userColorProfileAddSubmit">
+            <input type="button" id="userColorProfileAddSubmit" text="Add">
+            <br>
 
             <!-- Remove Existing Color Profile -->
             <label id="userColorProfileRemoveLabel">Remove Color Profile</label>
-            <input type="select" id="userColorProfileRemoveSelect">
-            <input type="button" id="userColorProfileRemoveSubmit">
+            <select id="userColorProfileRemoveSelect">
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+            </select>
+            <input type="button" id="userColorProfileRemoveSubmit" text="Remove">
         </div>
 
         <!-- Update RGB Labels -->
