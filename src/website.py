@@ -80,7 +80,7 @@ def manualConnected():
     if preferences.get_debug_preferences('website-debug'):
         print("MI Connected")
     emit('MI Parameters', scenes.getAnimationOptions())
-    emit('MI Color Profiles', list(preferences.get_color_preferences().keys()))
+    emit('MI Color Profiles', list(preferences.get_color_preferences()))
 
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
@@ -98,7 +98,6 @@ def manualRemoveColorProfile(message):
             print('Removing Color Profile')
             print(message)
         preferences.change_color_preference(message, None)
-    emit('MI Color Profiles', list(preferences.get_color_preferences().keys()))
 
 
 # Socketio response for Manual Interface add color profile
