@@ -66,7 +66,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.strip().split(':')
-                color = line[1].replace(' ', '').split(',')
+                color = line[1].strip().split(' ')
                 try:
                     colors = (int(color[0]), int(color[1]), int(color[2]))
                     self.color_preferences[line[0]] = colors
@@ -228,7 +228,7 @@ class Preferences:
                     if type(value) == tuple:
                         pref_file.write(str(key) + ':')
                         for val in value:
-                            pref_file.write(str(val) + ' ')
+                            pref_file.write(' ' + str(val))
                         pref_file.write('\n')
                     else:
                         pref_file.write(str(key) + ':' + str(value) + '\n')
