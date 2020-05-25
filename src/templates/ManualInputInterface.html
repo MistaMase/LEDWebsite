@@ -99,6 +99,7 @@
 	        function removeColorProfile() {
                 var selectBox = document.getElementById('userColorProfileRemoveSelect');
                 var selectBoxValue = selectBox.options[selectBox.selectedIndex].value;
+                selectBox.remove(selectBox.selectedIndex);
                 socket.emit('MI Remove Color Profile', selectBoxValue);
 	        }
 
