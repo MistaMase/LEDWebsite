@@ -84,17 +84,17 @@
 	        });
 
 	        socket.on('MI Color Profiles', function(msg) {
-	            console.log(msg);
 	            var select = document.getElementById('userColorProfileRemoveSelect');
 	            select.innerHTML = '';
-                for(var i = 0; i < msg.length; i++) {
+
+	            // Save the profile's colors for future use
+                UserColorProfileColors = msg;
+
+                for(var key in msg) {
                     // Create the new color option
                     var newOption = document.createElement('option');
-                    newOption.setAttribute('value', msg[i][0]);
-                    newOption.innerHTML = msg[i][0];
-
-                    // Save the profile's colors for future use
-                    UserColorProfileColors[msg[i][0]] = msg[i][1];
+                    newOption.setAttribute('value', key);
+                    newOption.innerHTML = key;
 
                     // Add the option to the dropdown
                     select.appendChild(newOption);
@@ -122,7 +122,11 @@
 	        }
 
 	        function showColorProfile() {
-
+	            selectBox = document.getElementById('userColorProfileRemoveSelect')
+	            selectBoxSelectedOption = selectBox.options[selectBox.selectedIndex].value;
+                document.getElementById('RValue').value = UserColorProfileColors[selectBox.option][0];
+                document.getElementById('GValue').value = UserColorProfileColors[selectBox.option][1];
+                document.getElementById('BValue').value = UserColorProfileColors[selectBox.option][2];
 	        }
 
 
