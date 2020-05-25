@@ -232,7 +232,7 @@ body {
 }
 
 .modeScrollElement {
-    height: 100px;
+    height: 12vh;
     padding-left: 5%;
     font-size: 32px;
 }
