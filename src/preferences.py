@@ -44,8 +44,8 @@ def read_animation_preferences():
 def read_color_preferences():
     with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
         for line in pref_file.readlines():
-            line = line.lower().replace(' ', '').strip().split(':')
-            color = line[1].split(',')
+            line = line.strip().split(':')
+            color = line[1].replace(' ', '').split(',')
             try:
                 colors = (int(color[0]), int(color[1]), int(color[2]))
                 color_preferences[line[0]] = colors

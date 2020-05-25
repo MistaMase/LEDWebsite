@@ -2,6 +2,11 @@ import threading
 from abc import ABC, abstractmethod
 
 
+# Defines the base class for all animations to extend
+# Format: DisplayType, DisplayName, Parameters
+# DisplayType Parameters:
+#   Slider:         minValue, maxValue, currentValue
+#   UserColor:      tuple(colors)
 class BaseAnimation(threading.Thread, ABC):
     def __init__(self, pixels, numPixels, name):
         threading.Thread.__init__(self)

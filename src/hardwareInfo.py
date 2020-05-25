@@ -6,8 +6,8 @@ import preferences as preferences
 preferences.read_preferences()
 
 # Gets the list of all possible information values to see on the webpage
-# Format: DisplayName, Value, VersionType, Parameters
-# VersionType Parameters:
+# Format: DisplayName, Value, DisplayType, Parameters
+# DisplayType Parameters:
 #   loadingBar:     minValue, maxValue, displayUnits
 #   text:           none
 def getInfo():
