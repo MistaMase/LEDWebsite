@@ -122,14 +122,21 @@
 	        }
 
 	        function showProfileColor() {
-	            selectBox = document.getElementById('userColorProfileRemoveSelect')
-	            selectBoxSelectedOption = selectBox.options[selectBox.selectedIndex].value;
-                document.getElementById('RValue').value = UserColorProfileColors[selectBoxSelectedOption][0];
-                document.getElementById('GValue').value = UserColorProfileColors[selectBoxSelectedOption][1];
-                document.getElementById('BValue').value = UserColorProfileColors[selectBoxSelectedOption][2];
-                setColor();
+	            rvalue = document.getElementById('RValueLabel');
+	            gvalue = document.getElementById('GValueLabel');
+	            bvalue = document.getElementById('BValueLabel');
+	            if(rvalue && gvalue && bvalue) {
+	                selectBox = document.getElementById('userColorProfileRemoveSelect')
+	                selectBoxSelectedOption = selectBox.options[selectBox.selectedIndex].value;
+                    document.getElementById('RValue').value = UserColorProfileColors[selectBoxSelectedOption][0];
+                    rvalue.innerHTML = UserColorProfileColors[selectBoxSelectedOption][0]
+                    document.getElementById('GValue').value = UserColorProfileColors[selectBoxSelectedOption][1];
+                    gvalue.innerHTML = UserColorProfileColors[selectBoxSelectedOption][1]
+                    document.getElementById('BValue').value = UserColorProfileColors[selectBoxSelectedOption][2];
+                    bvalue.innerHTML = UserColorProfileColors[selectBoxSelectedOption][2]
+                    setColor();
+                }
 	        }
-
 
 	        function createOption(input) {
                 if(input[0] == 'Slider') {
@@ -142,6 +149,7 @@
                     newSlider.setAttribute('min', getValue(newSlider, input[2][0]));
                     newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
                     newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
+                    newLabel.setAttribute('id', getDisplayName(input) + 'Label');
                     newLabel.innerHTML = getDisplay(newSlider);
 
                     newSlider.oninput = function(event) {
