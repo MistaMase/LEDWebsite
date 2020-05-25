@@ -310,9 +310,9 @@ body {
     display: inline-block;
     border: none;
     padding: 1rem 2rem;
-    margin: 0;
+    margin-bottom: 2vh ;
     text-decoration: none;
-    background: #0069ed;
+    background: gray;
     color: #ffffff;
     font-size: 1rem;
     cursor: pointer;
@@ -350,7 +350,7 @@ body {
     display: inline-block;
     border: none;
     padding: 1rem 2rem;
-    margin: 0;
+    margin-bottom: 2vh;
     text-decoration: none;
     background: #0069ed;
     color: #ffffff;
