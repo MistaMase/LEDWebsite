@@ -91,7 +91,7 @@ def manualColorChange(message):
     scenes.thread.setParameter(message)
 
 # Socketio response for Manual Interface remove color profile
-@oscketio.on('MI Remove Color Profile')
+@socketio.on('MI Remove Color Profile')
 def manualRemoveColorProfile(message):
     if message is not '':
         if preferences.get_debug_preferences('website-debug'):
