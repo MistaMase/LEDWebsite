@@ -27,11 +27,7 @@ class Preferences:
 
     def try_all_type_cast(self, line):
         current_line = ()
-        parsed_line = None
-        if type(parsed_line) == str:
-            parsed_line = line.strip().split(' ')
-        else:
-            parsed_line = line
+        parsed_line = line.strip().split(' ')
         for value in parsed_line:
             if value == 'true' or value == 'True':
                 if len(parsed_line) > 1:
