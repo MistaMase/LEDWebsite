@@ -164,7 +164,6 @@ class Preferences:
                 print('Parameters Debug: Error Updating Animation Preferences Dictionary with ' + str(key))
 
     def change_color_preference(self, key, value):
-        print(key + ' ' + str(value))
         try:
             # Change locally
             if value is None:
@@ -174,10 +173,13 @@ class Preferences:
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
+                print('Type ' + str(type(value)))
                 for key, value in self.color_preferences.items():
                     if type(value) == tuple or type(value) == list:
+                        print('Writing multiple values')
                         pref_file.write(str(key) + ':')
                         for val in value:
+                            print('Writing ' + str(val))
                             pref_file.write(str(val) + ' ')
                         pref_file.write('\n')
                     else:
