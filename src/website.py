@@ -108,7 +108,7 @@ def manualAddColorProfile(message):
             print('Adding Color Profile')
             print(message)
         preferences.change_color_preference(message[0], message[1])
-    emit('MI Color Profiles', list(preferences.get_color_preferences().keys()))
+    emit('MI Color Profiles', preferences.get_color_preferences())
 
 
 # Flask route for '/codeinput' which displays the code input interface
