@@ -98,6 +98,9 @@
                     removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
                     removeColorProfileSelect.setAttribute('onchange', 'showProfileColor()');
                     var removeColorProfileSelectDefault = document.createElement('option');
+                    removeColorProfileSelectDefault.selected = true;
+                    removeColorProfileSelectDefault.disabled = true;
+                    removeColorProfileSelectDefault.hidden = true;
                     removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
                     var removeColorProfileSubmit = document.createElement('input');
                     removeColorProfileSubmit.setAttribute('type', 'submit');
@@ -116,11 +119,6 @@
                     colorProfileContainer.appendChild(removeColorProfileSelect);
                     removeColorProfileSelect.appendChild(removeColorProfileSelectDefault);
                     colorProfileContainer.appendChild(removeColorProfileSubmit);
-
-
-                    removeColorProfileSelectDefault.selected = true;
-                    removeColorProfileSelectDefault.disabled = true;
-                    removeColorProfileSelectDefault.hidden = true;
 
                 }
 
@@ -144,6 +142,9 @@
                 var select = document.getElementById('userColorProfileRemoveSelect');
                 select.innerHTML = '';
                 var removeColorProfileSelectDefault = document.createElement('option');
+                removeColorProfileSelectDefault.selected = true;
+                removeColorProfileSelectDefault.disabled = true;
+                removeColorProfileSelectDefault.hidden = true;
                 removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
                 select.appendChild(removeColorProfileSelectDefault);
 
