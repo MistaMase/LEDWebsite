@@ -98,9 +98,6 @@
                     removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
                     removeColorProfileSelect.setAttribute('onchange', 'showProfileColor()');
                     var removeColorProfileSelectDefault = document.createElement('option');
-                    removeColorProfileSelectDefault.options[2].disabled = true;
-                    console.log(removeColorProfileSelectDefault.options);
-                    console.log(removeColorProfileSelectDefault.options[2]);
                     removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
                     var removeColorProfileSubmit = document.createElement('input');
                     removeColorProfileSubmit.setAttribute('type', 'submit');
@@ -120,6 +117,10 @@
                     removeColorProfileSelect.appendChild(removeColorProfileSelectDefault);
                     colorProfileContainer.appendChild(removeColorProfileSubmit);
 
+
+                    removeColorProfileSelectDefault.options[2].disabled = true;
+                    console.log(removeColorProfileSelectDefault.options);
+                    console.log(removeColorProfileSelectDefault.options[2]);
                 }
 
 //                <div id="userColorProfileConfig">
