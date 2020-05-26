@@ -57,7 +57,6 @@
             var socket = io();
 
 	        socket.on('connect', function() {
-	  	        console.log("MI Socket Connected");
 		        socket.emit("MI Connection");
 	        });
 
@@ -98,7 +97,10 @@
                     var removeColorProfileSelect = document.createElement('select');
                     removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
                     removeColorProfileSelect.setAttribute('onchange', 'showProfileColor()');
-                    var removeColorProfileSelectDefault = document.createElement('option selected disabled hidden');
+                    var removeColorProfileSelectDefault = document.createElement('option');
+                    removeColorProfileSelectDefault.options[2].disabled = true;
+                    console.log(removeColorProfileSelectDefault.options);
+                    console.log(removeColorProfileSelectDefault.options[2]);
                     removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
                     var removeColorProfileSubmit = document.createElement('input');
                     removeColorProfileSubmit.setAttribute('type', 'submit');
@@ -169,9 +171,6 @@
 	        function addColorProfile() {
 	            if(document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
 	                var profileName = document.getElementById('userColorProfileAddName');
-	                console.log(document.getElementById('RValue').value);
-	                console.log(document.getElementById('GValue').value);
-	                console.log(document.getElementById('BValue').value);
 	                var rvalue = document.getElementById('RValue').value;
 	                var gvalue = document.getElementById('GValue').value;
 	                var bvalue = document.getElementById('BValue').value;
