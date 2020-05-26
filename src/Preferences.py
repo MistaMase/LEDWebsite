@@ -29,16 +29,16 @@ class Preferences:
         current_line = ()
         for value in line.strip().split(' '):
             if value == 'true' or value == 'True':
-                current_line = current_line + True
+                current_line = current_line + (True)
             elif value == 'false' or value == 'False':
-                current_line = current_line + False
+                current_line = current_line + (False)
             elif value.isdigit():
-                current_line = current_line + int(value)
+                current_line = current_line + (int(value))
             else:
                 try:
-                    current_line = current_line + float(value)
+                    current_line = current_line + (float(value))
                 except ValueError:
-                    current_line = current_line + value
+                    current_line = current_line + (value)
         return current_line
 
     # Read debug preferences from its respective file
