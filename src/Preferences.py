@@ -188,18 +188,13 @@ class Preferences:
                 self.color_preferences.pop(key)
             else:
                 self.color_preferences[key] = self.try_all_type_cast(value)
-            print('Color Preferences')
-            print(self.color_preferences)
-
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
                 for key, value in self.color_preferences.items():
                     if type(value) == tuple or type(value) == list:
-                        print('Writing multiple values for ' + str(key))
                         pref_file.write(str(key) + ':')
                         for val in value:
-                            print('Writing ' + str(val))
                             pref_file.write(str(val) + ' ')
                         pref_file.write('\n')
                     else:
