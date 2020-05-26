@@ -26,19 +26,19 @@ class Preferences:
             print('Parameters Debug: Info ' + str(self.info))
 
     def try_all_type_cast(self, line):
-        current_line = []
+        current_line = ()
         for value in line.strip().split(' '):
             if value == 'true' or value == 'True':
-                current_line.append(True)
+                current_line = currentLine + True
             elif value == 'false' or value == 'False':
-                current_line.append(False)
+                current_line = currentLine + False
             elif value.isdigit():
-                current_line.append(int(value))
+                current_line = currentLine + int(value)
             else:
                 try:
-                    current_line.append(float(value))
+                    current_line = currentLine + float(value)
                 except ValueError:
-                    current_line.append(value)
+                    current_line = currentLine + value
         return current_line
 
     # Read debug preferences from its respective file
