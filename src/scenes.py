@@ -72,20 +72,20 @@ def shutdownThread():
         while thread.isAlive():
             pass
         if preferences.get_debug_preferences('scenes-debug'):
-            print("Shutdown " + thread.name)
+            print("Scenes Debug: Shutdown " + thread.name)
 
 # Parses the incoming LED command and calls the correct function
 def changeMode(msg):
     global thread
     try:
         if preferences.get_debug_preferences('scenes-debug'):
-            print('Attempting to start ' + msg)
+            print('Website Debug: Attempting to start ' + msg)
         shutdownThread()
         createThread(msg)
         return True
     except:
         if preferences.get_debug_preferences('scenes-debug'):
-            print('Failed to start ' + msg)
+            print('Website Debug: Failed to start ' + msg)
         return False
     return False
 

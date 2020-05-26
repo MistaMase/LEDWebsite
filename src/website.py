@@ -39,7 +39,7 @@ def home():
 @socketio.on('Home Connection')
 def homeConnected():
     if preferences.get_debug_preferences('website-debug'):
-        print("Home Connected")
+        print("Website Debug: Home Connected")
     modes = scenes.getAnimationNames()
     emit('Home Mode List', modes)
     emit('Home Parameters', scenes.getAnimationOptions())
@@ -48,25 +48,22 @@ def homeConnected():
 @socketio.on('Home Mode Change')
 def homeModeChanged(message):
     if preferences.get_debug_preferences('website-debug'):
-        print("Requested to change Animation Mode to " + message)
+        print("Website Debug: Changing Animation Mode to " + str(message))
     if not scenes.changeMode(message):
         if preferences.get_debug_preferences('website-debug'):
-            print("Requested animation could not be found")
+            print("Website Debug: Requested animation could not be found")
     emit('Home Parameters', scenes.getAnimationOptions())
 
 # Socketio response to Home webpage color change
 @socketio.on('Home Color Change')
 def homeColorChange(message):
     if preferences.get_debug_preferences('website-debug'):
-        print("Requested to change Color Mode")
-        print(message)
+        print("Website Debug: Requested to change Color Mode " + str(message))
     scenes.changeMode('Manual')
-    rvalue = ['RValue', message[0]]
-    gvalue = ['GValue', message[1]]
-    bvalue = ['BValue', message[2]]
-    scenes.thread.setParameter(rvalue)
-    scenes.thread.setParameter(gvalue)
-    scenes.thread.setParameter(bvalue)
+    colors = (['RValue', message[0]], ['GValue', message[1]], ['BValue', message[2]])
+    scenes.thread.setParameter(colors[0])
+    scenes.thread.setParameter(colors[1])
+    scenes.thread.setParameter(colors[2])
     emit('Home Parameters', scenes.getAnimationOptions())
 
 # Flask route for '/manualinput' which displays the manual color changer
@@ -78,7 +75,7 @@ def manualinput():
 @socketio.on('MI Connection')
 def manualConnected():
     if preferences.get_debug_preferences('website-debug'):
-        print("MI Connected")
+        print("Website Debug: MI Connected")
     emit('MI Parameters', scenes.getAnimationOptions())
     emit('MI Color Profiles', preferences.get_color_preferences())
 
@@ -86,8 +83,7 @@ def manualConnected():
 @socketio.on('MI Update Client')
 def manualColorChange(message):
     if preferences.get_debug_preferences('website-debug'):
-        print("Parameter Change")
-        print(message)
+        print('Website Debug: Parameter Change ' + str(message))
     scenes.thread.setParameter(message)
 
 # Socketio response for Manual Interface remove color profile
@@ -95,8 +91,7 @@ def manualColorChange(message):
 def manualRemoveColorProfile(message):
     if message is not '':
         if preferences.get_debug_preferences('website-debug'):
-            print('Removing Color Profile')
-            print(message)
+            print('Website Debug: Removing Color Profile ' + str(message))
         preferences.change_color_preference(message, None)
 
 
@@ -105,8 +100,7 @@ def manualRemoveColorProfile(message):
 def manualAddColorProfile(message):
     if message is not '':
         if preferences.get_debug_preferences('website-debug'):
-            print('Adding Color Profile')
-            print(message)
+            print('Website Debug: Adding Color Profile ' + str(message))
         preferences.change_color_preference(message[0], message[1])
     emit('MI Color Profiles', preferences.get_color_preferences())
 
@@ -125,14 +119,14 @@ def hardwareinformation():
 @socketio.on('HI Connection')
 def firstHIConnection():
     if preferences.get_debug_preferences('website-debug'):
-        print("HI Connection. Sending INFO")
+        print("Website Debug: HI Connection, Sending INFO")
     emit('HI Update Server', hwInfo.getInfo())
 
 # Socketio response for Hardware Interface webpage requesting periodic information update
 @socketio.on("HI Update Client")
 def sendHardwareInfo():
     if preferences.get_debug_preferences('website-debug'):
-        print("HI Requesting Periodic Update")
+        print("Website Debug: HI Requesting Periodic Update")
     emit('HI Update Server', hwInfo.getInfo())
 
 # Prevent browsers from caching anything

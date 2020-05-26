@@ -19,17 +19,11 @@ class Preferences:
         self.read_setup_preferences()
         self.read_info()
         if self.get_debug_preferences('preferences-debug'):
-            print('Debug Preferences')
-            print(self.debug_preferences)
-            print('Animation Preferences')
-            print(self.animation_preferences)
-            print('Color Preferences')
-            print(self.color_preferences)
-            print('Setup Preferences')
-            print(self.setup_preferences)
-            print('Info')
-            print(self.info)
-
+            print('Parameters Debug: Debug Preferences ' + str(self.debug_preferences))
+            print('Parameters Debug: Animation Preferences ' + str(self.animation_preferences))
+            print('Parameters Debug: Color Preferences ' + str(self.color_preferences))
+            print('Parameters Debug: Setup Preferences ' + str(self.setup_preferences))
+            print('Parameters Debug: Info ' + str(self.info))
 
     def try_all_type_cast(self, line):
         if line[1] == 'true':
@@ -72,10 +66,10 @@ class Preferences:
                     self.color_preferences[line[0]] = colors
                 except ValueError:
                     if self.get_debug_preferences('preferences-debug'):
-                        print("Invalid Color - Invalid Number")
+                        print("Parameters Debug: Invalid Color, Invalid Number")
                 except IndexError:
                     if self.get_debug_preferences('preferences-debug'):
-                        print("Invalid Color - Too Few Numbers")
+                        print("Parameters Debug: Invalid Color, Too Few Numbers")
 
     # Read hardware setup preferences from its respective file
     # Should only be run during __init__
@@ -143,7 +137,7 @@ class Preferences:
                         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
-                print('Error Updating Debug Preferences Dictionary with ' + str(key))
+                print('Parameters Debug: Error Updating Debug Preferences Dictionary with ' + str(key))
 
 
     def change_animation_preference(self, key, value):
@@ -167,7 +161,7 @@ class Preferences:
                         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
-                print('Error Updating Animation Preferences Dictionary with ' + str(key))
+                print('Parameters Debug: Error Updating Animation Preferences Dictionary with ' + str(key))
 
     def change_color_preference(self, key, value):
         try:
@@ -189,7 +183,7 @@ class Preferences:
                         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
-                print('Error Updating Color Preferences Dictionary with ' + str(key))
+                print('Parameters Debug: Error Updating Color Preferences Dictionary with ' + str(key))
 
 
     def change_setup_preference(self, key, value):
@@ -212,7 +206,7 @@ class Preferences:
                         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
-                print('Error Updating Setup Preferences Dictionary with ' + str(key))
+                print('Parameters Debug: Error Updating Setup Preferences Dictionary with ' + str(key))
 
     def change_info(self, key, value):
         try:
@@ -234,4 +228,4 @@ class Preferences:
                         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
-                print('Error Updating Info Dictionary with ' + str(key))
+                print('Parameters Debug: Error Updating Info Dictionary with ' + str(key))
