@@ -27,18 +27,18 @@ class Preferences:
 
     def try_all_type_cast(self, line):
         current_line = []
-        for values in line:
-            if line[1] == 'true':
+        for value in line:
+            if value == 'true':
                 current_line.append(True)
-            elif line[1] == 'false':
+            elif value == 'false':
                 current_line.append(False)
-            elif line[1].isdigit():
-                current_line.append(int(line[1]))
+            elif value.isdigit():
+                current_line.append(int(value))
             else:
                 try:
-                    current_line.append(float(line[1]))
+                    current_line.append(float(value))
                 except ValueError:
-                    current_line.append(line[1])
+                    current_line.append(value)
         return current_line
 
     # Read debug preferences from its respective file
@@ -149,7 +149,7 @@ class Preferences:
             if value is None:
                 self.animation_preferences.pop(key)
             else:
-                self.animation_preferences[key] = self._type_cast(value)
+                self.animation_preferences[key] = self.try_all_type_cast(value)
 
 
             # Update the file accordingly
