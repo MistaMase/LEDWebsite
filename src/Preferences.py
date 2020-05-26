@@ -134,7 +134,7 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/debug.txt', 'w') as pref_file:
                 for key, value in self.debug_preferences.items():
-                    if type(value) == tuple:
+                    if len(value) > 1:
                         pref_file.write(str(key) + ':')
                         for val in value:
                             pref_file.write(str(val) + ' ')
