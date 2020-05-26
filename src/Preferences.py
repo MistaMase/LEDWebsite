@@ -164,6 +164,7 @@ class Preferences:
                 print('Parameters Debug: Error Updating Animation Preferences Dictionary with ' + str(key))
 
     def change_color_preference(self, key, value):
+        print(key + ' ' + str(value))
         try:
             # Change locally
             if value is None:
