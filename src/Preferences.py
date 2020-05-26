@@ -47,7 +47,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.debug_preferences[line[0]] = self.try_all_type_cast(line[1:])
+                self.debug_preferences[line[0]] = self.try_all_type_cast(line[1])
 
     # Read animation preferences from its respective file
     # Should only be run during __init__
@@ -55,7 +55,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.animation_preferences[line[0]] = self.try_all_type_cast(line[1:])
+                self.animation_preferences[line[0]] = self.try_all_type_cast(line[1])
 
     # Read color preferences from its respective file
     # Should only be run during __init__
@@ -63,7 +63,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.strip().split(':')
-                colors = self.try_all_type_cast(line[1:])
+                colors = self.try_all_type_cast(line[1])
                 if len(colors) is not 3:
                     if self.get_debug_preferences('preferences-debug'):
                         print("Parameters Debug: Invalid Color, Too Few Numbers")
@@ -79,7 +79,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.setup_preferences[line[0]] = self.try_all_type_cast(line[1:])
+                self.setup_preferences[line[0]] = self.try_all_type_cast(line[1])
 
     # Read info from its respective file
     # Should only be run during __init__
@@ -87,7 +87,7 @@ class Preferences:
         with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
             for line in pref_file.readlines():
                 line = line.lower().replace(' ', '').strip().split(':')
-                self.info[line[0]] = self.try_all_type_cast(line[1:])
+                self.info[line[0]] = self.try_all_type_cast(line[1])
 
     def get_debug_preferences(self, key='all'):
         if key == 'all':
