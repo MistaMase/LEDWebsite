@@ -128,7 +128,7 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/debug.txt', 'w') as pref_file:
                 for key, value in self.debug_preferences.items():
-                    if len(value) > 1:
+                    if type(value) == tuple or type(value) == list:
                         pref_file.write(str(key) + ':')
                         for val in value:
                             pref_file.write(str(val) + ' ')
@@ -152,7 +152,7 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'w') as pref_file:
                 for key, value in self.animation_preferences.items():
-                    if len(value) > 1:
+                    if type(value) == tuple or type(value) == list:
                         pref_file.write(str(key) + ':')
                         for val in value:
                             pref_file.write(str(val) + ' ')
@@ -175,7 +175,7 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
                 for key, value in self.color_preferences.items():
-                    if len(value) > 1:
+                    if type(value) == tuple or type(value) == list:
                         pref_file.write(str(key) + ':')
                         for val in value:
                             pref_file.write(str(val) + ' ')
@@ -198,7 +198,7 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/setup.txt', 'w') as pref_file:
                 for key, value in self.setup_preferences.items():
-                    if len(value) > 1:
+                    if type(value) == tuple or type(value) == list:
                         pref_file.write(str(key) + ':')
                         for val in value:
                             pref_file.write(str(val) + ' ')
@@ -220,7 +220,7 @@ class Preferences:
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/info.txt', 'w') as pref_file:
                 for key, value in self.info.items():
-                    if len(value) > 1:
+                    if type(value) == tuple or type(value) == list:
                         pref_file.write(str(key) + ':')
                         for val in value:
                             pref_file.write(' ' + str(val))
