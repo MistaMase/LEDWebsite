@@ -88,7 +88,7 @@
                     addColorProfileSubmit.setAttribute('type', 'submit');
                     addColorProfileSubmit.setAttribute('id', 'userColorProfileAddSubmit');
                     addColorProfileSubmit.setAttribute('value', 'Add');
-                    addColorProfileSubmit.setAttribute('onclick', addColorProfile());
+                    addColorProfileSubmit.setAttribute('onclick', 'addColorProfile()');
                     var brk = document.createElement('br');
 
                     var removeColorProfileLabel = document.createElement('label');
@@ -97,14 +97,14 @@
                     removeColorProfileLabel.innerHTML = 'Color Profile Name';
                     var removeColorProfileSelect = document.createElement('select');
                     removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
-                    removeColorProfileSelect.setAttribute('onchange', showProfileColor());
+                    removeColorProfileSelect.setAttribute('onchange', 'showProfileColor()');
                     var removeColorProfileSelectDefault = document.createElement('option selected disabled hidden');
                     removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
                     var removeColorProfileSubmit = document.createElement('input');
                     removeColorProfileSubmit.setAttribute('type', 'submit');
                     removeColorProfileSubmit.setAttribute('id', 'userColorProfileRemoveSubmit');
                     removeColorProfileSubmit.setAttribute('value', 'Remove');
-                    removeColorProfileSubmit.setAttribute('onclick', removeColorProfile());
+                    removeColorProfileSubmit.setAttribute('onclick', 'removeColorProfile()');
 
                     // Add all the elements to the webpage
                     document.body.appendChild(colorProfileContainer);
