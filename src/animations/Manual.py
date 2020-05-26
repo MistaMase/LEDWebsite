@@ -2,7 +2,7 @@ from BaseAnimation import BaseAnimation
 
 class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels, params=None):
-        super().__init__(pixels, numPixels, 'Manual Color')
+        super().__init__(pixels, numPixels, 'Manual')
         self.colors = ((10, 20, 30))
         self.shouldRun = True
         self.shouldUpdate = True
