@@ -47,21 +47,6 @@
 
         <div id="sliderContainer"></div>
 
-        <div id="userColorProfileConfig">
-            <!-- Add Custom Color Profile -->
-            <label for="userColorProfileAddName" id="userColorProfileAddLabel">New Color Profile Name</label>
-            <input type="text" id="userColorProfileAddName">
-            <input type="submit" id="userColorProfileAddSubmit" value="Add" onclick=addColorProfile()>
-            <br>
-
-            <!-- Remove Existing Color Profile -->
-            <label for="userColorProfileRemoveSelect" id="userColorProfileRemoveLabel">Remove Color Profile</label>
-            <select id="userColorProfileRemoveSelect" onchange=showProfileColor()>
-                <option selected disabled hidden>Select a Color Profile</option>
-            </select>
-            <input type="submit" id="userColorProfileRemoveSubmit" value="Remove" onclick=removeColorProfile()>
-        </div>
-
         <!-- Update RGB Labels -->
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>	
@@ -86,24 +71,85 @@
 	        });
 
 	        socket.on('MI Color Profiles', function(msg) {
-	            if(document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
-                    var select = document.getElementById('userColorProfileRemoveSelect');
-                    select.innerHTML = '';
+	            // Create the option interface if it doesn't exist
+	            if(document.getElementById('userColorProfileConfig')) {
+	                // Create all the html
+                    var colorProfileContainer = document.createElement('div');
+                    colorProfileContainer.setAttribute('id', 'userColorProfileConfig');
 
-                    // Save the profile's colors for future use
-                    UserColorProfileColors = msg;
+                    var addColorProfileLabel = document.createElement('label');
+                    addColorProfileLabel.setAttribute('for', 'userColorProfileAddName');
+                    addColorProfileLabel.setAttribute('id', 'userColorProfileAddLabel');
+                    addColorProfileLabel.innerHTML = 'New  Color Profile';
+                    var addColorProfileName = document.createElement('input');
+                    addColorProfileName.setAttribute('type', 'text');
+                    addColorProfileName.setAttribute('id', 'userColorProfileAddName');
+                    var addColorProfileSubmit = document.createElement('input');
+                    addColorProfileSubmit.setAttribute('type', 'submit');
+                    addColorProfileSubmit.setAttribute('id', 'userColorProfileAddSubmit');
+                    addColorProfileSubmit.setAttribute('value', 'Add');
+                    addColorProfileSubmit.setAttribute('onclick', addColorProfile());
+                    var break = document.createElement('br');
 
-                    console.log(UserColorProfileColors);
+                    var removeColorProfileLabel = document.createElement('label');
+                    removeColorProfileLabel.setAttribute('for', 'userColorProfileRemoveSelect');
+                    removeColorProfileLabel.setAttribute('id', 'userColorProfileAddLabel');
+                    removeColorProfileLabel.innerHTML = 'Color Profile Name';
+                    var removeColorProfileSelect = document.createElement('select');
+                    removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
+                    removeColorProfileSelect.setAttribute('onchange', showProfileColor());
+                    var removeColorProfileSelectDefault = document.createElement('option selected disabled hidden');
+                    removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
+                    var removeColorProfileSubmit = document.createElement('input');
+                    removeColorProfileSubmit.setAttribute('type', 'submit');
+                    removeColorProfileSubmit.setAttribute('id', 'userColorProfileRemoveSubmit');
+                    removeColorProfileSubmit.setAttribute('value', 'Remove');
+                    removeColorProfileSubmit.setAttribute('onclick', removeColorProfile());
 
-                    for(var key in msg) {
-                        // Create the new color option
-                        var newOption = document.createElement('option');
-                        newOption.setAttribute('value', key);
-                        newOption.innerHTML = key;
+                    // Add all the elements to the webpage
+                    document.body.appendChild(colorProfileContainer);
+                    colorProfileContainer.appendChild(addColorProfileLabel);
+                    colorProfileContainer.appendChild(addColorProfileName);
+                    colorProfileContainer.appencChild(addColorProfileSubmit);
+                    colorProfileContainer.appendChild(break);
 
-                        // Add the option to the dropdown
-                        select.appendChild(newOption);
-                    }
+                    colorProfileContainer.appendChild(removeColorProfileLabel);
+                    colorProfileContainer.appendChild(removeColorProfileSelect);
+                    removeColorProfileSelect.appendChild(removeColorProfileSelectDefault);
+                    colorProfileContainer.appendChild(removeColorProfileSubmit);
+
+                }
+
+//                <div id="userColorProfileConfig">
+//                    <!-- Add Custom Color Profile -->
+//                    <label for="userColorProfileAddName" id="userColorProfileAddLabel">New Color Profile Name</label>
+//                    <input type="text" id="userColorProfileAddName">
+//                    <input type="submit" id="userColorProfileAddSubmit" value="Add" onclick=addColorProfile()>
+//                    <br>
+//
+//                    <!-- Remove Existing Color Profile -->
+//                    <label for="userColorProfileRemoveSelect" id="userColorProfileRemoveLabel">Remove Color Profile</label>
+//                    <select id="userColorProfileRemoveSelect" onchange=showProfileColor()>
+//                        <option selected disabled hidden>Select a Color Profile</option>
+//                    </select>
+//                    <input type="submit" id="userColorProfileRemoveSubmit" value="Remove" onclick=removeColorProfile()>
+//                </div>
+
+
+                var select = document.getElementById('userColorProfileRemoveSelect');
+                select.innerHTML = '';
+
+                // Save the profile's colors for future use
+                UserColorProfileColors = msg;
+
+                for(var key in msg) {
+                    // Create the new color option
+                    var newOption = document.createElement('option');
+                    newOption.setAttribute('value', key);
+                    newOption.innerHTML = key;
+
+                    // Add the option to the dropdown
+                    select.appendChild(newOption);
                 }
 	        });
 

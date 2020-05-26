@@ -89,6 +89,10 @@ def changeMode(msg):
         return False
     return False
 
+def getThreadName():
+    global thread
+    return thread.name
+
 
 # Start up the lights in 'Off' Mode
 populateAnimationNames()
