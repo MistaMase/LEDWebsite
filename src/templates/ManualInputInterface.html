@@ -56,7 +56,9 @@
 
             <!-- Remove Existing Color Profile -->
             <label for="userColorProfileRemoveSelect" id="userColorProfileRemoveLabel">Remove Color Profile</label>
-            <select id="userColorProfileRemoveSelect" onchange=showProfileColor()></select>
+            <select id="userColorProfileRemoveSelect" onchange=showProfileColor()>
+                <option selected disabled hidden>Select a Color Profile</option>
+            </select>
             <input type="submit" id="userColorProfileRemoveSubmit" value="Remove" onclick=removeColorProfile()>
         </div>
 
