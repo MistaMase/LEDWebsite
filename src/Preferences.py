@@ -26,17 +26,20 @@ class Preferences:
             print('Parameters Debug: Info ' + str(self.info))
 
     def try_all_type_cast(self, line):
-        if line[1] == 'true':
-            return True
-        elif line[1] == 'false':
-            return False
-        elif line[1].isdigit():
-            return int(line[1])
-        else:
-            try:
-                return float(line[1])
-            except ValueError:
-                return line[1]
+        current_line = []
+        for values in line:
+            if line[1] == 'true':
+                current_line.append(True)
+            elif line[1] == 'false':
+                current_line.append(False)
+            elif line[1].isdigit():
+                current_line.append(int(line[1]))
+            else:
+                try:
+                    current_line.append(float(line[1]))
+                except ValueError:
+                    current_line.append(line[1])
+        return current_line
 
     # Read debug preferences from its respective file
     # Should only be run during __init__
