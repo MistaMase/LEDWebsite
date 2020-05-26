@@ -27,18 +27,34 @@ class Preferences:
 
     def try_all_type_cast(self, line):
         current_line = ()
-        for value in line.strip().split(' '):
+        parsed_line = line.strip().split(' ')
+        for value in parsed_line:
             if value == 'true' or value == 'True':
-                current_line = current_line + (True,)
+                if len(parsed_line) > 1:
+                    current_line = current_line + (True,)
+                else:
+                    return True
             elif value == 'false' or value == 'False':
-                current_line = current_line + (False,)
+                if len(parsed_line) > 1:
+                    current_line = current_line + (False,)
+                else:
+                    return False
             elif value.isdigit():
-                current_line = current_line + (int(value),)
+                if len(parsed_line) > 1:
+                    current_line = current_line + (int(value),)
+                else:
+                    return int(value)
             else:
                 try:
-                    current_line = current_line + (float(value),)
+                    if len(parsed_line) > 1:
+                        current_line = current_line + (float(value),)
+                    else:
+                        return float(value)
                 except ValueError:
-                    current_line = current_line + (value,)
+                    if len(parsed_line) > 1:
+                        current_line = current_line + (value,)
+                    else:
+                        return value
         return current_line
 
     # Read debug preferences from its respective file
