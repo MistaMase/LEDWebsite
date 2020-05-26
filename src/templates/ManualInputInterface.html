@@ -84,22 +84,24 @@
 	        });
 
 	        socket.on('MI Color Profiles', function(msg) {
-	            var select = document.getElementById('userColorProfileRemoveSelect');
-	            select.innerHTML = '';
+	            if(document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
+                    var select = document.getElementById('userColorProfileRemoveSelect');
+                    select.innerHTML = '';
 
-	            // Save the profile's colors for future use
-                UserColorProfileColors = msg;
+                    // Save the profile's colors for future use
+                    UserColorProfileColors = msg;
 
-                console.log(UserColorProfileColors);
+                    console.log(UserColorProfileColors);
 
-                for(var key in msg) {
-                    // Create the new color option
-                    var newOption = document.createElement('option');
-                    newOption.setAttribute('value', key);
-                    newOption.innerHTML = key;
+                    for(var key in msg) {
+                        // Create the new color option
+                        var newOption = document.createElement('option');
+                        newOption.setAttribute('value', key);
+                        newOption.innerHTML = key;
 
-                    // Add the option to the dropdown
-                    select.appendChild(newOption);
+                        // Add the option to the dropdown
+                        select.appendChild(newOption);
+                    }
                 }
 	        });
 
