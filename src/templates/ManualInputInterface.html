@@ -72,7 +72,7 @@
 
 	        socket.on('MI Color Profiles', function(msg) {
 	            // Create the option interface if it doesn't exist
-	            if(document.getElementById('userColorProfileConfig')) {
+	            if(!document.getElementById('userColorProfileConfig')) {
 	                // Create all the html
                     var colorProfileContainer = document.createElement('div');
                     colorProfileContainer.setAttribute('id', 'userColorProfileConfig');
@@ -136,8 +136,12 @@
 //                </div>
 
 
+                // Remove the existing color profiles and add the default color profile
                 var select = document.getElementById('userColorProfileRemoveSelect');
                 select.innerHTML = '';
+                var removeColorProfileSelectDefault = document.createElement('option selected disabled hidden');
+                removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
+                select.appendChild(removeColorProfileSelectDefault);
 
                 // Save the profile's colors for future use
                 UserColorProfileColors = msg;
