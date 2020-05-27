@@ -21,16 +21,10 @@ class Manual(BaseAnimation):
         ]
 
     def getOptions(self):
-        print('4')
         allOptions = super().getOptions()
 
-        print('2')
-
         # Append user defined colors
-        print(self.preferences.get_color_preferences())
-        print(self.preferences.get_color_preferences()['Red'])
-        for key, value in self.preferences.get_color_preferences():
-            print('3')
+        for key, value in self.preferences.get_color_preferences().items():
             allOptions.append(['UserColor', key, value])
 
         return allOptions
