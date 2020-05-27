@@ -28,7 +28,8 @@ class Manual(BaseAnimation):
 
         # Append user defined colors
         print(self.preferences.get_color_preferences())
-        for key,value in self.preferences.get_color_preferences():
+        print(self.preferences.get_color_preferences()['Red'])
+        for key, value in self.preferences.get_color_preferences():
             print('3')
             allOptions.append(['UserColor', key, value])
 
