@@ -3,7 +3,7 @@ from BaseAnimation import BaseAnimation
 class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels):
         super().__init__(pixels, numPixels, 'Manual')
-        self.colors = ((10, 20, 30))
+        self.colors = ((0, 0, 0))
         self.shouldRun = True
         self.shouldUpdate = True
 
@@ -23,9 +23,12 @@ class Manual(BaseAnimation):
     def getOptions(self):
         allOptions = super().getOptions()
 
+        print('2')
+
         # Append user defined colors
         print(self.preferences.get_color_preferences())
         for key,value in self.preferences.get_color_preferences():
+            print('3')
             allOptions.append(['UserColor', key, value])
 
         return allOptions
