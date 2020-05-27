@@ -54,10 +54,7 @@ def createThread(name):
         for a in range(len(animationNames)):
             if animationNames[a] == name:
                 threadClass = globals()[animationNames[a]]
-                if name == 'Manual':
-                    thread = threadClass(pixels, numPixels, params=preferences.get_color_preferences())
-                else:
-                    thread = threadClass(pixels, numPixels)
+                thread = threadClass(pixels, numPixels)
                 thread.start()
                 return thread
         return None

@@ -1,7 +1,7 @@
 from BaseAnimation import BaseAnimation
 
 class Manual(BaseAnimation):
-    def __init__(self, pixels, numPixels, params=None):
+    def __init__(self, pixels, numPixels):
         super().__init__(pixels, numPixels, 'Manual')
         self.colors = ((10, 20, 30))
         self.shouldRun = True
@@ -20,9 +20,14 @@ class Manual(BaseAnimation):
             ['Slider', 'BValue', (0, 255, self.parameters['BValue'])]
         ]
 
+    def getOptions(self):
+        allOptions = super().getOptions()
+
         # Append user defined colors
-        for key,value in params.items():
-            self.options.append(['UserColor', key, value])
+        for key,value in self.preferences.read_color_preferences():
+            allOptions.append(['UserColor', key, value])
+
+        return allOptions
 
     def run(self):
         while self.shouldRun:
