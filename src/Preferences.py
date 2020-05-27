@@ -88,6 +88,7 @@ class Preferences:
                         print("Parameters Debug: Invalid Color, Invalid Number")
                 else:
                     self.color_preferences[line[0]] = colors
+        print(self.color_preferences)
 
     # Read hardware setup preferences from its respective file
     # Should only be run during __init__
