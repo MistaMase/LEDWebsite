@@ -77,9 +77,6 @@ def manualConnected():
     if preferences.get_debug_preferences('website-debug'):
         print("Website Debug: MI Connected")
     emit('MI Parameters', scenes.getAnimationOptions())
-    print('1')
-    if scenes.getThreadName() == 'Manual':
-        emit('MI Color Profiles', preferences.get_color_preferences())
 
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
