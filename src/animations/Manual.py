@@ -21,6 +21,7 @@ class Manual(BaseAnimation):
         ]
 
     def getOptions(self):
+        print('4')
         allOptions = super().getOptions()
 
         print('2')
