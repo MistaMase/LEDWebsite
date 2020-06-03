@@ -60,6 +60,15 @@
 		        socket.emit("MI Connection");
 	        });
 
+            socket.on('MI Power Status, function(msg) {
+		        powerIcon = document.getElementById('powerIconContainer');
+                if(msg == 'On') {
+                    powerIcon.style.backgroundColor = rgb(0, 255, 0, 0.4)
+                } else {
+                    powerIcon.style.backgroundColor = rgb(255, 255, 255);
+                }
+		    });
+
 	        socket.on('MI Parameters', function(msg) {
                 for(var i = 0; i < msg.length; i++){
                     createOption(msg[i]);

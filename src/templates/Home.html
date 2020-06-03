@@ -14,7 +14,7 @@
     <body>
         <div class="header">
             <!-- Power Icon -->
-            <a href="{{ url_for('home') }}" class="headerCell">
+            <a href="{{ url_for('home') }}" class="headerCell" id="powerIconContainer">
 		        <img class="headerIconImage" id="powerIcon" src="{{ url_for('static', filename='assets/power_icon_off.svg') }}">
             </a>
 
@@ -85,6 +85,15 @@
 		    socket.on('connect', function() {
 			    console.log("Home Socket Connected");
 			    socket.emit("Home Connection");
+		    });
+
+		    socket.on('Home Power Status, function(msg) {
+		        powerIcon = document.getElementById('powerIconContainer');
+                if(msg == 'On') {
+                    powerIcon.style.backgroundColor = rgb(0, 255, 0, 0.4)
+                } else {
+                    powerIcon.style.backgroundColor = rgb(255, 255, 255);
+                }
 		    });
 
 		    socket.on('Home Mode List', function(msg) {

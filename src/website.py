@@ -42,11 +42,8 @@ def homeConnected():
         print("Website Debug: Home Connected")
     modes = scenes.getAnimationNames()
     emit('Home Mode List', modes)
-    print("MODES")
-    print(modes)
     emit('Home Parameters', scenes.getAnimationOptions())
-    print("HOME PARAMETERS")
-    print(scenes.getAnimationOptions())
+    emit('Home Power Status', 'Off' if (scenes.thread.name == 'Off') else 'On')
 
 # Socketio response for Home webpage mode change
 @socketio.on('Home Mode Change')
@@ -83,6 +80,8 @@ def manualConnected():
     emit('MI Parameters', scenes.getAnimationOptions())
     if scenes.thread.name == 'Manual':
         emit('MI Color Profiles', preferences.get_color_preferences())
+    emit('MI Power Status', 'Off' if (scenes.thread.name == 'Off') else 'On')
+
 
 # Socketio response for Manual Interface webpage color change
 @socketio.on('MI Update Client')
@@ -127,6 +126,8 @@ def firstHIConnection():
     if preferences.get_debug_preferences('website-debug'):
         print("Website Debug: HI Connection, Sending INFO")
     emit('HI Update Server', hwInfo.getInfo())
+    emit('HI Power Status', 'Off' if (scenes.thread.name == 'Off') else 'On')
+
 
 # Socketio response for Hardware Interface webpage requesting periodic information update
 @socketio.on("HI Update Client")
