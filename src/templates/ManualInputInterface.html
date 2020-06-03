@@ -14,7 +14,7 @@
     <body>
         <div class="header">
             <!-- Power Icon -->
-            <a href="{{ url_for('home') }}" class="headerCell" id="powerIconContainer">
+            <a href="{{ url_for('home') }}" class="headerCell">
 		        <img class="headerIconImage" id="powerIcon" src="{{ url_for('static', filename='assets/power_icon_off.svg') }}">
             </a>
 
@@ -61,9 +61,9 @@
 	        });
 
             socket.on('MI Power Status', function(msg) {
-		        powerIcon = document.getElementById('powerIconContainer');
+		        powerIcon = document.getElementById('powerIcon');
                 if(msg == 'On') {
-                    powerIcon.style.backgroundColor = "rgba(0, 255, 0, 0.4)";
+                    powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.4)";
                 } else {
                     powerIcon.style.backgroundColor = "#FFFFFF";
                 }
