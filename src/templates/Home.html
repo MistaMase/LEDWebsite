@@ -82,6 +82,7 @@
         <script type="text/javascript" charset="utf-8">
             var socket = io();
             var powerOn = false;
+            var userColors = new Map();
 
 		    socket.on('connect', function() {
 			    socket.emit("Home Connection");
@@ -157,6 +158,7 @@
                     newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
                     newLabel.setAttribute('class', 'sliderLabel');
                     newLabel.innerHTML = getDisplay(newSlider);
+                    newLabel.setAttribute('id', getDisplayName(input)+'Label');
 
                     // Add onClick function
                     newSlider.oninput = function(event) {
@@ -189,8 +191,27 @@
 
                     // Add onClick function
                     userColor.onclick = function(event) {
+                        // Update the sliders
+                        rlabel = document.getElementById('RValueLabel');
+                        glabel = document.getElementById('GValueLabel');
+                        blabel = document.getElementById('BValueLabel');
+                        rslider = document.getElementById('RValue');
+                        gslider = document.getElementById('GValue');
+                        bslider = document.getElementById('BValue');
+                        var profileColors = userColors[input[1]];
+                        rlabel.innerHTML = profileColors[0];
+                        glabel.innerHTML = profileColors[1];
+                        blabel.innerHTML = profileCOlors[1];
+                        rslider.value = profileColors[0];
+                        gslider.value = profileColors[1];
+                        bslider.value = profileColors[2];
+
+                        // Update the LED colors
                         socket.emit('MI Update Client', ['UserColor', userColor.innerHTML]);
                     }
+
+                    // Save the colors into the color dictionary
+                    userColors[input[1]] = input[2];
 
                     // Append to the webpage
                     optionContainer.appendChild(userColor);
