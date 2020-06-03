@@ -1,5 +1,4 @@
 from BaseAnimation import BaseAnimation
-from Preferences import Preferences
 
 class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels):
@@ -20,8 +19,6 @@ class Manual(BaseAnimation):
             ['Slider', 'GValue', (0, 255, self.parameters['GValue'])],
             ['Slider', 'BValue', (0, 255, self.parameters['BValue'])]
         ]
-
-        self.preferences = Preferences()
 
     # Override the BaseAnimations method to return color profiles also
     def getOptions(self):
