@@ -202,7 +202,7 @@
                     newLabel.setAttribute('id', getDisplayName(input) + 'Label');
                     newLabel.innerHTML = getDisplay(newSlider);
 
-                    newSlider.oninput = function(event) {
+                    newSlider.onmouseup = function(event) {
                         newLabel.innerHTML = getDisplay(newSlider);
 
                         if (document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
