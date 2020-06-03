@@ -132,8 +132,11 @@
                     newLabel.innerHTML = getDisplay(newSlider);
 
                     // Add onClick function
-                    newSlider.onchange = function(event) {
+                    newSlider.oninput = function(event) {
                         newLabel.innerHTML = getDisplay(newSlider);
+                    }
+
+                    newSlider.onchange = function(event) {
 		                socket.emit('MI Update Client', formatResponse(event));
                     }
 
