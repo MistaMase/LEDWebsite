@@ -70,57 +70,58 @@
 	        });
 
 	        socket.on('MI Color Profiles', function(msg) {
-	            // Create the option interface if it doesn't exist
-	            if(!document.getElementById('userColorProfileConfig')) {
-	                // Create all the html
-                    var colorProfileContainer = document.createElement('div');
-                    colorProfileContainer.setAttribute('id', 'userColorProfileConfig');
-
-                    var addColorProfileLabel = document.createElement('label');
-                    addColorProfileLabel.setAttribute('for', 'userColorProfileAddName');
-                    addColorProfileLabel.setAttribute('id', 'userColorProfileAddLabel');
-                    addColorProfileLabel.innerHTML = 'New  Color Profile';
-                    var addColorProfileName = document.createElement('input');
-                    addColorProfileName.setAttribute('type', 'text');
-                    addColorProfileName.setAttribute('id', 'userColorProfileAddName');
-                    var addColorProfileSubmit = document.createElement('input');
-                    addColorProfileSubmit.setAttribute('type', 'submit');
-                    addColorProfileSubmit.setAttribute('id', 'userColorProfileAddSubmit');
-                    addColorProfileSubmit.setAttribute('value', 'Add');
-                    addColorProfileSubmit.setAttribute('onclick', 'addColorProfile()');
-                    var brk = document.createElement('br');
-
-                    var removeColorProfileLabel = document.createElement('label');
-                    removeColorProfileLabel.setAttribute('for', 'userColorProfileRemoveSelect');
-                    removeColorProfileLabel.setAttribute('id', 'userColorProfileAddLabel');
-                    removeColorProfileLabel.innerHTML = 'Color Profile Name';
-                    var removeColorProfileSelect = document.createElement('select');
-                    removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
-                    removeColorProfileSelect.setAttribute('onchange', 'showProfileColor()');
-                    var removeColorProfileSelectDefault = document.createElement('option');
-                    removeColorProfileSelectDefault.selected = true;
-                    removeColorProfileSelectDefault.disabled = true;
-                    removeColorProfileSelectDefault.hidden = true;
-                    removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
-                    var removeColorProfileSubmit = document.createElement('input');
-                    removeColorProfileSubmit.setAttribute('type', 'submit');
-                    removeColorProfileSubmit.setAttribute('id', 'userColorProfileRemoveSubmit');
-                    removeColorProfileSubmit.setAttribute('value', 'Remove');
-                    removeColorProfileSubmit.setAttribute('onclick', 'removeColorProfile()');
+	            console.log('MI Color Profiles' + msg);
+//	            // Create the option interface if it doesn't exist
+//	            if(!document.getElementById('userColorProfileConfig')) {
+//	                // Create all the html
+//                    var colorProfileContainer = document.createElement('div');
+//                    colorProfileContainer.setAttribute('id', 'userColorProfileConfig');
+//
+//                    var addColorProfileLabel = document.createElement('label');
+//                    addColorProfileLabel.setAttribute('for', 'userColorProfileAddName');
+//                    addColorProfileLabel.setAttribute('id', 'userColorProfileAddLabel');
+//                    addColorProfileLabel.innerHTML = 'New  Color Profile';
+//                    var addColorProfileName = document.createElement('input');
+//                    addColorProfileName.setAttribute('type', 'text');
+//                    addColorProfileName.setAttribute('id', 'userColorProfileAddName');
+//                    var addColorProfileSubmit = document.createElement('input');
+//                    addColorProfileSubmit.setAttribute('type', 'submit');
+//                    addColorProfileSubmit.setAttribute('id', 'userColorProfileAddSubmit');
+//                    addColorProfileSubmit.setAttribute('value', 'Add');
+//                    addColorProfileSubmit.setAttribute('onclick', 'addColorProfile()');
+//                    var brk = document.createElement('br');
+//
+//                    var removeColorProfileLabel = document.createElement('label');
+//                    removeColorProfileLabel.setAttribute('for', 'userColorProfileRemoveSelect');
+//                    removeColorProfileLabel.setAttribute('id', 'userColorProfileAddLabel');
+//                    removeColorProfileLabel.innerHTML = 'Color Profile Name';
+//                    var removeColorProfileSelect = document.createElement('select');
+//                    removeColorProfileSelect.setAttribute('id', 'userColorProfileRemoveSelect');
+//                    removeColorProfileSelect.setAttribute('onchange', 'showProfileColor()');
+//                    var removeColorProfileSelectDefault = document.createElement('option');
+//                    removeColorProfileSelectDefault.selected = true;
+//                    removeColorProfileSelectDefault.disabled = true;
+//                    removeColorProfileSelectDefault.hidden = true;
+//                    removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
+//                    var removeColorProfileSubmit = document.createElement('input');
+//                    removeColorProfileSubmit.setAttribute('type', 'submit');
+//                    removeColorProfileSubmit.setAttribute('id', 'userColorProfileRemoveSubmit');
+//                    removeColorProfileSubmit.setAttribute('value', 'Remove');
+//                    removeColorProfileSubmit.setAttribute('onclick', 'removeColorProfile()');
 
                     // Add all the elements to the webpage
-                    document.body.appendChild(colorProfileContainer);
-                    colorProfileContainer.appendChild(addColorProfileLabel);
-                    colorProfileContainer.appendChild(addColorProfileName);
-                    colorProfileContainer.appendChild(addColorProfileSubmit);
-                    colorProfileContainer.appendChild(brk);
+//                    document.body.appendChild(colorProfileContainer);
+//                    colorProfileContainer.appendChild(addColorProfileLabel);
+//                    colorProfileContainer.appendChild(addColorProfileName);
+//                    colorProfileContainer.appendChild(addColorProfileSubmit);
+//                    colorProfileContainer.appendChild(brk);
 
-                    colorProfileContainer.appendChild(removeColorProfileLabel);
-                    colorProfileContainer.appendChild(removeColorProfileSelect);
-                    removeColorProfileSelect.appendChild(removeColorProfileSelectDefault);
-                    colorProfileContainer.appendChild(removeColorProfileSubmit);
+//                    colorProfileContainer.appendChild(removeColorProfileLabel);
+//                    colorProfileContainer.appendChild(removeColorProfileSelect);
+//                    removeColorProfileSelect.appendChild(removeColorProfileSelectDefault);
+//                    colorProfileContainer.appendChild(removeColorProfileSubmit);
 
-                }
+//                }
 
 //                <div id="userColorProfileConfig">
 //                    <!-- Add Custom Color Profile -->
@@ -139,28 +140,27 @@
 
 
                 // Remove the existing color profiles and add the default color profile
-                var select = document.getElementById('userColorProfileRemoveSelect');
-                select.innerHTML = '';
-                var removeColorProfileSelectDefault = document.createElement('option');
-                removeColorProfileSelectDefault.selected = true;
-                removeColorProfileSelectDefault.disabled = true;
-                removeColorProfileSelectDefault.hidden = true;
-                removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
-                select.appendChild(removeColorProfileSelectDefault);
+//                var select = document.getElementById('userColorProfileRemoveSelect');
+//                select.innerHTML = '';
+//                var removeColorProfileSelectDefault = document.createElement('option');
+//                removeColorProfileSelectDefault.selected = true;
+//                removeColorProfileSelectDefault.disabled = true;
+//                removeColorProfileSelectDefault.hidden = true;
+//                removeColorProfileSelectDefault.innerHTML = 'Select a Color Profile';
+//                select.appendChild(removeColorProfileSelectDefault);
 
                 // Save the profile's colors for future use
-                UserColorProfileColors = msg;
+//                UserColorProfileColors = msg;
 
-                console.log("Profile " + msg);
-                for(var key in msg) {
-                    // Create the new color option
-                    var newOption = document.createElement('option');
-                    newOption.setAttribute('value', key);
-                    newOption.innerHTML = key;
+//                for(var key in msg) {
+//                    // Create the new color option
+//                    var newOption = document.createElement('option');
+//                    newOption.setAttribute('value', key);
+//                    newOption.innerHTML = key;
 
                     // Add the option to the dropdown
-                    select.appendChild(newOption);
-                }
+//                    select.appendChild(newOption);
+//                }
 	        });
 
 	        function removeColorProfile() {
