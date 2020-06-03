@@ -202,12 +202,15 @@
                     newLabel.setAttribute('id', getDisplayName(input) + 'Label');
                     newLabel.innerHTML = getDisplay(newSlider);
 
-                    newSlider.onmouseup = function(event) {
+                    newSlider.oninput = function(event) {
                         newLabel.innerHTML = getDisplay(newSlider);
 
                         if (document.getElementById('RValue') && document.getElementById('GValue') && document.getElementById('BValue')) {
                             setColor();
                         }
+                    }
+
+                    newSlider.mouseup = function(event) {
 		                socket.emit('MI Update Client', formatResponse(event));
                     }
 
