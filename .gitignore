@@ -1,3 +1,6 @@
+# Ignore user preferences
+.json
+
 # Fucking Macs
 .DS_Store
 
