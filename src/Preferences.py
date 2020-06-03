@@ -62,7 +62,7 @@ class Preferences:
     # Read debug preferences from its respective file
     # Should only be run during __init__
     def read_debug_preferences(self):
-        with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
+        with open('/home/pi/LEDWebsite/preferences/debug.json', 'r') as pref_file:
             self.debug_preferences = json.load(pref_file)
 #            for line in pref_file.readlines():
 #                line = line.lower().replace(' ', '').strip().split(':')
@@ -71,7 +71,7 @@ class Preferences:
     # Read animation preferences from its respective file
     # Should only be run during __init__
     def read_animation_preferences(self):
-        with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
+        with open('/home/pi/LEDWebsite/preferences/animation-order.json', 'r') as pref_file:
             self.animation_preferences = json.load(pref_file)
 #            for line in pref_file.readlines():
 #                line = line.lower().replace(' ', '').strip().split(':')
@@ -80,7 +80,7 @@ class Preferences:
     # Read color preferences from its respective file
     # Should only be run during __init__
     def read_color_preferences(self):
-        with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
+        with open('/home/pi/LEDWebsite/preferences/custom-colors.json', 'r') as pref_file:
             self.color_preferences = json.load(pref_file)
 #            for line in pref_file.readlines():
 #                line = line.strip().split(':')
@@ -98,7 +98,7 @@ class Preferences:
     # Read hardware setup preferences from its respective file
     # Should only be run during __init__
     def read_setup_preferences(self):
-        with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
+        with open('/home/pi/LEDWebsite/preferences/setup.json', 'r') as pref_file:
             self.setup_preferences = json.load(pref_file)
 #            for line in pref_file.readlines():
 #                line = line.lower().replace(' ', '').strip().split(':')
@@ -107,7 +107,7 @@ class Preferences:
     # Read info from its respective file
     # Should only be run during __init__
     def read_info(self):
-        with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
+        with open('/home/pi/LEDWebsite/preferences/info.json', 'r') as pref_file:
             self.info = json.load(pref_file)
 #            for line in pref_file.readlines():
 #                line = line.lower().replace(' ', '').strip().split(':')
