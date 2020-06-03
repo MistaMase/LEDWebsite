@@ -158,7 +158,7 @@
                     userColor.innerHTML = input[1];
 
                     // Add onClick function
-                    userColor.oninput = function(event) {
+                    userColor.onclick = function(event) {
                         socket.emit('MI Update Client', ['UserColor', userColor.innerHTML]);
                         console.log("Clicked profile");
                     }
