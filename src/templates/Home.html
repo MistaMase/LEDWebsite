@@ -238,7 +238,7 @@
                     socket.emit("Home Mode Change", "" + event.target.textContent);
                     if(powerOn && event.target.innerHTML == 'Off') {
                         togglePower();
-                    } else if(powerOff && !(event.target.innerHTML == 'Off')) {
+                    } else if(!powerOn && !(event.target.innerHTML == 'Off')) {
                         togglePower();
                     }
                 }
