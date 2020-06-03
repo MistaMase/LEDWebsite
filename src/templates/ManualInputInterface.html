@@ -181,9 +181,9 @@
                     document.getElementById('BValue').value = UserColorProfileColors[selectBoxSelectedOption][2];
                     bvalue.innerHTML = UserColorProfileColors[selectBoxSelectedOption][2]
                     setColor();
-                    socket.emit('MI Update Client', ['RValue', rvalue.innerHTML);
-                    socket.emit('MI Update Client', ['GValue', gvalue.innerHTML);
-                    socket.emit('MI Update Client', ['BValue', bvalue.innerHTML);
+                    socket.emit('MI Update Client', ['RValue', rvalue.innerHTML]);
+                    socket.emit('MI Update Client', ['GValue', gvalue.innerHTML]);
+                    socket.emit('MI Update Client', ['BValue', bvalue.innerHTML]);
 
                 }
 	        }
