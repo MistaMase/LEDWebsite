@@ -117,8 +117,8 @@
 		    }
 
 		    socket.on('Home Mode List', function(msg) {
-			    console.log("Mode List " + msg);
                 var animationContainer = document.getElementById('modeScrollContainer');
+                animationContainer.innerHTML = '';
                 var animationElements = msg;
                 for (var counter = 0; counter < animationElements.length; ++counter) {
                     var newAnimation = document.createElement('div');
