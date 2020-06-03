@@ -159,7 +159,7 @@
 
                     // Add onClick function
                     userColor.oninput = function(event) {
-                        socket.emit('MI Update Client', 'stuff');
+                        socket.emit('MI Update Client', ['UserColor', userColor.innerHTML]);
                     }
 
                     // Append to the webpage
