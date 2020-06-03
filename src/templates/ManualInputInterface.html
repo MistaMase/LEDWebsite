@@ -229,7 +229,7 @@
                     newSlider.setAttribute('type', 'range');
                     newSlider.setAttribute('min', getValue(newSlider, input[2][0]));
                     newSlider.setAttribute('max', getValue(newSlider, input[2][1]));
-                    newSlider.setAttribute('value', getValue(newSlider, input[2][2]));
+                    newSlider.value = getValue(newSlider, input[2][2]);
                     newLabel.setAttribute('id', getDisplayName(input) + 'Label');
                     newLabel.innerHTML = getDisplay(newSlider);
 
