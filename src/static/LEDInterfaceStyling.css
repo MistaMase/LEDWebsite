@@ -122,7 +122,6 @@ body {
     background: transparent;
     width: 30vw;
     height: 60vh;
-    perspective: 100px;
     align-self: center;
     display: block;
 }
