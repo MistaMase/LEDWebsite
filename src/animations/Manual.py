@@ -26,7 +26,7 @@ class Manual(BaseAnimation):
         options = super().getOptions().copy()
 
        # Append the color profile options
-        for name, colors in self.preferences.get_color_preferences():
+        for name, colors in self.preferences.get_color_preferences().items():
             options.append(['UserColor', name, colors])
         return options
 
