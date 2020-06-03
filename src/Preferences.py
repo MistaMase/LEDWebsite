@@ -1,3 +1,5 @@
+import json
+
 class Preferences:
     # Only allow the class to be created once
     _shared_state = {}
@@ -61,50 +63,55 @@ class Preferences:
     # Should only be run during __init__
     def read_debug_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/debug.txt', 'r') as pref_file:
-            for line in pref_file.readlines():
-                line = line.lower().replace(' ', '').strip().split(':')
-                self.debug_preferences[line[0]] = self.try_all_type_cast(line[1])
+            self.debug_preferences = json.load(pref_file)
+#            for line in pref_file.readlines():
+#                line = line.lower().replace(' ', '').strip().split(':')
+#                self.debug_preferences[line[0]] = self.try_all_type_cast(line[1])
 
     # Read animation preferences from its respective file
     # Should only be run during __init__
     def read_animation_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'r') as pref_file:
-            for line in pref_file.readlines():
-                line = line.lower().replace(' ', '').strip().split(':')
-                self.animation_preferences[line[0]] = self.try_all_type_cast(line[1])
+            self.animation_preferences = json.load(pref_file)
+#            for line in pref_file.readlines():
+#                line = line.lower().replace(' ', '').strip().split(':')
+#                self.animation_preferences[line[0]] = self.try_all_type_cast(line[1])
 
     # Read color preferences from its respective file
     # Should only be run during __init__
     def read_color_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'r') as pref_file:
-            for line in pref_file.readlines():
-                line = line.strip().split(':')
-                colors = self.try_all_type_cast(line[1])
-                if len(colors) is not 3:
-                    if self.get_debug_preferences('preferences-debug'):
-                        print("Parameters Debug: Invalid Color, Too Few Numbers")
-                elif not all([type(n) == int for n in colors]):
-                    if self.get_debug_preferences('preferences-debug'):
-                        print("Parameters Debug: Invalid Color, Invalid Number")
-                else:
-                    self.color_preferences[line[0]] = colors
-        print(self.color_preferences)
+            self.color_preferences = json.load(pref_file)
+#            for line in pref_file.readlines():
+#                line = line.strip().split(':')
+#                colors = self.try_all_type_cast(line[1])
+#                if len(colors) is not 3:
+#                   if self.get_debug_preferences('preferences-debug'):
+#                       print("Parameters Debug: Invalid Color, Too Few Numbers")
+#                elif not all([type(n) == int for n in colors]):
+#                    if self.get_debug_preferences('preferences-debug'):
+#                        print("Parameters Debug: Invalid Color, Invalid Number")
+#                else:
+#                    self.color_preferences[line[0]] = colors
+#        print(self.color_preferences)
 
     # Read hardware setup preferences from its respective file
     # Should only be run during __init__
     def read_setup_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/setup.txt', 'r') as pref_file:
-            for line in pref_file.readlines():
-                line = line.lower().replace(' ', '').strip().split(':')
-                self.setup_preferences[line[0]] = self.try_all_type_cast(line[1])
+            self.setup_preferences = json.load(pref_file)
+#            for line in pref_file.readlines():
+#                line = line.lower().replace(' ', '').strip().split(':')
+#                self.setup_preferences[line[0]] = self.try_all_type_cast(line[1])
 
     # Read info from its respective file
     # Should only be run during __init__
     def read_info(self):
         with open('/home/pi/LEDWebsite/preferences/info.txt', 'r') as pref_file:
-            for line in pref_file.readlines():
-                line = line.lower().replace(' ', '').strip().split(':')
-                self.info[line[0]] = self.try_all_type_cast(line[1])
+            self.info = json.load(pref_file)
+#            for line in pref_file.readlines():
+#                line = line.lower().replace(' ', '').strip().split(':')
+#                self.info[line[0]] = self.try_all_type_cast(line[1])
 
     def get_debug_preferences(self, key='all'):
         if key == 'all':

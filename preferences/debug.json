@@ -1,0 +1,6 @@
+{
+    "flask-debug": true,
+    "scenes-debug": true,
+    "website-debug": true,
+    "preferences-debug": true
+}
