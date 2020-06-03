@@ -48,7 +48,7 @@ class Manual(BaseAnimation):
 
     def setParameter(self, param):
         if param[0] == 'UserColor':
-            if param[1] in self.parameters.keys():
+            if param[1] in self.preferences.get_color_preferences().keys():
                 super().setParameter('RValue', self.preferences.get_color_preferences(key=param)[0])
                 super().setParameter('GValue', self.preferences.get_color_preferences(key=param)[1])
                 super().setParameter('BValue', self.preferences.get_color_preferences(key=param)[2])
