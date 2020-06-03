@@ -49,9 +49,9 @@ class Manual(BaseAnimation):
     def setParameter(self, param):
         if param[0] == 'UserColor':
             if param[1] in self.preferences.get_color_preferences().keys():
-                super().setParameter('RValue', self.preferences.get_color_preferences(key=param[1])[0])
-                super().setParameter('GValue', self.preferences.get_color_preferences(key=param[1])[1])
-                super().setParameter('BValue', self.preferences.get_color_preferences(key=param[1])[2])
+                super().setParameter(['RValue', self.preferences.get_color_preferences(key=param[1])[0]])
+                super().setParameter(['GValue', self.preferences.get_color_preferences(key=param[1])[1]])
+                super().setParameter(['BValue', self.preferences.get_color_preferences(key=param[1])[2]])
             else:
                 if self.preferences.get_debug_preferences('scenes-debug'):
                     print('Scenes Debug: Error finding user color ' + str(param[1]))
