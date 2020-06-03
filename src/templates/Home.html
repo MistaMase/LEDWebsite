@@ -87,7 +87,7 @@
 			    socket.emit("Home Connection");
 		    });
 
-		    socket.on('Home Power Status, function(msg) {
+		    socket.on('Home Power Status', function(msg) {
 		        powerIcon = document.getElementById('powerIconContainer');
                 if(msg == 'On') {
                     powerIcon.style.backgroundColor = rgb(0, 255, 0, 0.4)

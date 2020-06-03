@@ -60,7 +60,7 @@
 		        socket.emit("MI Connection");
 	        });
 
-            socket.on('MI Power Status, function(msg) {
+            socket.on('MI Power Status', function(msg) {
 		        powerIcon = document.getElementById('powerIconContainer');
                 if(msg == 'On') {
                     powerIcon.style.backgroundColor = rgb(0, 255, 0, 0.4)
