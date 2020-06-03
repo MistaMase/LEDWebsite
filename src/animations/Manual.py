@@ -23,7 +23,7 @@ class Manual(BaseAnimation):
     # Override the BaseAnimations method to return color profiles also
     def getOptions(self):
         # Get the actual options
-        options = super().getOptions()
+        options = super().getOptions().copy()
 
        # Append the color profile options
         for color in self.preferences.get_color_preferences().keys():
