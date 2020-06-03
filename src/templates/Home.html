@@ -99,20 +99,24 @@
                     powerOn = false;
                 }
                 powerIcon.onclick = function(event) {
-                    togglePower()
+                    togglePower(true)
                 }
 		    });
 
-		    function togglePower() {
+		    function togglePower(emit) {
                 if(powerOn == true) {
                     powerOn = false;
                     powerIcon.style.backgroundColor = "#FFFFFF";
-                    socket.emit('Home Mode Change', 'Off');
+                    if(emit) {
+                        socket.emit('Home Mode Change', 'Off');
+                    }
                 } else {
                     powerOn = true;
                     powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
                     powerIcon.style.borderRadius = "20%";
-                    socket.emit('Home Mode Change', 'On');
+                    if(emit) {
+                        socket.emit('Home Mode Change', 'On');
+                    }
                 }
 		    }
 
@@ -255,9 +259,9 @@
                 if(event.target && event.target.className == 'modeScrollElement'){
                     socket.emit("Home Mode Change", "" + event.target.textContent);
                     if(powerOn && event.target.innerHTML == 'Off') {
-                        togglePower();
+                        togglePower(false);
                     } else if(!powerOn && !(event.target.innerHTML == 'Off')) {
-                        togglePower();
+                        togglePower(false);
                     }
                 }
                 else if(event.target && event.target.id == 'blue') {

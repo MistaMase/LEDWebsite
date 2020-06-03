@@ -72,20 +72,24 @@
                     powerIcon.style.backgroundColor = "#FFFFFF";
                 }
                 powerIcon.onclick = function(event) {
-                    togglePower()
+                    togglePower(true)
                 }
 		    });
 
-		    function togglePower() {
+		    function togglePower(emit) {
                 if(powerOn == true) {
                     powerOn = false;
                     powerIcon.style.backgroundColor = "#FFFFFF";
-                    socket.emit('Home Mode Change', 'Off');
+                    if(emit) {
+                        socket.emit('Home Mode Change', 'Off');
+                    }
                 } else {
                     powerOn = true;
                     powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
                     powerIcon.style.borderRadius = "20%";
-                    socket.emit('Home Mode Change', 'On');
+                    if(emit) {
+                        socket.emit('Home Mode Change', 'On');
+                    }
                 }
 		    }
 
