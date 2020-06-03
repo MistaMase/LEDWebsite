@@ -80,12 +80,12 @@
                 if(powerOn == true) {
                     powerOn = false;
                     powerIcon.style.backgroundColor = "#FFFFFF";
-                    emit('Home Mode Change', 'Off');
+                    socket.emit('Home Mode Change', 'Off');
                 } else {
                     powerOn = true;
                     powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
                     powerIcon.style.borderRadius = "20%";
-                    emit('Home Mode Change', 'On');
+                    socket.emit('Home Mode Change', 'On');
                 }
 		    }
 

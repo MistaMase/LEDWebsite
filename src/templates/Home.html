@@ -107,12 +107,12 @@
                 if(powerOn == true) {
                     powerOn = false;
                     powerIcon.style.backgroundColor = "#FFFFFF";
-                    emit('Home Mode Change', 'Off');
+                    socket.emit('Home Mode Change', 'Off');
                 } else {
                     powerOn = true;
                     powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
                     powerIcon.style.borderRadius = "20%";
-                    emit('Home Mode Change', 'On');
+                    socket.emit('Home Mode Change', 'On');
                 }
 		    }
 
@@ -236,6 +236,11 @@
             document.addEventListener('click', function(event) {
                 if(event.target && event.target.className == 'modeScrollElement'){
                     socket.emit("Home Mode Change", "" + event.target.textContent);
+                    if(powerOn && event.target.innerHTML == 'Off') {
+                        togglePower();
+                    } else if(powerOff && !(event.target.innerHTML == 'Off')) {
+                        togglePower();
+                    }
                 }
                 else if(event.target && event.target.id == 'blue') {
                     alert("blue");
