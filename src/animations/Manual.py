@@ -1,4 +1,5 @@
 from BaseAnimation import BaseAnimation
+from Preferences import Preferences
 
 class Manual(BaseAnimation):
     def __init__(self, pixels, numPixels):
@@ -20,6 +21,19 @@ class Manual(BaseAnimation):
             ['Slider', 'BValue', (0, 255, self.parameters['BValue'])]
         ]
 
+        self.preferences = Preferences()
+
+    # Override the BaseAnimations method to return color profiles also
+    def getOptions(self):
+        # Get the actual options
+        options = super().getOptions()
+
+        # Append the color profile options
+        for color in self.preferences.get_color_preferences.keys():
+            options.append(['UserColor', color])
+        return options
+
+
     def run(self):
         while self.shouldRun:
             if self.shouldUpdate:
@@ -34,5 +48,10 @@ class Manual(BaseAnimation):
         self.shouldRun = False
 
     def setParameter(self, param):
-        super().setParameter(param)
+        if param[0] in self.preferences.keys():
+            super().setParameter('RValue', self.preferences.get_color_preferences(key=param)[0])
+            super().setParameter('GValue', self.preferences.get_color_preferences(key=param)[1])
+            super().setParameter('BValue', self.preferences.get_color_preferences(key=param)[2])
+        else:
+            super().setParameter(param)
         self.shouldUpdate = True
