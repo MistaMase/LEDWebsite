@@ -123,22 +123,6 @@
                     colorProfileContainer.appendChild(removeColorProfileSubmit);
                 }
 
-//                <div id="userColorProfileConfig">
-//                    <!-- Add Custom Color Profile -->
-//                    <label for="userColorProfileAddName" id="userColorProfileAddLabel">New Color Profile Name</label>
-//                    <input type="text" id="userColorProfileAddName">
-//                    <input type="submit" id="userColorProfileAddSubmit" value="Add" onclick=addColorProfile()>
-//                    <br>
-//
-//                    <!-- Remove Existing Color Profile -->
-//                    <label for="userColorProfileRemoveSelect" id="userColorProfileRemoveLabel">Remove Color Profile</label>
-//                    <select id="userColorProfileRemoveSelect" onchange=showProfileColor()>
-//                        <option selected disabled hidden>Select a Color Profile</option>
-//                    </select>
-//                    <input type="submit" id="userColorProfileRemoveSubmit" value="Remove" onclick=removeColorProfile()>
-//                </div>
-
-
                 // Remove the existing color profiles and add the default color profile
                 var select = document.getElementById('userColorProfileRemoveSelect');
                 select.innerHTML = '';
@@ -178,7 +162,7 @@
 	                var rvalue = document.getElementById('RValue').value;
 	                var gvalue = document.getElementById('GValue').value;
 	                var bvalue = document.getElementById('BValue').value;
-	                socket.emit('MI Add Color Profile', [profileName.value, [rvalue, gvalue, bvalue]);
+	                socket.emit('MI Add Color Profile', [profileName.value, [rvalue, gvalue, bvalue]]);
                     profileName.value = '';
 	            }
 	        }
@@ -197,6 +181,10 @@
                     document.getElementById('BValue').value = UserColorProfileColors[selectBoxSelectedOption][2];
                     bvalue.innerHTML = UserColorProfileColors[selectBoxSelectedOption][2]
                     setColor();
+                    socket.emit('MI Update Client', ['RValue', rvalue.innerHTML);
+                    socket.emit('MI Update Client', ['GValue', gvalue.innerHTML);
+                    socket.emit('MI Update Client', ['BValue', bvalue.innerHTML);
+
                 }
 	        }
 
