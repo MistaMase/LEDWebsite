@@ -161,7 +161,7 @@ class Preferences:
             if value is None:
                 self.animation_preferences.pop(key)
             else:
-                self.animation_preferences[key] = self.try_all_type_cast(value)
+                self.animation_preferences[key] = value
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'w') as pref_file:
@@ -184,7 +184,7 @@ class Preferences:
             if value is None:
                 self.color_preferences.pop(key)
             else:
-                self.color_preferences[key] = self.try_all_type_cast(value)
+                self.color_preferences[key] = value
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
@@ -208,7 +208,7 @@ class Preferences:
             if value is None:
                 self.setup_preferences.pop(key)
             else:
-                self.setup_preferences[key] = self.try_all_type_cast(value)
+                self.setup_preferences[key] = value
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/setup.txt', 'w') as pref_file:
@@ -231,7 +231,7 @@ class Preferences:
             if value is None:
                 self.info.pop(key)
             else:
-                self.info[key] = self.try_all_type_cast(value)
+                self.info[key] = value
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/info.txt', 'w') as pref_file:
