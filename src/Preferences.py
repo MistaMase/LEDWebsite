@@ -27,6 +27,7 @@ class Preferences:
             print('Parameters Debug: Setup Preferences ' + str(self.setup_preferences))
             print('Parameters Debug: Info ' + str(self.info))
 
+
     def try_all_type_cast(self, line):
         current_line = ()
         parsed_line = line.strip().split(' ')
@@ -59,59 +60,41 @@ class Preferences:
                         return value
         return current_line
 
+
     # Read debug preferences from its respective file
     # Should only be run during __init__
     def read_debug_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/debug.json', 'r') as pref_file:
             self.debug_preferences = json.load(pref_file)
-#            for line in pref_file.readlines():
-#                line = line.lower().replace(' ', '').strip().split(':')
-#                self.debug_preferences[line[0]] = self.try_all_type_cast(line[1])
+
 
     # Read animation preferences from its respective file
     # Should only be run during __init__
     def read_animation_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/animation-order.json', 'r') as pref_file:
             self.animation_preferences = json.load(pref_file)
-#            for line in pref_file.readlines():
-#                line = line.lower().replace(' ', '').strip().split(':')
-#                self.animation_preferences[line[0]] = self.try_all_type_cast(line[1])
+
 
     # Read color preferences from its respective file
     # Should only be run during __init__
     def read_color_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/custom-colors.json', 'r') as pref_file:
             self.color_preferences = json.load(pref_file)
-#            for line in pref_file.readlines():
-#                line = line.strip().split(':')
-#                colors = self.try_all_type_cast(line[1])
-#                if len(colors) is not 3:
-#                   if self.get_debug_preferences('preferences-debug'):
-#                       print("Parameters Debug: Invalid Color, Too Few Numbers")
-#                elif not all([type(n) == int for n in colors]):
-#                    if self.get_debug_preferences('preferences-debug'):
-#                        print("Parameters Debug: Invalid Color, Invalid Number")
-#                else:
-#                    self.color_preferences[line[0]] = colors
-#        print(self.color_preferences)
+
 
     # Read hardware setup preferences from its respective file
     # Should only be run during __init__
     def read_setup_preferences(self):
         with open('/home/pi/LEDWebsite/preferences/setup.json', 'r') as pref_file:
             self.setup_preferences = json.load(pref_file)
-#            for line in pref_file.readlines():
-#                line = line.lower().replace(' ', '').strip().split(':')
-#                self.setup_preferences[line[0]] = self.try_all_type_cast(line[1])
+
 
     # Read info from its respective file
     # Should only be run during __init__
     def read_info(self):
         with open('/home/pi/LEDWebsite/preferences/info.json', 'r') as pref_file:
             self.info = json.load(pref_file)
-#            for line in pref_file.readlines():
-#                line = line.lower().replace(' ', '').strip().split(':')
-#                self.info[line[0]] = self.try_all_type_cast(line[1])
+
 
     def get_debug_preferences(self, key='all'):
         if key == 'all':
@@ -119,11 +102,13 @@ class Preferences:
         else:
             return self.debug_preferences[key]
 
+
     def get_animation_preferences(self, key='all'):
         if key == 'all':
             return self.animation_preferences
         else:
             return self.animation_preferences[key]
+
 
     def get_color_preferences(self, key='all'):
         if key == 'all':
@@ -131,11 +116,13 @@ class Preferences:
         else:
             return self.color_preferences[key]
 
+
     def get_setup_preferences(self, key='all'):
         if key == 'all':
             return self.setup_preferences
         else:
             return self.setup_preferences[key]
+
 
     def get_info(self, key='all'):
         if key == 'all':
@@ -143,24 +130,26 @@ class Preferences:
         else:
             return self.info[key]
 
+
     def change_debug_preference(self, key, value):
         try:
             # Change locally
             if value is None:
                 self.debug_preferences.pop(key)
             else:
-                self.debug_preferences[key] = self.try_all_type_cast(value)
+                self.debug_preferences[key] = value
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/debug.txt', 'w') as pref_file:
-                for key, value in self.debug_preferences.items():
-                    if type(value) == tuple or type(value) == list:
-                        pref_file.write(str(key) + ':')
-                        for val in value:
-                            pref_file.write(str(val) + ' ')
-                        pref_file.write('\n')
-                    else:
-                        pref_file.write(str(key) + ':' + str(value) + '\n')
+                json.dump(self.debug_preferences, pref_file)
+                # for key, value in self.debug_preferences.items():
+                #     if type(value) == tuple or type(value) == list:
+                #         pref_file.write(str(key) + ':')
+                #         for val in value:
+                #             pref_file.write(str(val) + ' ')
+                #         pref_file.write('\n')
+                #     else:
+                #         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Parameters Debug: Error Updating Debug Preferences Dictionary with ' + str(key))
@@ -174,17 +163,17 @@ class Preferences:
             else:
                 self.animation_preferences[key] = self.try_all_type_cast(value)
 
-
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/animation-order.txt', 'w') as pref_file:
-                for key, value in self.animation_preferences.items():
-                    if type(value) == tuple or type(value) == list:
-                        pref_file.write(str(key) + ':')
-                        for val in value:
-                            pref_file.write(str(val) + ' ')
-                        pref_file.write('\n')
-                    else:
-                        pref_file.write(str(key) + ':' + str(value) + '\n')
+                json.dump(self.animation_preferences, pref_file)
+                # for key, value in self.animation_preferences.items():
+                #     if type(value) == tuple or type(value) == list:
+                #         pref_file.write(str(key) + ':')
+                #         for val in value:
+                #             pref_file.write(str(val) + ' ')
+                #         pref_file.write('\n')
+                #     else:
+                #         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Parameters Debug: Error Updating Animation Preferences Dictionary with ' + str(key))
@@ -199,14 +188,15 @@ class Preferences:
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/custom-colors.txt', 'w') as pref_file:
-                for key, value in self.color_preferences.items():
-                    if type(value) == tuple or type(value) == list:
-                        pref_file.write(str(key) + ':')
-                        for val in value:
-                            pref_file.write(str(val) + ' ')
-                        pref_file.write('\n')
-                    else:
-                        pref_file.write(str(key) + ':' + str(value) + '\n')
+                json.dump(self.color_preferences, pref_file)
+                # for key, value in self.color_preferences.items():
+                #     if type(value) == tuple or type(value) == list:
+                #         pref_file.write(str(key) + ':')
+                #         for val in value:
+                #             pref_file.write(str(val) + ' ')
+                #         pref_file.write('\n')
+                #     else:
+                #         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Parameters Debug: Error Updating Color Preferences Dictionary with ' + str(key))
@@ -222,14 +212,15 @@ class Preferences:
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/setup.txt', 'w') as pref_file:
-                for key, value in self.setup_preferences.items():
-                    if type(value) == tuple or type(value) == list:
-                        pref_file.write(str(key) + ':')
-                        for val in value:
-                            pref_file.write(str(val) + ' ')
-                        pref_file.write('\n')
-                    else:
-                        pref_file.write(str(key) + ':' + str(value) + '\n')
+                json.dump(self.setup_preferences, pref_file)
+                # for key, value in self.setup_preferences.items():
+                #     if type(value) == tuple or type(value) == list:
+                #         pref_file.write(str(key) + ':')
+                #         for val in value:
+                #             pref_file.write(str(val) + ' ')
+                #         pref_file.write('\n')
+                #     else:
+                #         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Parameters Debug: Error Updating Setup Preferences Dictionary with ' + str(key))
@@ -244,14 +235,15 @@ class Preferences:
 
             # Update the file accordingly
             with open('/home/pi/LEDWebsite/preferences/info.txt', 'w') as pref_file:
-                for key, value in self.info.items():
-                    if type(value) == tuple or type(value) == list:
-                        pref_file.write(str(key) + ':')
-                        for val in value:
-                            pref_file.write(' ' + str(val))
-                        pref_file.write('\n')
-                    else:
-                        pref_file.write(str(key) + ':' + str(value) + '\n')
+                json.dump(self.info, pref_file)
+                # for key, value in self.info.items():
+                #     if type(value) == tuple or type(value) == list:
+                #         pref_file.write(str(key) + ':')
+                #         for val in value:
+                #             pref_file.write(' ' + str(val))
+                #         pref_file.write('\n')
+                #     else:
+                #         pref_file.write(str(key) + ':' + str(value) + '\n')
         except KeyError:
             if self.get_debug_preferences('preferences-debug'):
                 print('Parameters Debug: Error Updating Info Dictionary with ' + str(key))
