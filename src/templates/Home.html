@@ -90,7 +90,8 @@
 		    socket.on('Home Power Status', function(msg) {
 		        powerIcon = document.getElementById('powerIcon');
                 if(msg == 'On') {
-                    powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.4)";
+                    powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
+                    powerIcon.style.borderRadius = "20%";
                 } else {
                     powerIcon.style.backgroundColor = "#FFFFFF";
                 }
