@@ -84,7 +84,6 @@
             var powerOn = false;
 
 		    socket.on('connect', function() {
-			    console.log("Home Socket Connected");
 			    socket.emit("Home Connection");
 		    });
 
@@ -138,7 +137,6 @@
 		        var sliderContainer = document.getElementById('manualInterfaceParameterContainer');
 		        sliderContainer.innerHTML = '';
 		        for(var i = 0; i < msg.length; i++){
-		            console.log(msg[i])
                     createOption(msg[i]);
                 }
 		    });
@@ -192,7 +190,6 @@
                     // Add onClick function
                     userColor.onclick = function(event) {
                         socket.emit('MI Update Client', ['UserColor', userColor.innerHTML]);
-                        console.log("Clicked profile");
                     }
 
                     // Append to the webpage
@@ -243,7 +240,6 @@
                     }
                 }
                 else if(event.target && event.target.id == 'blue') {
-                    alert("blue");
                     socket.emit('Home Color Change', [0, 0, 255]);
                 }
                 else if(event.target && event.target.id == 'yellow') {

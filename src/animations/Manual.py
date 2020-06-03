@@ -28,8 +28,6 @@ class Manual(BaseAnimation):
        # Append the color profile options
         for color in self.preferences.get_color_preferences().keys():
             options.append(['UserColor', color])
-        print("OPTIONS")
-        print(options)
         return options
 
 
