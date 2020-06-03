@@ -14,9 +14,9 @@
     <body>
         <div class="header">
             <!-- Power Icon -->
-            <a href="{{ url_for('home') }}" class="headerCell">
+            <div class="headerCell">
 		        <img class="headerIconImage" id="powerIcon" src="{{ url_for('static', filename='assets/power_icon_off.svg') }}">
-            </a>
+            </div>
 
             <!-- IP Address -->
             <label id="ipAddress" class="headerCell">
@@ -53,6 +53,7 @@
         <script type='text/javascript' charset='utf-8'>
             var SliderContainer = document.getElementById("sliderContainer");
             var UserColorProfileColors;
+            var powerOn = false;
 
             var socket = io();
 
@@ -63,12 +64,30 @@
             socket.on('MI Power Status', function(msg) {
 		        powerIcon = document.getElementById('powerIcon');
                 if(msg == 'On') {
+                    powerOn = true;
                     powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
                     powerIcon.style.borderRadius = "20%";
                 } else {
+                    powerOn = false;
                     powerIcon.style.backgroundColor = "#FFFFFF";
                 }
+                powerIcon.onclick = function(event) {
+                    togglePower()
+                }
 		    });
+
+		    function togglePower() {
+                if(powerOn == true) {
+                    powerOn = false;
+                    powerIcon.style.backgroundColor = "#FFFFFF";
+                    emit('Home Mode Change', 'Off');
+                } else {
+                    powerOn = true;
+                    powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
+                    powerIcon.style.borderRadius = "20%";
+                    emit('Home Mode Change', 'On');
+                }
+		    }
 
 	        socket.on('MI Parameters', function(msg) {
                 for(var i = 0; i < msg.length; i++){

@@ -14,9 +14,9 @@
     <body>
         <div class="header">
             <!-- Power Icon -->
-            <a href="{{ url_for('home') }}" class="headerCell">
+            <div class="headerCell">
 		        <img class="headerIconImage" id="powerIcon" src="{{ url_for('static', filename='assets/power_icon_off.svg') }}">
-            </a>
+            </div>
 
             <!-- IP Address -->
             <label id="ipAddress" class="headerCell">
@@ -81,6 +81,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
         <script type="text/javascript" charset="utf-8">
             var socket = io();
+            var powerOn = false;
 
 		    socket.on('connect', function() {
 			    console.log("Home Socket Connected");
@@ -90,12 +91,30 @@
 		    socket.on('Home Power Status', function(msg) {
 		        powerIcon = document.getElementById('powerIcon');
                 if(msg == 'On') {
+                    powerOn = true;
                     powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
                     powerIcon.style.borderRadius = "20%";
                 } else {
                     powerIcon.style.backgroundColor = "#FFFFFF";
+                    powerOn = false;
+                }
+                powerIcon.onclick = function(event) {
+                    togglePower()
                 }
 		    });
+
+		    function togglePower() {
+                if(powerOn == true) {
+                    powerOn = false;
+                    powerIcon.style.backgroundColor = "#FFFFFF";
+                    emit('Home Mode Change', 'Off');
+                } else {
+                    powerOn = true;
+                    powerIcon.style.backgroundColor = "rgba(0, 0, 255, 0.7)";
+                    powerIcon.style.borderRadius = "20%";
+                    emit('Home Mode Change', 'On');
+                }
+		    }
 
 		    socket.on('Home Mode List', function(msg) {
 			    console.log("Mode List " + msg);
