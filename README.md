@@ -3,11 +3,10 @@
 Added Automatic Updates  
 
 ## Version 1.0.2 - Web Interface Improvements  
-Improved Slider Logic (:after)  
+Improved Slider Logic  
 Manual Mode Named Presets  
 Power Button Functionality  
-Working Color Presets  
-Manual Pane Slider Icon Improvements  
+Working Color Presets
 
 ## Version 1.0.3 - Backend Improvements  
 Improved Refresh Rate (Python?)  
