@@ -3,7 +3,7 @@
 Added Automatic Updates  
 
 ## Version 1.0.2 - Web Interface Improvements  
-Improved Slider Logic
+Improved Slider Logic  
 Manual Mode Named Presets  
 Power Button Functionality  
 Working Color Presets
