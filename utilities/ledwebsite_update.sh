@@ -23,7 +23,7 @@ for x in $RESULT; do
         git clone https://github.com/MistaMase/LEDWebsite.git
 
         # Move the "new" files to the LEDWebsite directory
-        rsync -r LEDWebsite/ ../
+        rsync -r LEDWebsite/ ../../
 
         # Cleanup the download
         rm -r ../update
