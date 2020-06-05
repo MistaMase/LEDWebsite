@@ -5,12 +5,6 @@ from flask_socketio import SocketIO, emit
 # IP Address Import
 import socket
 
-# Hardware Information
-import hardwareInfo as hwInfo
-
-# User Preferences
-from Preferences import Preferences
-
 # Update Shell Script
 import os
 
@@ -24,7 +18,11 @@ import populate_prefs as pop_prefs
 pop_prefs.cleanup_prefs()
 
 # Set up user settings
+from Preferences import Preferences
 preferences = Preferences()
+
+# Hardware Information
+import hardwareInfo as hwInfo
 
 # LED Light Imports
 import scenes as scenes
