@@ -15,13 +15,11 @@ for file in mandatory_parameters:
         with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'r') as pref_file:
             params = json.load(pref_file)
 
-        print(params)
-
         # Brute force check if the file has the key
         for key in mandatory_parameters[file]:
             print(key)
-            #if mandatory_parameters[file][key] in params.keys():
-            #    print(params[key])
+            if key in params.keys():
+                print(params[key])
 
 
    #for file in x:
