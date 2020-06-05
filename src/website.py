@@ -5,9 +5,6 @@ from flask_socketio import SocketIO, emit
 # IP Address Import
 import socket
 
-# LED Light Imports
-import scenes as scenes
-
 # Hardware Information
 import hardwareInfo as hwInfo
 
@@ -28,6 +25,9 @@ pop_prefs.cleanup_prefs()
 
 # Set up user settings
 preferences = Preferences()
+
+# LED Light Imports
+import scenes as scenes
 
 # Flask route for '/' which redirects to '/home'
 @app.route('/')
