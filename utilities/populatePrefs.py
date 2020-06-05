@@ -9,18 +9,18 @@ with open('mandatory_setup.json', 'r') as file:
     mandatory_parameters = json.load(file)
 
 for file in mandatory_parameters:
+    params = {}
     if path.exists('/home/pi/LEDWebsite/preferences/' + str(file) + '.json'):
         # Read the values in that file
         with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'r') as pref_file:
             params = json.load(pref_file)
 
-        # Brute force check if the file has the key
-        for key in mandatory_parameters[file]:
-            print(key)
-            if key in params.keys():
-                print('Found the param for ' + key)
+    # Brute force check if the file has the mandatory key, and if not add it to the dictionary
+    for key in mandatory_parameters[file]:
+        print(key)
+        if not key in params.keys():
+            params[key] = mandatory_parameters[file][key]
 
-
-   #for file in x:
-   #     for value in x[file]:
-   #         print(value)
+    # Write the parameters back to the file
+    with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json') as write_file:
+        json.dump(params)
