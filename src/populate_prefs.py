@@ -4,7 +4,7 @@ from os import path
 
 def cleanup_prefs():
     # Read from the mandatory_setup.json
-    with open('mandatory_setup.json', 'r') as file:
+    with open('/home/pi/LEDWebsite/preferences/mandatory_setup.json', 'r') as file:
         mandatory_parameters = json.load(file)
 
     for file in mandatory_parameters:
