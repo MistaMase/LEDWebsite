@@ -13,7 +13,8 @@ for file in mandatory_parameters:
     print('/home/pi/LEDWebsite/preferences/' + str(file) + '.json')
     if path.exists('/home/pi/LEDWebsite/preferences/' + str(file) + '.json'):
         # Read the values in that file
-        params = json.load('/home/pi/LEDWebsite/preferences/' + str(file) + '.json')
+        with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'r') as pref_file:
+            params = json.load(pref_file)
 
         # Brute force check if the file has the key
         for key in mandatory_parameters[file]:
