@@ -22,6 +22,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'myspecialsecret'
 socketio = SocketIO(app)
 
+# Clean up the preferences file
+import populate_prefs as pop_prefs
+pop_prefs.cleanup_prefs()
+
 # Set up user settings
 preferences = Preferences()
 
