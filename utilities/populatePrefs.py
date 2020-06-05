@@ -9,7 +9,6 @@ with open('mandatory_setup.json', 'r') as file:
     mandatory_parameters = json.load(file)
 
 for file in mandatory_parameters:
-    print('/home/pi/LEDWebsite/preferences/' + str(file) + '.json')
     if path.exists('/home/pi/LEDWebsite/preferences/' + str(file) + '.json'):
         # Read the values in that file
         with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'r') as pref_file:
@@ -19,7 +18,7 @@ for file in mandatory_parameters:
         for key in mandatory_parameters[file]:
             print(key)
             if key in params.keys():
-                print(params[key])
+                print('Found the param for ' + key)
 
 
    #for file in x:
