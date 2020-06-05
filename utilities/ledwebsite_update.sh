@@ -29,7 +29,7 @@ for x in $RESULT; do
         rm -r ../update
 
         # Correct the permissions
-        cd /home/pi/LEDWebsite
+        cd /home/pi/LEDWebsite/
         sudo chown -R "${USER:-$(id -un)}" .
 
     fi
