@@ -21,6 +21,8 @@ for file in mandatory_parameters:
         if not key in params.keys():
             params[key] = mandatory_parameters[file][key]
 
+    print(params)
+
     # Write the parameters back to the file
-    with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json') as write_file:
-        json.dump(params, write_file)
+#    with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json') as write_file:
+#        json.dump(params, write_file)
