@@ -10,10 +10,10 @@ with open('mandatory_setup.json', 'r') as file:
 
 for file in mandatory_parameters:
     print(str(file))
-    print('/home/pi/LEDWebsite/preferences' + str(file) + '.json')
-    if path.exists('/home/pi/LEDWebsite/preferences' + str(file) + '.json'):
+    print('/home/pi/LEDWebsite/preferences/' + str(file) + '.json')
+    if path.exists('/home/pi/LEDWebsite/preferences/' + str(file) + '.json'):
         # Read the values in that file
-        params = json.load('/home/pi/LEDWebsite/preferences' + str(file) + '.json')
+        params = json.load('/home/pi/LEDWebsite/preferences/' + str(file) + '.json')
 
         # Brute force check if the file has the key
         for key in mandatory_parameters[file]:
