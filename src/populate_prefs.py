@@ -23,5 +23,5 @@ def cleanup_prefs():
         print(params)
 
         # Write the parameters back to the file
-        with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'w') as write_file:
+        with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'w+') as write_file:
             json.dump(params, write_file)
