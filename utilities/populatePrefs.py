@@ -18,8 +18,10 @@ for file in mandatory_parameters:
 
         # Brute force check if the file has the key
         for key in mandatory_parameters[file]:
-            if mandatory_parameters[file][key] in params.keys():
-                print(params[key])
+            print(key)
+            print(mandatory_parameters[file][key])
+            #if mandatory_parameters[file][key] in params.keys():
+            #    print(params[key])
 
 
    #for file in x:
