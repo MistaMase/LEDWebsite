@@ -23,4 +23,4 @@ for file in mandatory_parameters:
 
     # Write the parameters back to the file
     with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json') as write_file:
-        json.dump(params)
+        json.dump(params, write_file)
