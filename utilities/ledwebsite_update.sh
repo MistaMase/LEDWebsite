@@ -27,5 +27,10 @@ for x in $RESULT; do
 
         # Cleanup the download
         rm -r ../update
+
+        # Correct the permissions
+        cd /home/pi/LEDWebsite
+        sudo chown -R "${USER:-$(id -un)}" .
+
     fi
 done
