@@ -1,0 +1,17 @@
+{
+  "animation-order": {},
+  "custom-colors": {},
+  "debug": {
+    "flask-debug": false,
+    "scenes-debug": false,
+    "website-debug": false,
+    "preferences-debug": false
+  },
+  "info": {
+    "version": "1.0.2.1"
+  },
+  "setup": {
+    "num-pixels": 300,
+    "brightness": 0.5
+  }
+}
