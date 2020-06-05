@@ -24,6 +24,7 @@ Completely redesigned user interface
 6. Wait for Network at Boot (raspi-config)  
 7. Enable Interfaces (raspi-config)  
 8. Expand Filesystem (raspi-config)  
-9. Update
-10. Clone Repo to /home/pi/
-11. 
+9. Install vim
+10. Update
+11. Clone Repo to /home/pi/
+11. Run LEDWebsite/utilities/firstTimeSetup  
