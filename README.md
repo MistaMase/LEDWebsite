@@ -9,7 +9,7 @@ Power Button Functionality
 Working Color Presets
 
 ## Verison 1.0.2.1 - User Preferences and Update Fixes
-User Preferences Persist upon Update
+User Preferences Persist upon Update  
 Improved update script
 
 ## Version 1.0.2.2 - 
