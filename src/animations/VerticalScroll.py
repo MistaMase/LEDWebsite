@@ -21,7 +21,7 @@ class VerticalScroll(BaseAnimation):
         while self.shouldRun:
             for row in range(len(layout.I)):
                 for col in range(len(layout.I[row])) :
-                    self.pixels[112 + layout[row][col]] = (255, 255, 255)
+                    self.pixels[112 + layout.I[row][col]] = (255, 255, 255)
                 self.pixels.show()
                 time.sleep(float(self.parameters['Sleep']))
 
