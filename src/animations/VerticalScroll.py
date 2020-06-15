@@ -1,6 +1,6 @@
 from BaseAnimation import BaseAnimation
 import time
-import letterlayout
+import letterlayout as layout
 
 class VerticalScroll(BaseAnimation):
     def __init__(self, pixels, numPixels):
@@ -19,8 +19,8 @@ class VerticalScroll(BaseAnimation):
 
     def run(self):
         while self.shouldRun:
-            for row in range(len(I)):
-                for col in range(len(I[0])) :
+            for row in range(len(layout.I)):
+                for col in range(len(layout.I[row])) :
                     self.pixels[row][col] = (255, 255, 255)
                 self.pixels.show()
                 time.sleep(float(self.parameters['Sleep']))
