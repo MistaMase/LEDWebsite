@@ -9,7 +9,7 @@ class VerticalScroll(BaseAnimation):
 
         # Internal settings for the possible options
         self.parameters = {
-            'Sleep': 0.0
+            'Sleep': 1.0
         }
 
         # Options returned by the website
