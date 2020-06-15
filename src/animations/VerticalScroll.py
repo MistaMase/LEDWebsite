@@ -19,11 +19,20 @@ class VerticalScroll(BaseAnimation):
 
     def run(self):
         while self.shouldRun:
+            # Color the letter
             for row in range(len(layout.I)):
                 for col in range(len(layout.I[row])) :
-                    self.pixels[112 + layout.I[row][col]] = (255, 255, 255)
+                    if layout.I[row][col] != -1:
+                        self.pixels[112 + layout.I[row][col]] = (255, 255, 255)
                 self.pixels.show()
                 time.sleep(float(self.parameters['Sleep']))
+
+            # Black out the letter
+            for row in range(len(layout.I)):
+                for col in range(len(layout.I[row])) :
+                    if layout.I[row][col] != -1:
+                        self.pixels[112 + layout.I[row][col]] = (0, 0, 0)
+                self.pixels.show()
 
     def stop(self):
         self.shouldRun = False
