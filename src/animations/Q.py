@@ -4,7 +4,7 @@ import letterlayout as layout
 
 class VerticalScroll(BaseAnimation):
     def __init__(self, pixels, numPixels):
-        super().__init__(pixels, numPixels, 'VerticalScroll')
+        super().__init__(pixels, numPixels, 'Q')
         self.shouldRun = True
 
         # Internal settings for the possible options
@@ -23,18 +23,18 @@ class VerticalScroll(BaseAnimation):
 
         while self.shouldRun:
             # Color the letter
-            for row in range(len(layout.I)):
-                for col in range(len(layout.I[row])) :
-                    if layout.I[row][col] != -1:
-                        self.pixels[112 + layout.I[row][col]] = (255, 255, 255)
+            for row in range(len(layout.Q)):
+                for col in range(len(layout.Q[row])) :
+                    if layout.Q[row][col] != -1:
+                        self.pixels[layout.Q[row][col]] = (255, 255, 255)
                 self.pixels.show()
                 time.sleep(float(self.parameters['Sleep']))
 
             # Black out the letter
-            for row in range(len(layout.I)):
-                for col in range(len(layout.I[row])) :
-                    if layout.I[row][col] != -1:
-                        self.pixels[112 + layout.I[row][col]] = (0, 0, 0)
+            for row in range(len(layout.Q)):
+                for col in range(len(layout.Q[row])) :
+                    if layout.Q[row][col] != -1:
+                        self.pixels[layout.Q[row][col]] = (0, 0, 0)
             self.pixels.show()
 
     def stop(self):
