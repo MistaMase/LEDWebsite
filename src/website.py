@@ -138,6 +138,7 @@ def sendHardwareInfo():
         print("Website Debug: HI Requesting Periodic Update")
     emit('HI Update Server', hwInfo.getInfo())
 
+
 # Prevent browsers from caching anything
 @app.after_request
 def addHeader(r):
@@ -147,12 +148,14 @@ def addHeader(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
+
 # Gets the current IP Address
 def getIpAddress():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     return s.getsockname()[0]
 
+
 # Runs the entire python script
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port='5050', debug=preferences.get_debug_preferences('flask-debug'))
+    socketio.run(app, host='0.0.0.0', port='80', debug=preferences.get_debug_preferences('flask-debug'))

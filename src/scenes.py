@@ -11,6 +11,8 @@ import sys
 import inspect
 import pkgutil
 from importlib import import_module
+
+# Dynamically imports all of the modules in the "animations" folder
 animations = []
 animationNames = []
 for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/src/animations')]):
