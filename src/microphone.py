@@ -1,31 +1,17 @@
-from threading import Thread
+import time
 import pyaudio
-import numpy as np
-
-class Microphone(Thread):
-    def __init__(self):
-        self.sampling_rate = 44100      # Sampling rate of the recording device
-        self.chunk_size = 4096          # Number of data points to read at a time
-        self.refresh_rate = 30          # Updates per second
-
-        # Create the PyAudio object
-        self.audio = pyaudio.PyAudio()
-        self.audio_stream = self.audio.open(format=pyaudio.paInt16, channels=1, rate=self.sampling_rate, input=True,
-                                            frames_per_buffer=self.chunk_size)
-
-    # Destructor to gracefully close the audio stream
-    def __del__(self):
-        self.audio_stream.stop_stream()
-        self.audio_stream.close()
-        self.audio.terminate()
-
-
-    # Continually listen for sound input
-    def run(self):
-        for i in range(10):
-            data = np.fromstring(self.audio_stream.read(self.chunk_size), dtype=np.int16)
-            print(data)
 
 
 if __name__ == '__main__':
-    mic = Microphone()
+    pa = pyaudio.PyAudio()
+    stream_in = pa.open(
+            rate=48000,
+            channels=2,
+            format=pyaudio.paInt16,
+            input=True,
+            input_device_index=2,
+            frames_per_buffer=1024)
+
+    print('Recording')
+    input_audio = stream_in.read(5 * 48000)
+    print('Finished')
