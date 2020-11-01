@@ -1,4 +1,8 @@
 import json
+from os import path
+
+# Inform the module of the globals
+global logger
 
 '''
     File List
@@ -31,7 +35,9 @@ import json
 class Preferences:
     # Only allow the class to be created once
     _shared_state = {}
+
     def __init__(self):
+        # TODO Do I still need this?
         # 'Singleton' for this class
         self.__dict__ = self._shared_state
 
@@ -42,18 +48,42 @@ class Preferences:
         self.setup_preferences = {}
         self.info = {}
 
+        # Make sure all the mandatory preferences are set
+        # If not, fill them with the default value
+        self.populate_mandatory_prefs()
+
         # Read all the preferences in
         self.read_debug_preferences()
         self.read_animation_preferences()
         self.read_color_preferences()
         self.read_setup_preferences()
         self.read_info()
-        if self.get_debug_preferences('preferences-debug'):
-            print('Parameters Debug: Debug Preferences ' + str(self.debug_preferences))
-            print('Parameters Debug: Animation Preferences ' + str(self.animation_preferences))
-            print('Parameters Debug: Color Preferences ' + str(self.color_preferences))
-            print('Parameters Debug: Setup Preferences ' + str(self.setup_preferences))
-            print('Parameters Debug: Info ' + str(self.info))
+        logger.log('Preferences', f'Debug Preferences {str(self.debug_preferences)}')
+        logger.log('Preferences', f'Animation Preferences {str(self.animation_preferences)}')
+        logger.log('Preferences', f'Color Preferences {str(self.color_preferences)}')
+        logger.log('Preferences', f'Setup Preferences {str(self.setup_preferences)}')
+        logger.log('Preferences', f'Info {str(self.info)}')
+
+    def populate_mandatory_prefs(self):
+        # Read from the mandatory_setup.json
+        with open('/home/pi/LEDWebsite/preferences/mandatory_setup.json', 'r') as file:
+            mandatory_parameters = json.load(file)
+
+        for file in mandatory_parameters:
+            params = {}
+            if path.exists('/home/pi/LEDWebsite/preferences/' + str(file) + '.json'):
+                # Read the values in that file
+                with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'r') as pref_file:
+                    params = json.load(pref_file)
+
+            # Brute force check if the file has the mandatory key, and if not add it to the dictionary
+            for key in mandatory_parameters[file]:
+                if not key in params.keys():
+                    params[key] = mandatory_parameters[file][key]
+
+            # Write the parameters back to the file
+            with open('/home/pi/LEDWebsite/preferences/' + str(file) + '.json', 'w+') as write_file:
+                json.dump(params, write_file)
 
     # Read debug preferences from its respective file
     # Should only be run during __init__
@@ -139,8 +169,7 @@ class Preferences:
                 json.dump(self.debug_preferences, pref_file)
 
         except KeyError:
-            if self.get_debug_preferences('preferences-debug'):
-                print('Parameters Debug: Error Updating Debug Preferences Dictionary with ' + str(key))
+            logger.log('Preferences', f'Error Updating Debug Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in animation dictionary
     def change_animation_preference(self, key, value):
@@ -156,8 +185,7 @@ class Preferences:
                 json.dump(self.animation_preferences, pref_file)
 
         except KeyError:
-            if self.get_debug_preferences('preferences-debug'):
-                print('Parameters Debug: Error Updating Animation Preferences Dictionary with ' + str(key))
+            logger.log('Preferences', f'Error Updating Animation Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in color dictionary
     def change_color_preference(self, key, value):
@@ -173,8 +201,7 @@ class Preferences:
                 json.dump(self.color_preferences, pref_file)
 
         except KeyError:
-            if self.get_debug_preferences('preferences-debug'):
-                print('Parameters Debug: Error Updating Color Preferences Dictionary with ' + str(key))
+            logger.log('Preferences', f'Error Updating Color Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in setup dictionary
     def change_setup_preference(self, key, value):
@@ -190,8 +217,7 @@ class Preferences:
                 json.dump(self.setup_preferences, pref_file)
 
         except KeyError:
-            if self.get_debug_preferences('preferences-debug'):
-                print('Parameters Debug: Error Updating Setup Preferences Dictionary with ' + str(key))
+            logger.log('Preferences', f'Error Updating Setup Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in info dictionary
     def change_info(self, key, value):
@@ -207,5 +233,4 @@ class Preferences:
                 json.dump(self.info, pref_file)
 
         except KeyError:
-            if self.get_debug_preferences('preferences-debug'):
-                print('Parameters Debug: Error Updating Info Dictionary with ' + str(key))
+            logger.log('Preferences', f'Error Updating Info Dictionary with {str(key)}')

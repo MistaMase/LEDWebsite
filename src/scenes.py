@@ -2,8 +2,9 @@
 import board
 import neopixel
 
-# User Preferences
-from Preferences import Preferences
+# Inform the module of the globals
+global logger
+
 
 # Dynamic Animation Imports
 from pathlib import Path
@@ -13,6 +14,7 @@ import pkgutil
 from importlib import import_module
 
 # Dynamically imports all of the modules in the "animations" folder
+# TODO Change This
 animations = []
 animationNames = []
 for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/src/animations')]):
@@ -24,75 +26,76 @@ for (_, name, _) in pkgutil.iter_modules([Path('/home/pi/LEDWebsite/src/animatio
             if inspect.isclass(attribute):
                 setattr(sys.modules[__name__], name, attribute)
 
-# Set up the preferences class
-preferences = Preferences()
 
-# Define the number of pixels for the LED Strip
-numPixels = preferences.get_setup_preferences('num-pixels')
+class Scenes:
+    def __init__(self):
+        # Informs this scope that there's a global preferences object
+        global preferences
 
-# Initializes the LED strip
-pixels = neopixel.NeoPixel(board.D18, numPixels, brightness=preferences.get_setup_preferences('brightness'), auto_write=False, pixel_order=neopixel.GRB)
+        # Define the number of pixels for the LED Strip
+        self.numPixels = preferences.get_setup_preferences('num-pixels')
 
-def getAnimationOptions():
-    global thread
-    return thread.getOptions()
+        # Initializes the LED strip
+        self.pixels = neopixel.NeoPixel(board.D18, self.numPixels, brightness=preferences.get_setup_preferences('brightness'),
+                                        auto_write=False, pixel_order=neopixel.GRB)
 
-def getAnimationNames():
-    try:
-        return animationNames
-    except:
-        return None
+        # TODO Change this
+        # Populate the animation names
+        self.populate_animation_names()
 
-# Populates the animationNames array which contains all the dynamically imported animations' names
-def populateAnimationNames():
-    global animationNames, animations
-    for a in range(len(animations)):
-        animationNames.append(animations[a].__name__.split('.')[1])
+        # Easy reference to the current running animation
+        self.thread = self.create_thread('Off')
 
-# If the string name exists, a new animation thread is created and the animation is started
-def createThread(name):
-    global thread, animationNames
-    try:
-        for a in range(len(animationNames)):
-            if animationNames[a] == name:
-                threadClass = globals()[animationNames[a]]
-                thread = threadClass(pixels, numPixels)
-                thread.start()
-                return thread
-        return None
-    except:
-        return None
+    def get_animation_options(self):
+        return self.thread.getOptions()
 
-# Turns off the current animation thread
-def shutdownThread():
-    global thread
-    if thread.isAlive():
-        thread.stop()
-        while thread.isAlive():
-            pass
-        if preferences.get_debug_preferences('scenes-debug'):
-            print("Scenes Debug: Shutdown " + thread.name)
+    def get_animation_names(self):
+        try:
+            return animationNames
+        except:
+            return None
 
-# Parses the incoming LED command and calls the correct function
-def changeMode(msg):
-    global thread
-    try:
-        if preferences.get_debug_preferences('scenes-debug'):
-            print('Website Debug: Attempting to start ' + msg)
-        shutdownThread()
-        createThread(msg)
-        return True
-    except:
-        if preferences.get_debug_preferences('scenes-debug'):
-            print('Website Debug: Failed to start ' + msg)
+    # TODO Change this
+    # Populates the animationNames array which contains all the dynamically imported animations' names
+    def populate_animation_names(self):
+        global animationNames, animations
+        for a in range(len(animations)):
+            animationNames.append(animations[a].__name__.split('.')[1])
+
+    # If the string name exists, a new animation thread is created and the animation is started
+    def create_thread(self, name):
+        global animationNames
+        try:
+            for a in range(len(animationNames)):
+                if animationNames[a] == name:
+                    threadClass = globals()[animationNames[a]]
+                    self.thread = threadClass(self.pixels, self.numPixels)
+                    self.thread.start()
+                    return self.thread
+            return None
+        except:
+            return None
+
+    # Turns off the current animation thread
+    def shutdown_thread(self):
+        if self.thread.isAlive():
+            self.thread.stop()
+            while self.thread.isAlive():
+                pass
+            logger.log('Scenes', f'Shutdown {self.thread.name}')
+
+    # Parses the incoming LED command and calls the correct function
+    def change_mode(self, msg):
+        try:
+            logger.log('Website', f'Attempting to start {msg}')
+            self.shutdown_thread()
+            self.create_thread(msg)
+            return True
+        except:
+            logger.log('Website', f'Failed to start {msg}')
+            return False
         return False
-    return False
 
-def getThreadName():
-    global thread
-    return thread.name
+    def get_thread_name(self):
+        return self.thread.name
 
-
-# Start up the lights in 'Off' Mode
-populateAnimationNames()
-thread = createThread('Off')

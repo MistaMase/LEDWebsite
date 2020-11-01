@@ -1,6 +1,8 @@
 import threading
-from Preferences import Preferences
 from abc import ABC, abstractmethod
+
+# Inform the module of the globals
+global preferences
 
 
 # Defines the base class for all animations to extend
@@ -11,12 +13,11 @@ from abc import ABC, abstractmethod
 class BaseAnimation(threading.Thread, ABC):
     def __init__(self, pixels, numPixels, name):
         threading.Thread.__init__(self)
-        self.preferences = Preferences()
         self.pixels = pixels
         self.numPixels = numPixels
         self.name = name
 
-    def getOptions(self):
+    def get_options(self):
         try:
             if self.options is not None:
                 return self.options
