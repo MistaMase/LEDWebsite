@@ -1,5 +1,5 @@
-sudo apt-get install python3
-sudo pip3 install gpio flask flask-socketio board adafruit-circuitpython-neopixel pyaudio numpy
+sudo apt-get install python3 python3-pyaudio
+sudo pip3 install gpio flask flask-socketio board adafruit-circuitpython-neopixel numpy
 cd /home/pi/LEDWebsite/utilities/
 sudo chmod +x ledwebsite.sh
 sudo chmod +x ledwebsite_update.sh
