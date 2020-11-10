@@ -2,7 +2,6 @@ import json
 from os import path
 
 # Inform the module of the globals
-global logger
 
 '''
     File List
@@ -36,10 +35,13 @@ class Preferences:
     # Only allow the class to be created once
     _shared_state = {}
 
-    def __init__(self):
+    def __init__(self, logger):
         # TODO Do I still need this?
         # 'Singleton' for this class
         self.__dict__ = self._shared_state
+
+        # Define the logger class
+        self.logger = logger
 
         # Define the empty dictionaries
         self.debug_preferences = {}
@@ -58,11 +60,14 @@ class Preferences:
         self.read_color_preferences()
         self.read_setup_preferences()
         self.read_info()
-        logger.log('Preferences', f'Debug Preferences {str(self.debug_preferences)}')
-        logger.log('Preferences', f'Animation Preferences {str(self.animation_preferences)}')
-        logger.log('Preferences', f'Color Preferences {str(self.color_preferences)}')
-        logger.log('Preferences', f'Setup Preferences {str(self.setup_preferences)}')
-        logger.log('Preferences', f'Info {str(self.info)}')
+
+        # Since we haven't created the logger yet, print them for now
+        if self.get_debug_preferences('preferences-debug'):
+            print(f'Preferences: Debug Preferences {str(self.debug_preferences)}')
+            print(f'Preferences: Animation Preferences {str(self.animation_preferences)}')
+            print(f'Preferences: Color Preferences {str(self.color_preferences)}')
+            print(f'Preferences: Setup Preferences {str(self.setup_preferences)}')
+            print(f'Preferences: Info {str(self.info)}')
 
     def populate_mandatory_prefs(self):
         # Read from the mandatory_setup.json
@@ -169,7 +174,7 @@ class Preferences:
                 json.dump(self.debug_preferences, pref_file)
 
         except KeyError:
-            logger.log('Preferences', f'Error Updating Debug Preferences Dictionary with {str(key)}')
+            self.logger.log('Preferences', f'Error Updating Debug Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in animation dictionary
     def change_animation_preference(self, key, value):
@@ -185,7 +190,7 @@ class Preferences:
                 json.dump(self.animation_preferences, pref_file)
 
         except KeyError:
-            logger.log('Preferences', f'Error Updating Animation Preferences Dictionary with {str(key)}')
+            self.logger.log('Preferences', f'Error Updating Animation Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in color dictionary
     def change_color_preference(self, key, value):
@@ -201,7 +206,7 @@ class Preferences:
                 json.dump(self.color_preferences, pref_file)
 
         except KeyError:
-            logger.log('Preferences', f'Error Updating Color Preferences Dictionary with {str(key)}')
+            self.logger.log('Preferences', f'Error Updating Color Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in setup dictionary
     def change_setup_preference(self, key, value):
@@ -217,7 +222,7 @@ class Preferences:
                 json.dump(self.setup_preferences, pref_file)
 
         except KeyError:
-            logger.log('Preferences', f'Error Updating Setup Preferences Dictionary with {str(key)}')
+            self.logger.log('Preferences', f'Error Updating Setup Preferences Dictionary with {str(key)}')
 
     # Changes the value for 'key' to 'value' in info dictionary
     def change_info(self, key, value):
@@ -233,4 +238,4 @@ class Preferences:
                 json.dump(self.info, pref_file)
 
         except KeyError:
-            logger.log('Preferences', f'Error Updating Info Dictionary with {str(key)}')
+            self.logger.log('Preferences', f'Error Updating Info Dictionary with {str(key)}')

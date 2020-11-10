@@ -5,14 +5,17 @@ from ControllerManager import ControllerManager
 from scenes import Scenes
 from Hardware import Hardware
 
-# Make Preferences free to use for everyone (Yes, it's programming communism)
-logger = Logger()
-preferences = Preferences()
-website = Website()
-controller_manager = ControllerManager()
-scenes = Scenes()
-hardware = Hardware()
+class LEDController:
+    def __init__(self):
+        self.logger = Logger()
+        self.preferences = self.logger.get_preferences()
+        self.website = Website(self.preferences)
+        self.controller_manager = ControllerManager()
+        self.scenes = Scenes()
+        self.hardware = Hardware()
+
+
 
 if __name__ == '__main__':
-    pass
+    ledcontroller = LEDController()
 

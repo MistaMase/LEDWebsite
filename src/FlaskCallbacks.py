@@ -1,6 +1,13 @@
 # Flask Library Imports
 from flask import Flask, render_template, redirect, url_for
 
+print('Dir\n')
+print(dir())
+print('Globals')
+print(globals())
+print('Locals')
+print(locals())
+
 # Simple function to get the current IP Address
 import socket
 def get_ip_address():
@@ -14,7 +21,7 @@ def get_ip_address():
 '   Services:   '/'
 '   Returns:    Redirect to '/home'
 '''
-@app.route('/')
+@super.app.route('/')
 def redirecttohome():
     return redirect(url_for('home'))
 

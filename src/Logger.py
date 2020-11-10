@@ -1,11 +1,16 @@
-
-# Inform the module of the globals
-global preferences
+# Import the Preferences module
+from Preferences import Preferences
 
 
 class Logger:
     def __init__(self):
-        pass
+        # Save the preferences object
+        self.preferences = Preferences(self)
+        
+    # Annoying hack to have prevent the circular dependencies
+    def get_preferences(self):
+        return self.preferences
+
 
     def log(self, source, message):
         """ Logs the event if the specific debug variable is True
