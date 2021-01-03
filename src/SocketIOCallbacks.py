@@ -1,7 +1,8 @@
 from flask_socketio import SocketIO, emit
+from flask import Blueprint
+import socketio
 
-# Informs this module of the global variables
-global logger, scenes, preferences, hardware
+
 
 '''
 '   SocketIO Callback

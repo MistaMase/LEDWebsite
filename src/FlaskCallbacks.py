@@ -1,12 +1,10 @@
 # Flask Library Imports
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, Blueprint
 
-print('Dir\n')
-print(dir())
-print('Globals')
-print(globals())
-print('Locals')
-print(locals())
+
+# Create the blueprint object
+flask_callbacks = Blueprint('flask_callbacks', __name__)
+
 
 # Simple function to get the current IP Address
 import socket
@@ -21,7 +19,7 @@ def get_ip_address():
 '   Services:   '/'
 '   Returns:    Redirect to '/home'
 '''
-@super.app.route('/')
+@flask_callbacks.route('/')
 def redirecttohome():
     return redirect(url_for('home'))
 
@@ -31,7 +29,7 @@ def redirecttohome():
 '   Services:   '/home'
 '   Returns:    Homepage HTML and CSS
 '''
-@app.route('/home')
+@flask_callbacks.route('/home')
 def home():
     return render_template('Home.html', ipaddress=get_ip_address())
 
@@ -41,7 +39,7 @@ def home():
 '   Services:   '/manualinput'
 '   Returns:    Manual Input Page HTML and CSS
 '''
-@app.route('/manualinput')
+@flask_callbacks.route('/manualinput')
 def manualinput():
     return render_template('ManualInputInterface.html', ipaddress=get_ip_address())
 
@@ -50,7 +48,7 @@ def manualinput():
 '   Services:   '/codeinput'
 '   Returns:    Code Input Page HTML and CSS
 '''
-@app.route('/codeinput')
+@flask_callbacks.route('/codeinput')
 def codeinput():
     return render_template('CodeInputInterface.html', ipaddress=get_ip_address())
 
@@ -59,7 +57,7 @@ def codeinput():
 '   Services:   '/hardwareinformation'
 '   Returns:    Hardware Information Page HTML and CSS
 '''
-@app.route('/hardwareinformation')
+@flask_callbacks.route('/hardwareinformation')
 def hardwareinformation():
     return render_template('HardwareInformationInterface.html', ipaddress=get_ip_address())
 
@@ -68,7 +66,7 @@ def hardwareinformation():
 '   Services:   All Website
 '   Returns:    Disables browser caching
 '''
-@app.after_request
+@flask_callbacks.after_request
 def addHeader(r):
     r.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     r.headers['Pragma'] = 'no-cache'
